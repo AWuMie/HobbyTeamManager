@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace MysqlTestConsole.Models;
+namespace MySqlTestRazor.Models;
 
 public enum MembershipType
 {

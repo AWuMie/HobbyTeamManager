@@ -11,7 +11,7 @@
 
 @{
     var players = (from m in Model.Player
-                  where m.MembershipType == MysqlTestConsole.Models.MembershipType.Member
+                  where m.MembershipType == MySqlTestRazor.Models.MembershipType.Member
                   select m).ToList();
     int count = players.Count;
     int rows = (count / 10) + 1;
@@ -47,7 +47,7 @@
 
 @{
     var guests = (from m in Model.Player
-                  where m.MembershipType == MysqlTestConsole.Models.MembershipType.Guest
+                  where m.MembershipType == MySqlTestRazor.Models.MembershipType.Guest
                   select m).ToList();
     count = guests.Count;
     rows = (count / 10) + 1;
@@ -83,7 +83,7 @@
 
 @{
     var ex = (from m in Model.Player
-                  where m.MembershipType == MysqlTestConsole.Models.MembershipType.Ex
+                  where m.MembershipType == MySqlTestRazor.Models.MembershipType.Ex
                   select m).ToList();
     count = ex.Count;
     rows = (count / 15) + 1;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MysqlTestConsole.Models;
+using MySqlTestRazor.Models;
 
 namespace MySqlTestRazor.Data;
 
@@ -10,6 +10,6 @@ public class MySqlTestRazorContext : DbContext
     {
     }
 
-    // public DbSet<Guest> Guests { get; set; }
     public DbSet<Player>? Players { get; set; }
+    public DbSet<Team>? Teams { get; set; }
 }

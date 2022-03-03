@@ -21,7 +21,7 @@ namespace MySqlTestRazor.Migrations
                 .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("MysqlTestConsole.Models.Player", b =>
+            modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MysqlTestConsole.Models;
+using MySqlTestRazor.Models;
 
 namespace MySqlTestRazor.Data;
 
