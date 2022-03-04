@@ -1,4 +1,6 @@
-﻿namespace MySqlTestRazor.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MySqlTestRazor.Models;
 
 public enum TeamColor
 {
@@ -10,11 +12,17 @@ public class Team
 {
     public int Id { get; set; }
 
+    [Required]
+    [Display(Name = "Mannschaftsfarbe")]
     public TeamColor TeamColor { get; set; } = TeamColor.White;
 
-    public Player? GoalKeeper { get; set; }
+    //[Display(Name = "Torwart")]
+    //public Player? GoalKeeper { get; set; }
 
-    public IList<Player>? Players { get; set; }
+    [Required]
+    [Display(Name = "Spielerliste")]
+    public IList<TeamPlayer>? TeamPlayers { get; set; }
 
+    [Display(Name = "geschossene Tore")]
     public int Goals { get; set; } = 0;
 }

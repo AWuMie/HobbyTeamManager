@@ -51,4 +51,7 @@ public class Player
     [Required]
     [Display(Name = "Mitgliedsstatus")]
     public MembershipType MembershipType { get; set; } = MembershipType.Member;
+
+    [Display(Name = "Mannschaften")]
+    public IList<TeamPlayer>? TeamPlayers { get; set; }
 }
