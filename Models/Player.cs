@@ -51,8 +51,8 @@ public class Player
     // one to many relationship between Player and MembershipType
     // a Player has one MembershipType
     // a MembershipType is valid for many Players
-    //public int MembershipTypeId { get; set; }
-    //public MembershipType MembershipType { get; set; }
+    public int MembershipTypeId { get; set; }
+    public MembershipType MembershipType { get; set; }
     // public MembershipType MembershipType { get; set; } = MembershipType.Member;
 
     // many to many releationship between teams and players:

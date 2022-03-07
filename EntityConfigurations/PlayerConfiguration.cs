@@ -25,5 +25,10 @@ public class PlayerConfiguration : IEntityTypeConfiguration<Player>
             .WithMany(p => p.ScoreForPlayers)
             .HasForeignKey(p => p.ScoreFromPlayerId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne<MembershipType>(p => p.MembershipType)
+            .WithMany(mt => mt.Players)
+            .HasForeignKey(p => p.MembershipTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

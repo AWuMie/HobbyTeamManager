@@ -6,5 +6,5 @@ public class MembershipType
     public string? Name { get; set; }
 
     // one to many relationship between Player and MembershipType
-    // public ICollection<Player>? Players { get; set; }
+    public ICollection<Player>? Players { get; set; }
 }
