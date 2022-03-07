@@ -10,7 +10,7 @@ public static class SeedData
         using var context = new MySqlTestRazorContext(
             serviceProvider.GetRequiredService<DbContextOptions<MySqlTestRazorContext>>());
 
-        if (context == null || context.Players == null)
+        /*if (context == null || context.Players == null)
         {
             throw new ArgumentNullException("Null MySqlTestRazorContext");
         }
@@ -517,6 +517,6 @@ public static class SeedData
                 ProfilePicture = File.ReadAllBytes(pathEx + "ortl.jpg"),
             }
         );
-        context.SaveChanges();
+        context.SaveChanges();*/
     }
 }
