@@ -11,7 +11,9 @@ public static class SeedData
             serviceProvider.GetRequiredService<DbContextOptions<MySqlTestRazorContext>>());
 
         //if (context == null || context.Players == null)
-        if (context == null || context.MembershipTypes == null)
+        if (context == null ||
+            context.MembershipTypes == null ||
+            context.TeamColors == null)
         {
             throw new ArgumentNullException("Null MySqlTestRazorContext");
         }
@@ -39,6 +41,17 @@ public static class SeedData
             }
         );
 
+        context.TeamColors.AddRange(
+            new TeamColor
+            {
+                Name = "Weiss"
+            },
+
+            new TeamColor
+            {
+                Name = "Rot"
+            }
+        );
         context.SaveChanges();
 
         /*string pathActive = "C:\\Users\\Achim\\OneDrive\\Bilder\\TEMP - Emerholzkicker\\Aktiv\\";

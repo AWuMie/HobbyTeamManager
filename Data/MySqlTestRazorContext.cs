@@ -21,14 +21,16 @@ public class MySqlTestRazorContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfiguration(new MembershipTypeConfiguration());
-        //modelBuilder.ApplyConfiguration(new PlayerConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamColorConfiguration());
+        modelBuilder.ApplyConfiguration(new PlayerConfiguration());
         //modelBuilder.ApplyConfiguration(new TeamConfiguration());
         //modelBuilder.ApplyConfiguration(new TeamPlayerConfiguration());
         //modelBuilder.ApplyConfiguration(new MatchDayConfiguration());
     }
 
     public DbSet<MembershipType>? MembershipTypes { get; set; }
-    //public DbSet<Player>? Players { get; set; }
+    public DbSet<TeamColor>? TeamColors { get; set; }
+    public DbSet<Player>? Players { get; set; }
     //public DbSet<Team>? Teams { get; set; }
     //public DbSet<TeamPlayer>? TeamPlayers { get; set; }
     //public DbSet<MatchDay>? MatchDays { get; set; }
