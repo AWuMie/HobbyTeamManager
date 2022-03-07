@@ -10,18 +10,38 @@ public static class SeedData
         using var context = new MySqlTestRazorContext(
             serviceProvider.GetRequiredService<DbContextOptions<MySqlTestRazorContext>>());
 
-        /*if (context == null || context.Players == null)
+        //if (context == null || context.Players == null)
+        if (context == null || context.MembershipTypes == null)
         {
             throw new ArgumentNullException("Null MySqlTestRazorContext");
         }
 
-        // Look for any players.
-        if (context.Players.Any())
+        // Look for any data.
+        if (context.MembershipTypes.Any())
         {
             return;   // DB has already been seeded
         }
 
-        string pathActive = "C:\\Users\\Achim\\OneDrive\\Bilder\\TEMP - Emerholzkicker\\Aktiv\\";
+        context.MembershipTypes.AddRange(
+            new MembershipType
+            {
+                Name = "Mitglied"
+            },
+
+            new MembershipType
+            {
+                Name = "Gast"
+            },
+
+            new MembershipType
+            {
+                Name = "Ehemaliger"
+            }
+        );
+
+        context.SaveChanges();
+
+        /*string pathActive = "C:\\Users\\Achim\\OneDrive\\Bilder\\TEMP - Emerholzkicker\\Aktiv\\";
         string pathGuest = "C:\\Users\\Achim\\OneDrive\\Bilder\\TEMP - Emerholzkicker\\Gast\\";
         string pathEx = "C:\\Users\\Achim\\OneDrive\\Bilder\\TEMP - Emerholzkicker\\Ex\\";
 
