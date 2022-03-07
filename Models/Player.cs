@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+//using System.ComponentModel.DataAnnotations;
 
 namespace MySqlTestRazor.Models;
 
+// TODO: replace by db table with exactly those three values/names
 public enum MembershipType
 {
     Member = 1,
@@ -12,46 +13,49 @@ public enum MembershipType
 
 public class Player
 {
+    public Player()
+    {
+        TeamPlayers = new HashSet<TeamPlayer>();
+    }
+
     public int Id { get; set; }
 
     [PersonalData]
-    [Required]
-    [StringLength(50)]
-    [Display(Name = "Vorname")]
-    public string? FirstName { get; set; } = "";
+    public string FirstName { get; set; } = "";
 
     [PersonalData]
-    [StringLength(50)]
-    [Display(Name = "Nachname")]
-    public string? LastName { get; set; } = "";
+    public string LastName { get; set; } = "";
 
     [PersonalData]
-    [StringLength(50)]
-    [Display(Name = "Spitzname / Motto")]
-    public string? NickName { get; set; } = "";
+    public string NickName { get; set; } = "";
 
     [PersonalData]
-    [DataType(DataType.Date)]
-    [Display(Name = "Geburtstag")]
     public DateTime BirthDate { get; set; } = DateTime.Now;
 
     [PersonalData]
-    [Display(Name = "Profilbild")]
     public byte[]? ProfilePicture { get; set; }
 
-    [Display(Name = "Administrator")]
     public bool IsAdmin { get; set; } = false;
 
-    [Display(Name = "Eigenschaft")]
+    // calculated value - TBD
+    // basis of the automated team-builder
+    // TODO: rename to "Score"
     public float Power { get; set; } = 0.0F;
 
-    [Display(Name = "Eigenschaftswert übernehmen von ...")]
+    // only valid for guest-players which don't have an
+    // automatically calculated score
+    // TODO: setup as one to one relationship!!!
     public int PowerLikePlayerId { get; set; }
 
-    [Required]
-    [Display(Name = "Mitgliedsstatus")]
     public MembershipType MembershipType { get; set; } = MembershipType.Member;
 
-    [Display(Name = "Mannschaften")]
-    public IList<TeamPlayer>? TeamPlayers { get; set; }
+    // many to many releationship between teams and players:
+    // a team has many players
+    // and
+    // a player can play in many teams (a team is valid for one matchday)
+    public ICollection<TeamPlayer>? TeamPlayers { get; set; }
+
+    // one to one relationship with MatchDay to cover the beer-responsible
+    public int MatchDayId { get; set; } = 0;
+    public MatchDay? BeerResponsibleOfMatchDay { get; set; }
 }

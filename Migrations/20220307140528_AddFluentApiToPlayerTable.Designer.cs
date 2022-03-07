@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySqlTestRazor.Data;
 
@@ -10,28 +11,15 @@ using MySqlTestRazor.Data;
 namespace MySqlTestRazor.Migrations
 {
     [DbContext(typeof(MySqlTestRazorContext))]
-    partial class MySqlTestRazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220307140528_AddFluentApiToPlayerTable")]
+    partial class AddFluentApiToPlayerTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("MySqlTestRazor.Models.MatchDay", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MatchDay");
-                });
 
             modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
                 {
@@ -55,9 +43,6 @@ namespace MySqlTestRazor.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("MatchDayId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MembershipType")
                         .HasColumnType("int");
 
@@ -77,9 +62,6 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MatchDayId")
-                        .IsUnique();
-
                     b.ToTable("Players");
                 });
 
@@ -92,22 +74,10 @@ namespace MySqlTestRazor.Migrations
                     b.Property<int>("Goals")
                         .HasColumnType("int");
 
-                    b.Property<int>("MatchDayIdForTeamRed")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MatchDayIdForTeamWhite")
-                        .HasColumnType("int");
-
                     b.Property<int>("TeamColor")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MatchDayIdForTeamRed")
-                        .IsUnique();
-
-                    b.HasIndex("MatchDayIdForTeamWhite")
-                        .IsUnique();
 
                     b.ToTable("Teams");
                 });
@@ -127,36 +97,6 @@ namespace MySqlTestRazor.Migrations
                     b.ToTable("TeamPlayers");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
-                {
-                    b.HasOne("MySqlTestRazor.Models.MatchDay", "BeerResponsibleOfMatchDay")
-                        .WithOne("BeerResponsible")
-                        .HasForeignKey("MySqlTestRazor.Models.Player", "MatchDayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BeerResponsibleOfMatchDay");
-                });
-
-            modelBuilder.Entity("MySqlTestRazor.Models.Team", b =>
-                {
-                    b.HasOne("MySqlTestRazor.Models.MatchDay", "MatchDayForTeamRed")
-                        .WithOne("TeamRed")
-                        .HasForeignKey("MySqlTestRazor.Models.Team", "MatchDayIdForTeamRed")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MySqlTestRazor.Models.MatchDay", "MatchDayForTeamWhite")
-                        .WithOne("TeamWhite")
-                        .HasForeignKey("MySqlTestRazor.Models.Team", "MatchDayIdForTeamWhite")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MatchDayForTeamRed");
-
-                    b.Navigation("MatchDayForTeamWhite");
-                });
-
             modelBuilder.Entity("MySqlTestRazor.Models.TeamPlayer", b =>
                 {
                     b.HasOne("MySqlTestRazor.Models.Player", "Player")
@@ -174,15 +114,6 @@ namespace MySqlTestRazor.Migrations
                     b.Navigation("Player");
 
                     b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("MySqlTestRazor.Models.MatchDay", b =>
-                {
-                    b.Navigation("BeerResponsible");
-
-                    b.Navigation("TeamRed");
-
-                    b.Navigation("TeamWhite");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
