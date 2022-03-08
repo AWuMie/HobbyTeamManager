@@ -47,8 +47,7 @@ public class Player
     public MembershipType? MembershipType { get; set; }
 
     // many to many releationship between teams and players:
-    // a team has many players
-    // and
+    // a team has many players and
     // a player can play in many teams (a team is valid for one matchday)
     //public ICollection<TeamPlayer>? TeamPlayers { get; set; }
 

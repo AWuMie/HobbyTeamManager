@@ -7,4 +7,7 @@ public class TeamColor
 
     public int Id { get; set; }
     public string? Name { get; set; }
+
+    // one to many relationship between Team and TeamColor
+    public ICollection<Team>? Teams { get; set; }
 }
