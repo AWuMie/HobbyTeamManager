@@ -24,7 +24,7 @@ public class MySqlTestRazorContext : DbContext
         modelBuilder.ApplyConfiguration(new TeamColorConfiguration());
         modelBuilder.ApplyConfiguration(new PlayerConfiguration());
         modelBuilder.ApplyConfiguration(new TeamConfiguration());
-        //modelBuilder.ApplyConfiguration(new TeamPlayerConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamPlayerConfiguration());
         //modelBuilder.ApplyConfiguration(new MatchDayConfiguration());
     }
 
@@ -32,7 +32,7 @@ public class MySqlTestRazorContext : DbContext
     public DbSet<TeamColor>? TeamColors { get; set; }
     public DbSet<Player>? Players { get; set; }
     public DbSet<Team>? Teams { get; set; }
-    //public DbSet<TeamPlayer>? TeamPlayers { get; set; }
+    public DbSet<TeamPlayer>? TeamPlayers { get; set; }
     //public DbSet<MatchDay>? MatchDays { get; set; }
     //public DbSet<Season>? Seasons { get; set; }
     //public DbSet<Site>? Sites { get; set; }

@@ -6,7 +6,7 @@ public class Player
 {
     public Player()
     {
-        //TeamPlayers = new HashSet<TeamPlayer>();
+        TeamPlayers = new HashSet<TeamPlayer>();
     }
 
     public int Id { get; set; }
@@ -49,7 +49,7 @@ public class Player
     // many to many releationship between teams and players:
     // a team has many players and
     // a player can play in many teams (a team is valid for one matchday)
-    //public ICollection<TeamPlayer>? TeamPlayers { get; set; }
+    public ICollection<TeamPlayer>? TeamPlayers { get; set; }
 
     // one to one relationship with MatchDay to cover the beer-responsible
     //public int MatchDayId { get; set; } = 0;

@@ -4,7 +4,7 @@ public class Team
 {
     public Team()
     {
-        //TeamPlayers = new HashSet<TeamPlayer>();
+        TeamPlayers = new HashSet<TeamPlayer>();
     }
 
     public int Id { get; set; }
@@ -12,7 +12,10 @@ public class Team
     public int TeamColorId { get; set; }
     public TeamColor? TeamColor { get; set; }
 
-    //public ICollection<TeamPlayer> TeamPlayers { get; set; }
+    // many to many releationship between teams and players:
+    // a team has many players and
+    // a player can play in many teams (a team is valid for one matchday)
+    public ICollection<TeamPlayer> TeamPlayers { get; set; }
 
     public int Goals { get; set; } = 0;
 
