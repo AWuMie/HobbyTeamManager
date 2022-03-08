@@ -6,7 +6,8 @@ public class MatchDay
 
     public DateTime DateTime { get; set; }
 
-    //public Player? BeerResponsible { get; set; }
+    // one to one relationship between Player and MatchDay to cover the beer-responsible
+    public Player? BeerResponsible { get; set; }
 
     //public Team? TeamWhite { get; set; } = null;
 

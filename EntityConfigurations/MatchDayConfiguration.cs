@@ -11,16 +11,19 @@ public class MatchDayConfiguration : IEntityTypeConfiguration<MatchDay>
         builder.Property(md => md.DateTime)
             .IsRequired();
 
-        //builder.HasOne<Player>(md => md.BeerResponsible)
-        //    .WithOne(br => br.BeerResponsibleOfMatchDay)
-        //    .HasForeignKey<Player>(br => br.MatchDayId);
+        builder.HasOne<Player>(md => md.BeerResponsible)
+            .WithOne(p => p.BeerResponsibleOfMatchDay)
+            .HasForeignKey<Player>(p => p.MatchDayId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         //builder.HasOne<Team>(md => md.TeamWhite)
         //    .WithOne(t => t.MatchDayForTeamWhite)
-        //    .HasForeignKey<Team>(t => t.MatchDayIdForTeamWhite);
+        //    .HasForeignKey<Team>(t => t.MatchDayIdForTeamWhite)
+            //.OnDelete(DeleteBehavior.Restrict);
 
         //builder.HasOne<Team>(md => md.TeamRed)
         //    .WithOne(t => t.MatchDayForTeamRed)
-        //    .HasForeignKey<Team>(t => t.MatchDayIdForTeamRed);
+        //    .HasForeignKey<Team>(t => t.MatchDayIdForTeamRed)
+            //.OnDelete(DeleteBehavior.Restrict);
     }
 }
