@@ -1,15 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-//using System.ComponentModel.DataAnnotations;
 
 namespace MySqlTestRazor.Models;
-
-// DONE: replace by db table with exactly those three values/names
-//public enum MembershipType
-//{
-//    Member = 1,
-//    Guest = 2,
-//    Ex = 3
-//}
 
 public class Player
 {
@@ -39,21 +30,21 @@ public class Player
 
     // calculated value - TBD
     // basis of the automated team-builder
+    // in the future could be a class/model/table with several aspects of abilities of a player
     public float Score { get; set; } = 0.0F;
 
     // only valid for guest-players which don't have an
     // automatically calculated score
     // one to many relationship to itself!
     public int ScoreFromPlayerId { get; set; }
-    public Player ScoreFromPlayer { get; set; }
+    public Player? ScoreFromPlayer { get; set; }
     public virtual ICollection<Player>? ScoreForPlayers { get; set; }
 
     // one to many relationship between Player and MembershipType
     // a Player has one MembershipType
     // a MembershipType is valid for many Players
     public int MembershipTypeId { get; set; }
-    public MembershipType MembershipType { get; set; }
-    // public MembershipType MembershipType { get; set; } = MembershipType.Member;
+    public MembershipType? MembershipType { get; set; }
 
     // many to many releationship between teams and players:
     // a team has many players
