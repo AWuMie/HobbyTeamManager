@@ -16,14 +16,14 @@ public class MatchDayConfiguration : IEntityTypeConfiguration<MatchDay>
             .HasForeignKey<Player>(p => p.MatchDayId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        //builder.HasOne<Team>(md => md.TeamWhite)
-        //    .WithOne(t => t.MatchDayForTeamWhite)
-        //    .HasForeignKey<Team>(t => t.MatchDayIdForTeamWhite)
-            //.OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne<Team>(md => md.TeamWhite)
+            .WithOne(t => t.MatchDayForTeamWhite)
+            .HasForeignKey<Team>(t => t.MatchDayIdForTeamWhite)
+            .OnDelete(DeleteBehavior.Restrict);
 
-        //builder.HasOne<Team>(md => md.TeamRed)
-        //    .WithOne(t => t.MatchDayForTeamRed)
-        //    .HasForeignKey<Team>(t => t.MatchDayIdForTeamRed)
-            //.OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne<Team>(md => md.TeamRed)
+            .WithOne(t => t.MatchDayForTeamRed)
+            .HasForeignKey<Team>(t => t.MatchDayIdForTeamRed)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
