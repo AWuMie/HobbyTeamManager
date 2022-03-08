@@ -11,5 +11,8 @@ public class Season
 
     public DayOfWeek MatchOnDay { get; set; }
 
-    //public IList<MatchDay>? MatchDays { get; set; }
+    // one to many relationship between MatchDay and Season.
+    // A MatchDay is linked to one Season while
+    // a Season has many MatchDays
+    public IList<MatchDay>? MatchDays { get; set; }
 }

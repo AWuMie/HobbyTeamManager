@@ -25,5 +25,10 @@ public class MatchDayConfiguration : IEntityTypeConfiguration<MatchDay>
             .WithOne(t => t.MatchDayForTeamRed)
             .HasForeignKey<Team>(t => t.MatchDayIdForTeamRed)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne<Season>(md => md.Season)
+            .WithMany(s => s.MatchDays)
+            .HasForeignKey(md => md.SeasonId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

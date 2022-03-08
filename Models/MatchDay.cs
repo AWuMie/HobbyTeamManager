@@ -14,4 +14,10 @@ public class MatchDay
     public Team? TeamWhite { get; set; } = null;
 
     public Team? TeamRed { get; set; } = null;
+
+    // one to many relationship between MatchDay and Season.
+    // A MatchDay is linked to one Season while
+    // a Season has many MatchDays
+    public int SeasonId { get; set; }
+    public Season? Season { get; set; }
 }
