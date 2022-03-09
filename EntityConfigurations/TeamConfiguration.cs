@@ -12,5 +12,7 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
             .WithMany(tc => tc.Teams)
             .HasForeignKey(t => t.TeamColorId)
             .OnDelete(DeleteBehavior.Restrict);
+        builder.Navigation(t => t.TeamColor)
+            .AutoInclude();
     }
 }

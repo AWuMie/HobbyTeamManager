@@ -8,6 +8,7 @@ public class Player
     {
         TeamPlayers = new HashSet<TeamPlayer>();
         BeerResponsibleOnMatchDays = new HashSet<MatchDay>();
+        ScoreForPlayers = new HashSet<Player>();
     }
 
     public int Id { get; set; }
@@ -37,9 +38,9 @@ public class Player
     // only valid for guest-players which don't have an
     // automatically calculated score
     // one to many relationship to itself!
-    public int ScoreFromPlayerId { get; set; }
+    public int? ScoreFromPlayerId { get; set; }
     public Player? ScoreFromPlayer { get; set; }
-    public virtual ICollection<Player>? ScoreForPlayers { get; set; }
+    public ICollection<Player>? ScoreForPlayers { get; set; }
 
     // one to many relationship between Player and MembershipType
     // a Player has one MembershipType

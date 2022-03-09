@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySqlTestRazor.Data;
 
@@ -10,9 +11,10 @@ using MySqlTestRazor.Data;
 namespace MySqlTestRazor.Migrations
 {
     [DbContext(typeof(MySqlTestRazorContext))]
-    partial class MySqlTestRazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220309125930_UpdatePlayerTableFKScoreFromPlayerIdNullable")]
+    partial class UpdatePlayerTableFKScoreFromPlayerIdNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasIndex("SeasonId");
 
-                    b.ToTable("MatchDays", (string)null);
+                    b.ToTable("MatchDays");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.MembershipType", b =>
@@ -56,7 +58,7 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MembershipTypes", (string)null);
+                    b.ToTable("MembershipTypes");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
@@ -104,7 +106,7 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasIndex("ScoreFromPlayerId");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.Season", b =>
@@ -124,7 +126,7 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Seasons", (string)null);
+                    b.ToTable("Seasons");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.Team", b =>
@@ -155,7 +157,7 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasIndex("TeamColorId");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.TeamColor", b =>
@@ -171,7 +173,7 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TeamColors", (string)null);
+                    b.ToTable("TeamColors");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.TeamPlayer", b =>
@@ -186,7 +188,7 @@ namespace MySqlTestRazor.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("TeamPlayers", (string)null);
+                    b.ToTable("TeamPlayers");
                 });
 
             modelBuilder.Entity("MySqlTestRazor.Models.MatchDay", b =>

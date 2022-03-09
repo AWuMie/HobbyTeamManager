@@ -11,8 +11,9 @@
 
 @{
     var players = (from m in Model.Player
-                  where m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Member
-                  select m).ToList();
+                   where m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Member
+                   select m).ToList();
+
     int count = players.Count;
     int rows = (count / 10) + 1;
     int columns = (count / rows) + 1;
