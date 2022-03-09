@@ -6,7 +6,8 @@ public class MatchDay
 
     public DateTime DateTime { get; set; }
 
-    // one to one relationship between Player and MatchDay to cover the beer-responsible
+    // one to many relationship between Player and MatchDay to cover the beer-responsible
+    public int BeerResponsibleId { get; set; }
     public Player? BeerResponsible { get; set; }
 
     // twice a one to one relationship between Team and MatchDay to cover the two teams
@@ -18,6 +19,6 @@ public class MatchDay
     // one to many relationship between MatchDay and Season.
     // A MatchDay is linked to one Season while
     // a Season has many MatchDays
-    public int SeasonId { get; set; }
+    public int? SeasonId { get; set; }
     public Season? Season { get; set; }
 }

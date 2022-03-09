@@ -590,3 +590,16 @@ public static class SeedData
         context.SaveChanges();
     }
 }
+
+/*MySqlException: Cannot add or update a child row: a foreign key constraint fails
+ * (`TestDB`.`Players`,
+ * CONSTRAINT `FK_Players_MatchDays_MatchDayId` 
+ * FOREIGN KEY (`MatchDayId`)
+ * REFERENCES `MatchDays` (`Id`))
+*/
+/*MySqlException: Cannot add or update a child row: a foreign key constraint fails
+ * (`TestDB`.`Players`,
+ * CONSTRAINT `FK_Players_MatchDays_MatchDayId`
+ * FOREIGN KEY (`MatchDayId`)
+ * REFERENCES `MatchDays` (`Id`))
+*/

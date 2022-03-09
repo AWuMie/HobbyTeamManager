@@ -7,6 +7,7 @@ public class Player
     public Player()
     {
         TeamPlayers = new HashSet<TeamPlayer>();
+        BeerResponsibleOnMatchDays = new HashSet<MatchDay>();
     }
 
     public int Id { get; set; }
@@ -52,6 +53,11 @@ public class Player
     public ICollection<TeamPlayer>? TeamPlayers { get; set; }
 
     // one to one relationship between Player and MatchDay to cover the beer-responsible
-    public int MatchDayId { get; set; } = 0;
-    public MatchDay? BeerResponsibleOfMatchDay { get; set; }
+    //public int? MatchDayId { get; set; } = 0;
+    //public MatchDay? BeerResponsibleOfMatchDay { get; set; }
+
+    // one to many relationship between Player and MatchDay to cover the beer-responsible
+    // a player can be beer responsible on many matchdays
+    // there is only one beer responsible per matchday
+    public ICollection<MatchDay>? BeerResponsibleOnMatchDays { get; set; }
 }

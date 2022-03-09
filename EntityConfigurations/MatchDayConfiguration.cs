@@ -12,8 +12,8 @@ public class MatchDayConfiguration : IEntityTypeConfiguration<MatchDay>
             .IsRequired();
 
         builder.HasOne<Player>(md => md.BeerResponsible)
-            .WithOne(p => p.BeerResponsibleOfMatchDay)
-            .HasForeignKey<Player>(p => p.MatchDayId)
+            .WithMany(p => p.BeerResponsibleOnMatchDays)
+            .HasForeignKey(p => p.BeerResponsibleId)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne<Team>(md => md.TeamWhite)
