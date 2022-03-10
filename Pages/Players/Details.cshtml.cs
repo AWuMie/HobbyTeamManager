@@ -10,9 +10,12 @@ namespace MySqlTestRazor.Pages.Players
     {
         private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
 
+        public readonly bool isAdmin;
+
         public DetailsModel(MySqlTestRazor.Data.MySqlTestRazorContext context)
         {
             _context = context;
+            isAdmin = true;
         }
 
         public Player Player { get; set; }

@@ -1,0 +1,115 @@
+﻿@page
+@model MySqlTestRazor.Pages.Players.GaleryModel
+
+@{
+    ViewData["Title"] = "Team";
+}
+
+<p>&nbsp;</p>
+<h1 align="center" style="color: blue;">Wir sind dabei</h1>
+@*<p>&nbsp;</p>*@
+
+@{
+    var players = (from m in Model.Player
+                   where m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Member
+                   select m).ToList();
+
+    int count = players.Count;
+    int rows = (count / 10) + 1;
+    int columns = (count / rows) + 1;
+    int index = 0;
+}
+
+@for (var i = 0; i < rows; i++)
+{
+    <p align="center">
+    @for (var j = 0; j < columns; j++)
+    {
+        if (index >= count)
+            break;
+        var item = players[index++];
+        @if (item.ProfilePicture != null)
+        {
+            <a title=@item.NickName asp-page="./Details" asp-route-id="@item.Id">
+                <img border="0" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
+            </a>
+        }
+        else
+        {
+            <img border="0" width="80" height="100"  src="">
+        }
+    }
+    </p>
+}
+
+<p>&nbsp;</p>
+<h2 align="center" style="color: blue;">Unsere Gastspieler</h2>
+@*<p>&nbsp;</p>*@
+
+@{
+    var guests = (from m in Model.Player
+                  where m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Guest
+                  select m).ToList();
+    count = guests.Count;
+    rows = (count / 10) + 1;
+    columns = (count / rows) + 1;
+    index = 0;
+}
+
+@for (var i = 0; i < rows; i++)
+{
+    <p align="center">
+    @for (var j = 0; j < columns; j++)
+    {
+        if (index >= count)
+            break;
+        var item = guests[index++];
+        @if (item.ProfilePicture != null)
+        {
+            <a title=@item.NickName asp-page="./Details" asp-route-id="@item.Id">
+                <img border="0" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
+            </a>
+        }
+        else
+        {
+            <img border="0" width="80" height="100"  src="">
+        }
+    }
+    </p>
+}
+
+<p>&nbsp;</p>
+<h3 align="center" style="color: blue;">Unsere Ehemaligen (leider nicht vollzählig)</h3>
+@*<p>&nbsp;</p>*@
+
+@{
+    var ex = (from m in Model.Player
+                  where m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Ex
+                  select m).ToList();
+    count = ex.Count;
+    rows = (count / 15) + 1;
+    columns = (count / rows) + 1;
+    index = 0;
+}
+
+@for (var i = 0; i < rows; i++)
+{
+    <p align="center">
+    @for (var j = 0; j < columns; j++)
+    {
+        if (index >= count)
+            break;
+        var item = ex[index++];
+        @if (item.ProfilePicture != null)
+        {
+            <a title=@item.NickName>
+                <img border="0" width="60" height="75" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
+            </a>
+        }
+        else
+        {
+            <img border="0" width="80" height="100"  src="">
+        }
+    }
+    </p>
+}

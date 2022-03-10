@@ -26,6 +26,7 @@ public class Player
     public DateTime BirthDate { get; set; } = DateTime.Now;
 
     [PersonalData]
+    //[Display(Name = "Profilbild")]
     public byte[]? ProfilePicture { get; set; }
 
     public bool IsAdmin { get; set; } = false;
