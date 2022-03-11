@@ -44,28 +44,14 @@ namespace MySqlTestRazor.Pages.Players
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        //public async Task<IActionResult> OnPostAsync()
-        public async Task<IActionResult> OnPostAsync(int? id)
+        //public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var playerToUpdate = await _context.Players.FindAsync(id);
-
-            if (playerToUpdate == null)
-            {
-                return NotFound();
-            }
-
             if (!ModelState.IsValid)
             {
-                PopulateMemberTypeDropDownList(_context, playerToUpdate.MembershipTypeId);
+                PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
                 return Page();
             }
-
-            _context.Attach(Player).State = EntityState.Modified;
 
             // did we load a new image?
             if (Request.Form.Files.Count > 0)
@@ -77,7 +63,7 @@ namespace MySqlTestRazor.Pages.Players
 
                 if (!ModelState.IsValid)
                 {
-                    PopulateMemberTypeDropDownList(_context, playerToUpdate.MembershipTypeId);
+                    PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
                     return Page();
                 }
 
@@ -94,13 +80,14 @@ namespace MySqlTestRazor.Pages.Players
 
             try
             {
+                _context.Update(Player);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PlayerExists(Player.Id))
+                if (!PlayerExists(this.Player.Id))
                 {
-                    return NotFound();
+                    return base.NotFound();
                 }
                 else
                 {

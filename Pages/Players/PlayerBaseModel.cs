@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Emerholzkicker.Utilities;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MySqlTestRazor.Data;
+using MySqlTestRazor.Models;
 
 namespace MySqlTestRazor.Pages.Players;
 
@@ -13,12 +16,12 @@ public class PlayerBaseModel : PageModel
         object? selectedMembershipTypeId = null)
     {
         var membershipTypeQuery = from mt in _context.MembershipTypes
-                              orderby mt.Id     // sort by Id!
-                              select mt;
+                                  orderby mt.MembershipTypeId     // sort by Id!
+                                  select mt;
 
         var items = membershipTypeQuery.AsNoTracking().ToList();
 
         MembershipTypeSL = new SelectList(items,
-            "Id", "Name", selectedMembershipTypeId);
+            "MembershipTypeId", "Name", selectedMembershipTypeId);
     }
 }

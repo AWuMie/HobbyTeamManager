@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Player.Id" />
             <div class="form-group">
@@ -34,27 +34,21 @@
                 <input asp-for="Player.BirthDate" class="form-control" />
                 <span asp-validation-for="Player.BirthDate" class="text-danger"></span>
             </div>
-
-@*            <div class="form-group">
-                <label asp-for="Player.ProfilePicture" class="control-label"></label>
-                <input asp-for="Player.ProfilePicture" class="form-control" />
-                <span asp-validation-for="Player.ProfilePicture" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="Player.ProfilePicture" class="control-label"></label>
                 @if (Model.Player.ProfilePicture != null)
                 {
-                    <img id="pic" border="1" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(Model.Player.ProfilePicture))">
+                    <img id="profilePicture" border="1" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(Model.Player.ProfilePicture))">
                 }
                 else
                 {
-                    <img id="pic" border="1" width="80" height="100"  src="">
+                    <img id="profilePicture" border="1" width="80" height="100"  src="">
                 }
                 <input type="file"
-                        accept=".png,.jpg,.jpeg"
+                        accept="image/png, image/jpeg"
                         asp-for="Player.ProfilePicture"
                         class="form-control"
-                        onchange="document.getElementById('pic').src =
+                        onchange="document.getElementById('profilePicture').src =
                             window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Player.ProfilePicture" class="text-danger"></span>
             </div>

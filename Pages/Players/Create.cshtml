@@ -2,16 +2,16 @@
 @model MySqlTestRazor.Pages.Players.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Neuer Spieler";
 }
 
-<h1>Create</h1>
+<h1>Neuer Spieler</h1>
 
-<h4>Player</h4>
+<h4>Spielerdaten</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Player.FirstName" class="control-label"></label>
@@ -35,7 +35,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Player.ProfilePicture" class="control-label"></label>
-                <input asp-for="Player.ProfilePicture" class="form-control" />
+                <img id="profilePicture" border="1" width="80" height="100"  src="">
+                <input asp-for="Player.ProfilePicture" type="file"
+                        accept="image/png, image/jpeg"
+                        class="form-control"
+                        onchange="document.getElementById('profilePicture').src =
+                            window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Player.ProfilePicture" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -49,24 +54,22 @@
                 <span asp-validation-for="Player.Score" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Player.ScoreFromPlayer" class="control-label"></label>
-                <input asp-for="Player.ScoreFromPlayer" class="form-control" />
-                <span asp-validation-for="Player.ScoreFromPlayer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Player.MembershipType" class="control-label"></label>
-                <select asp-for="Player.MembershipType" class="form-control"></select>
-                <span asp-validation-for="Player.MembershipType" class="text-danger"></span>
+                <select asp-for="Player.MembershipTypeId" class="form-control"
+                        asp-items="@Model.MembershipTypeSL">
+                        <option value="">-- Mitgliedsstatus auswählen --</option>
+                </select>
+                <span asp-validation-for="Player.MembershipTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Speichern" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Zurück zur Liste</a>
 </div>
 
 @section Scripts {

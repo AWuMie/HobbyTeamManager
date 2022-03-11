@@ -8,6 +8,9 @@ public class TeamColorConfiguration : IEntityTypeConfiguration<TeamColor>
 {
     public void Configure(EntityTypeBuilder<TeamColor> builder)
     {
+        builder.Property(tc => tc.TeamColorId)
+            .HasColumnName("Id");
+
         builder.Property(tc => tc.Name)
             .IsRequired()
             .HasMaxLength(10);

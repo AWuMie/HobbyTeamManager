@@ -13,6 +13,9 @@ public class MembershipTypeConfiguration : IEntityTypeConfiguration<MembershipTy
     // 4. relationships
     public void Configure(EntityTypeBuilder<MembershipType> builder)
     {
+        builder.Property(mt => mt.MembershipTypeId)
+            .HasColumnName("Id");
+
         builder.Property(mt => mt.Name)
             .IsRequired()
             .HasMaxLength(20);

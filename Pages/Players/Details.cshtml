@@ -62,7 +62,7 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Player.IsAdmin)
             </dd>
-            @if ((Model.Player.MembershipType.Id == 2) &&       @*Guest*@
+            @if ((Model.Player.MembershipTypeId == 2) &&       @*Guest*@
                  (Model.Player.ScoreFromPlayer != null))
             {
                 <dt class="col-sm-2">
@@ -73,7 +73,7 @@
                 </dd>
             }
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Player.MembershipType)
+                @Html.DisplayNameFor(model => model.Player.MembershipTypeId)
             </dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Player.MembershipType.Name)

@@ -11,12 +11,12 @@ public class MySqlTestRazorContext : DbContext
     {
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.EnableSensitiveDataLogging();
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    optionsBuilder.EnableSensitiveDataLogging();
 
-        base.OnConfiguring(optionsBuilder);
-    }
+    //    base.OnConfiguring(optionsBuilder);
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
