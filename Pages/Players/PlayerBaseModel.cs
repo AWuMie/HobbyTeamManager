@@ -1,10 +1,7 @@
-﻿using Emerholzkicker.Utilities;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
 
 namespace MySqlTestRazor.Pages.Players;
 

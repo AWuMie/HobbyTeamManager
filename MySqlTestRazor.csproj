@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Pages\Teams\" />
     <Folder Include="wwwroot\res\" />
   </ItemGroup>
 

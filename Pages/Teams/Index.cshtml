@@ -1,0 +1,54 @@
+﻿@page
+@model MySqlTestRazor.Pages.Teams.IndexModel
+
+@{
+    ViewData["Title"] = "Alle Teams";
+}
+
+<h1>Alle Teams</h1>
+
+<p>
+    <a asp-page="Create">Neues Team</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].TeamColorId)
+            </th>
+@*            <th>
+                @Html.DisplayNameFor(model => model.Team[0].Goals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].MatchDayIdForTeamWhite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].MatchDayIdForTeamRed)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Team) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamColor.Name)
+            </td>
+@*            <td>
+                @Html.DisplayFor(modelItem => item.Goals)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatchDayIdForTeamWhite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatchDayIdForTeamRed)
+            </td>*@
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Löschen</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

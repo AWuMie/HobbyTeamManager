@@ -1,0 +1,52 @@
+﻿@page "{id:int?}"
+@model MySqlTestRazor.Pages.Teams.EditModel
+
+@{
+    ViewData["Title"] = "Team ändern";
+}
+
+<h1>Team ändern</h1>
+
+<h4>Team</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Team.Id" />
+            <div class="form-group">
+                <label asp-for="Team.TeamColorId" class="control-label"></label>
+                <select asp-for="Team.TeamColorId" class="form-control"
+                        asp-items="@Model.TeamColorSL">
+                </select>
+                <span asp-validation-for="Team.TeamColorId" class="text-danger"></span>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="Team.Goals" class="control-label"></label>
+                <input asp-for="Team.Goals" class="form-control" />
+                <span asp-validation-for="Team.Goals" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.MatchDayIdForTeamWhite" class="control-label"></label>
+                <input asp-for="Team.MatchDayIdForTeamWhite" class="form-control" />
+                <span asp-validation-for="Team.MatchDayIdForTeamWhite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.MatchDayIdForTeamRed" class="control-label"></label>
+                <input asp-for="Team.MatchDayIdForTeamRed" class="form-control" />
+                <span asp-validation-for="Team.MatchDayIdForTeamRed" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Speichern" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Zurück zur Liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

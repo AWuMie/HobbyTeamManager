@@ -1,0 +1,46 @@
+﻿@page "{id:int?}"
+@model MySqlTestRazor.Pages.Teams.DeleteModel
+
+@{
+    ViewData["Title"] = "Team löschen";
+}
+
+<h1>Team löschen</h1>
+
+<h3>Bist Du sicher, dass Du dieses Team löschen willst?</h3>
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Team.TeamColorId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Team.TeamColor.Name)
+        </dd>
+@*        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Team.Goals)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Team.Goals)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Team.MatchDayIdForTeamWhite)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Team.MatchDayIdForTeamWhite)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Team.MatchDayIdForTeamRed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Team.MatchDayIdForTeamRed)
+        </dd>*@
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Team.Id" />
+        <input type="submit" value="LÖSCHEN" class="btn btn-danger" /> |
+        <a asp-page="./Index">Zurück zur Liste</a>
+    </form>
+</div>
