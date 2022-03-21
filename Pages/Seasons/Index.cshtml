@@ -30,8 +30,7 @@
 @foreach (var item in Model.Season) {
         <tr>
             <td>
-                @{ int year = item.Year; }
-                @Html.DisplayFor(modelItem => year)
+                @Html.DisplayFor(modelItem => item.Year)
             </td>
             <td>
                 @{ string month =

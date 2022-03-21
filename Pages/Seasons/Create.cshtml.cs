@@ -29,7 +29,7 @@ namespace MySqlTestRazor.Pages.Seasons
                 PopulateDropDownLists(GetExistingYears(_context),
                     selectedYear: Season.Year,
                     selectedMonth: Season.StartMonth,
-                    selectedWeekDay: Season.MatchOnDay);
+                    selectedWeekDay: (int) Season.MatchOnDay);
                 return Page();
             }
 
