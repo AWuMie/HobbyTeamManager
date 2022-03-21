@@ -18,6 +18,9 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        Season = await _context.Seasons.ToListAsync();
+        //FIXED: Season table shall be sorted ascending by column "Year"
+        var seasons = from season in _context.Seasons select season;
+        seasons = seasons.OrderBy(season => season.Year);
+        Season = await seasons.ToListAsync();
     }
 }
