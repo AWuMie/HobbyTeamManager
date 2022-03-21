@@ -38,18 +38,16 @@
                 <label asp-for="Player.ProfilePicture" class="control-label"></label>
                 @if (Model.Player.ProfilePicture != null)
                 {
-                    <img id="profilePicture" border="1" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(Model.Player.ProfilePicture))">
+                    <img id="pic" border="1" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(Model.Player.ProfilePicture))">
                 }
                 else
                 {
-                    <img id="profilePicture" border="1" width="80" height="100"  src="">
+                    <img id="pic" border="1" width="80" height="100"  src="">
                 }
-                <input type="file"
-                        accept="image/png, image/jpeg"
-                        asp-for="Player.ProfilePicture"
-                        class="form-control"
-                        onchange="document.getElementById('profilePicture').src =
-                            window.URL.createObjectURL(this.files[0])" />
+                <input type="file" accept="image/png, image/jpeg"
+                        asp-for="Player.ProfilePicture" class="form-control"
+                        onchange="document.getElementById('pic').src =
+                        window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Player.ProfilePicture" class="text-danger"></span>
             </div>
 

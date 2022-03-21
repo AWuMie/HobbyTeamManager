@@ -29,7 +29,7 @@ public class EditModel : PlayerBaseModel
 
         Player = await _context.Players
             .Include(p => p.MembershipType)         // eager loading!
-            .FirstOrDefaultAsync(m => m.Id == id);
+            .FirstOrDefaultAsync(p => p.Id == id);
 
         if (Player == null)
         {
@@ -44,7 +44,6 @@ public class EditModel : PlayerBaseModel
 
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
-    //public async Task<IActionResult> OnPostAsync(int? id)
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
@@ -52,9 +51,6 @@ public class EditModel : PlayerBaseModel
             PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
             return Page();
         }
-
-        // TODO: here the ProfilePicture in Player is already null!
-        // https://docs.microsoft.com/en-us/aspnet/web-pages/overview/ui-layouts-and-themes/4-working-with-forms
 
         // did we load a new image?
         if (Request.Form.Files.Count > 0)
@@ -79,6 +75,14 @@ public class EditModel : PlayerBaseModel
             using var dataStream = new MemoryStream();
             await image.SaveAsJpegAsync(dataStream);
             Player.ProfilePicture = dataStream.ToArray();
+        }
+
+        // FIXED: if we did not change the ProfilePicture in Player it is null here!
+        if (Player.ProfilePicture == null)
+        {
+            Player.ProfilePicture = _context.Players
+                .AsNoTracking()
+                .FirstOrDefault(p => p.Id == Player.Id).ProfilePicture;
         }
 
         try
