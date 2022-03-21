@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MySqlTestRazor.Models;
 
-namespace MySqlTestRazor.Pages.Teams;
+namespace MySqlTestRazor.Pages.Seasons;
 
-public class IndexModel : TeamBaseModel
+public class IndexModel : PageModel
 {
     private readonly Data.MySqlTestRazorContext _context;
 
@@ -14,10 +14,10 @@ public class IndexModel : TeamBaseModel
         _context = context;
     }
 
-    public IList<Team> Team { get;set; } = new List<Team>();
+    public IList<Season> Season { get;set; }
 
     public async Task OnGetAsync()
     {
-        Team = await _context.Teams.ToListAsync();
+        Season = await _context.Seasons.ToListAsync();
     }
 }

@@ -1,0 +1,43 @@
+﻿@page "{id:int?}"
+@model MySqlTestRazor.Pages.Seasons.DetailsModel
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "Saison Details";
+}
+
+<h1>Saison Details</h1>
+
+<div>
+    <h4>Saisondaten</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Season.Year)
+        </dt>
+        <dd class="col-sm-10">
+            @{ int year = Model.Season.Year; }
+            @Html.DisplayFor(model => year)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Season.StartMonth)
+        </dt>
+        <dd class="col-sm-10">
+            @{ string month =
+                CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.Season.StartMonth); }
+            @Html.DisplayFor(model => month)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Season.MatchOnDay)
+        </dt>
+        <dd class="col-sm-10">
+            @{ string weekDay =
+                CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Model.Season.MatchOnDay); }
+            @Html.DisplayFor(model => weekDay)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Season.Id">Ändern</a> |
+    <a asp-page="./Index">Zurück zur Liste</a>
+</div>

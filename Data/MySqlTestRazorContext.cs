@@ -40,4 +40,7 @@ public class MySqlTestRazorContext : DbContext
     public DbSet<MatchDay>? MatchDays { get; set; }
     public DbSet<Season>? Seasons { get; set; }
     //public DbSet<Site>? Sites { get; set; }
+
+    // what the heck is that and where does it come from???!!!
+    //public object Season { get; internal set; }
 }

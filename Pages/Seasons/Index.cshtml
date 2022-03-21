@@ -1,0 +1,54 @@
+﻿@page
+@using System.Globalization;
+@model MySqlTestRazor.Pages.Seasons.IndexModel
+
+@{
+    ViewData["Title"] = "Saison Liste";
+}
+
+<h1>Saison Liste</h1>
+
+<p>
+    <a asp-page="Create">Neue Saison</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Season[0].Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Season[0].StartMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Season[0].MatchOnDay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Season) {
+        <tr>
+            <td>
+                @{ int year = item.Year; }
+                @Html.DisplayFor(modelItem => year)
+            </td>
+            <td>
+                @{ string month =
+                    CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.StartMonth); }
+                @Html.DisplayFor(modelItem => month)
+            </td>
+            <td>
+                @{ string weekDay =
+                    CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(item.MatchOnDay); }
+                @Html.DisplayFor(modelItem => weekDay)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Saison Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Löschen</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

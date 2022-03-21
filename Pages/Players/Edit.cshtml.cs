@@ -28,13 +28,14 @@ public class EditModel : PlayerBaseModel
         }
 
         Player = await _context.Players
-            .Include(p => p.MembershipType)
+            .Include(p => p.MembershipType)         // eager loading!
             .FirstOrDefaultAsync(m => m.Id == id);
 
         if (Player == null)
         {
             return NotFound();
         }
+
         // Select current MembershipTypeId
         PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
 
@@ -51,6 +52,9 @@ public class EditModel : PlayerBaseModel
             PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
             return Page();
         }
+
+        // TODO: here the ProfilePicture in Player is already null!
+        // https://docs.microsoft.com/en-us/aspnet/web-pages/overview/ui-layouts-and-themes/4-working-with-forms
 
         // did we load a new image?
         if (Request.Form.Files.Count > 0)
@@ -79,6 +83,11 @@ public class EditModel : PlayerBaseModel
 
         try
         {
+            // FIXED:membershiptype selection lost as well
+            Player.MembershipType =
+                _context.MembershipTypes.FirstOrDefault(
+                    x => x.MembershipTypeId == Player.MembershipTypeId);
+
             _context.Update(Player);
             await _context.SaveChangesAsync();
         }

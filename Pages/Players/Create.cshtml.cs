@@ -66,6 +66,11 @@ public class CreateModel : PlayerBaseModel
         }
         Player.ProfilePicture = dataStream.ToArray();
 
+        // FIXED: Player Create does not save selected membership type!
+        Player.MembershipType =
+            _context.MembershipTypes.FirstOrDefault(
+                x => x.MembershipTypeId == Player.MembershipTypeId);
+
         _context.Players.Add(Player);
         await _context.SaveChangesAsync();
 

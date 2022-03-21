@@ -1,0 +1,46 @@
+﻿@page "{id:int?}"
+@using System.Globalization
+@model MySqlTestRazor.Pages.Seasons.DeleteModel
+
+@{
+    ViewData["Title"] = "Saison löschen";
+}
+
+<h1>Saison löschen</h1>
+
+<h3>Bist Du sicher, dass Du diese Saison löschen willst?</h3>
+<div>
+    <h4>Seasondaten</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Season.Year)
+        </dt>
+        <dd class="col-sm-10">
+            @{ int year = Model.Season.Year; }
+            @Html.DisplayFor(model => year)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Season.StartMonth)
+        </dt>
+        <dd class="col-sm-10">
+            @{ string month =
+                CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.Season.StartMonth); }
+            @Html.DisplayFor(model => month)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Season.MatchOnDay)
+        </dt>
+        <dd class="col-sm-10">
+            @{ string weekDay =
+                CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Model.Season.MatchOnDay); }
+            @Html.DisplayFor(model => weekDay)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Season.Id" />
+        <input type="submit" value="LÖSCHEN" class="btn btn-danger" /> |
+        <a asp-page="./Index">Zurück zur Liste</a>
+    </form>
+</div>
