@@ -32,7 +32,7 @@ namespace MySqlTestRazor.Pages.Seasons
             // FIXED: preselection does not work!
             SelectedYear = Season.Year;
             SelectedMonth = Season.StartMonth;
-            SelectedWeekDay = (int) Season.MatchOnDay;
+            SelectedWeekDay = (Season.MatchOnDay == DayOfWeek.Sunday) ? 7 : (int)Season.MatchOnDay;
 
             PopulateDropDownLists(GetExistingYears(_context),
                 selectedYear: SelectedYear,
@@ -51,10 +51,9 @@ namespace MySqlTestRazor.Pages.Seasons
                 return Page();
             }
 
-            //_context.Attach(Season).State = EntityState.Modified;
             Season.Year = SelectedYear;
             Season.StartMonth = SelectedMonth;
-            Season.MatchOnDay = (DayOfWeek) SelectedWeekDay;
+            Season.MatchOnDay = (SelectedWeekDay == 7) ? (DayOfWeek)0 : (DayOfWeek)SelectedWeekDay;
 
             try
             {

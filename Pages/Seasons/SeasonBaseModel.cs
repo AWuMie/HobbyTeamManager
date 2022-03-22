@@ -8,6 +8,17 @@ using System.Globalization;
 
 namespace MySqlTestRazor.Pages.Seasons;
 
+public enum WeekDays    // not starting at 0, but 1 - Monday first - Sunday last! ;-)
+{
+    Monday = 1,
+    Tuesday = 2,
+    Wednesday = 3,
+    Thursday = 4,
+    Friday = 5,
+    Saturday = 6,
+    Sunday = 7,
+}
+
 public class SeasonBaseModel : PageModel
 {
     private static readonly int _startYear = 2002;
@@ -69,9 +80,12 @@ public class SeasonBaseModel : PageModel
 
     public void PopulateWeekDayDropDownList(object? selectedWeekDay = null)
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 1; i < 8; i++)
         {
-            weekDays.Add(i, CultureInfo.CurrentCulture.DateTimeFormat.GetDayName((DayOfWeek)i));
+            if (i != 7)
+                weekDays.Add(i, CultureInfo.CurrentCulture.DateTimeFormat.GetDayName((DayOfWeek)i));
+            else
+                weekDays.Add(i, CultureInfo.CurrentCulture.DateTimeFormat.GetDayName((DayOfWeek)0));
         }
         WeekDaySL = new SelectList(weekDays, "Key", "Value", selectedWeekDay);
     }
