@@ -34,9 +34,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Player[0].Score)
             </th>
-            <th>
+@*            <th>
                 @Html.DisplayNameFor(model => model.Player[0].ScoreFromPlayer)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Player[0].MembershipTypeId)
             </th>
@@ -74,11 +74,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Score)
                 </td>
-                <td>
+@*                <td>
                     @Html.DisplayFor(modelItem => item.ScoreFromPlayer)
-                </td>
+                </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.MembershipType.Name)
+                    @{
+                        string name = "-";
+                        if (item.MembershipType != null)
+                        {
+                            name = item.MembershipType.Name;
+                        }
+                    }
+                    @Html.DisplayFor(modelItem => name)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a> |

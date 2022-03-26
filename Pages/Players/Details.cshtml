@@ -76,7 +76,14 @@
                 @Html.DisplayNameFor(model => model.Player.MembershipTypeId)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Player.MembershipType.Name)
+                @{
+                    string name = "-";
+                    if (Model.Player != null && Model.Player.MembershipType != null)
+                    {
+                        name = Model.Player.MembershipType.Name;
+                    }
+                }
+                @Html.DisplayFor(model => name)
             </dd>
         }
     </dl>

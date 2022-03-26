@@ -15,6 +15,7 @@ namespace MySqlTestRazor.Pages.Teams
             _context = context;
         }
 
+        [BindProperty]
         public Team Team { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)

@@ -33,7 +33,6 @@ namespace MySqlTestRazor.Pages.Seasons
             SelectedYear = Season.Year;
             SelectedMonth = Season.StartMonth;
             SelectedWeekDay = Season.MatchOnDay;
-            //SelectedWeekDay = (Season.MatchOnDay == DayOfWeek.Sunday) ? 7 : (int)Season.MatchOnDay;
 
             PopulateDropDownLists(GetExistingYears(_context),
                 selectedYear: SelectedYear,
@@ -55,7 +54,6 @@ namespace MySqlTestRazor.Pages.Seasons
             Season.Year = SelectedYear;
             Season.StartMonth = SelectedMonth;
             Season.MatchOnDay = SelectedWeekDay;
-            //Season.MatchOnDay = (SelectedWeekDay == 7) ? (DayOfWeek)0 : (DayOfWeek)SelectedWeekDay;
 
             try
             {
