@@ -20,7 +20,9 @@ public class IndexModel : PageModel
     {
         //FIXED: Season table shall be sorted ascending by column "Year"
         var seasons = from season in _context.Seasons select season;
-        seasons = seasons.OrderBy(season => season.Year);
+        seasons = seasons
+            .Include(s => s.MatchDays)          // eager loading!
+            .OrderBy(season => season.Year);
         Season = await seasons.ToListAsync();
     }
 }

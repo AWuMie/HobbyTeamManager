@@ -1,0 +1,51 @@
+﻿@using System.Globalization;
+
+@*
+A Model using this partial must derive from "SeasonBaseModel"!
+*@
+
+
+<div class"container">
+    @if (Model.Season.MatchDays != null)
+    {
+        @for (var semester = 0; semester < 2; semester++)
+        {
+            <table class="d-lg-table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        @for (var month = 0; month < 6; month++)
+                        {
+                            int actMonth = Model.SelectedMonth + (month + (semester * 6));
+                            string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName((actMonth > 12) ? actMonth - 12 : actMonth);
+                            
+                            <th style="height: 30px; width: 100px; text-align:center; vertical-align:middle">
+                                @monthName
+                            </th>                        
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < 5; i++)
+                    {
+                        <tr>
+                            @for (var month = 0; month < 6; month++)
+                            {
+                                string day = "";
+                                int actMonth = Model.SelectedMonth + (month + (semester * 6));
+                                var md = Model.GetNthWeekDayOfMonth(Model.Season, (actMonth > 12) ? actMonth - 12 : actMonth, i);
+                                if (md != null)
+                                {
+                                    day = md.Date.ToShortDateString();
+                                }
+                                <td style="text-align:center; vertical-align:middle">
+                                    @day
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <p></p>
+        }
+    }
+</div>

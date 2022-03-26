@@ -7,9 +7,8 @@ public class Season
     public int Year { get; set; }
 
     public int StartMonth { get; set; }
-    //string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(StartMonth);
 
-    public DayOfWeek MatchOnDay { get; set; }
+    public int MatchOnDay { get; set; }
 
     // one to many relationship between MatchDay and Season.
     // A MatchDay is linked to one Season while

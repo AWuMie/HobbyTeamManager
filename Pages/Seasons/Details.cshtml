@@ -31,13 +31,18 @@
             @Html.DisplayNameFor(model => model.Season.MatchOnDay)
         </dt>
         <dd class="col-sm-10">
-            @{ string weekDay =
-                CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Model.Season.MatchOnDay); }
+            @{ DayOfWeek day = (Model.Season.MatchOnDay == 7) ? DayOfWeek.Sunday : (DayOfWeek)Model.Season.MatchOnDay;
+                string weekDay =
+                CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day); }
             @Html.DisplayFor(model => weekDay)
         </dd>
     </dl>
 </div>
+
+<partial name="_MatchDaysTablePartial" />
+<p></p>
+
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Season.Id">Ändern</a> |
+    <a asp-page="./Delete" asp-route-id="@Model.Season.Id">Löschen</a> |
     <a asp-page="./Index">Zurück zur Liste</a>
 </div>

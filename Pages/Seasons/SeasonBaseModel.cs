@@ -8,17 +8,6 @@ using System.Globalization;
 
 namespace MySqlTestRazor.Pages.Seasons;
 
-public enum WeekDays    // not starting at 0, but 1 - Monday first - Sunday last! ;-)
-{
-    Monday = 1,
-    Tuesday = 2,
-    Wednesday = 3,
-    Thursday = 4,
-    Friday = 5,
-    Saturday = 6,
-    Sunday = 7,
-}
-
 public class SeasonBaseModel : PageModel
 {
     private static readonly int _startYear = 2002;
@@ -28,21 +17,28 @@ public class SeasonBaseModel : PageModel
     public IDictionary<int, string> months = new Dictionary<int, string>();
     public IDictionary<int, string> weekDays = new Dictionary<int, string>();
 
-    public SelectList YearSL { get; set; }
-    public SelectList MonthSL { get; set; }
-    public SelectList WeekDaySL { get; set; }
+    public SelectList? YearSL { get; set; }
+    public SelectList? MonthSL { get; set; }
+    public SelectList? WeekDaySL { get; set; }
 
     [BindProperty]
-    public Season Season { get; set; }
+    public Season? Season { get; set; }
+
     [BindProperty]
     public int SelectedYear { get; set; }
+
     [BindProperty]
     public int SelectedMonth { get; set; }
+
     [BindProperty]
     public int SelectedWeekDay { get; set; }
 
-    public IList<int> GetExistingYears(MySqlTestRazorContext context)
+    public IList<int>? GetExistingYears(MySqlTestRazorContext context)
     {
+        if (context.Seasons == null)
+        {
+            return null;
+        }
         var existingSeasons = context.Seasons.ToList();
         IList<int> years = new List<int>();
         foreach (var existingSeason in existingSeasons)
@@ -54,7 +50,7 @@ public class SeasonBaseModel : PageModel
     {
         // FIXED: seasons already in the DB should NOT appear in the dropdown!
         // FIXED: but in Edit the selectedYear should still be available (itself!)
-        // availabel years are 2002 .. 2031 - some 30 years ... ;-)
+        // available years are 2002 .. 2031 - some 30 years ... ;-)
         int sel = 0;
         if (selectedYear != null)
             sel = (int)selectedYear;
@@ -98,5 +94,31 @@ public class SeasonBaseModel : PageModel
         PopulateYearDropDownList(existingYears, selectedYear);
         PopulateMonthDropDownList(selectedMonth);
         PopulateWeekDayDropDownList(selectedWeekDay);
+    }
+
+    /// <summary>
+    /// Get the nth MatchDay of the specified month in the present season.
+    /// There should NOT be more that 5 Fridays (or any other weekday) in a month
+    /// </summary>
+    /// <param name="month">The specified month</param>
+    /// <param name="n">Zero based index - max = 5</param>
+    /// <returns></returns>
+    public MatchDay? GetNthWeekDayOfMonth(Season season, int month, int n)
+    {
+        if (season == null || season.MatchDays == null)
+            return null;
+
+        var matchDays = from md in season.MatchDays
+                        where md.Date.Month == month
+                        select md;
+
+        try
+        {
+            return matchDays.ElementAt(n);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 }

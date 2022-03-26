@@ -30,9 +30,16 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Team) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamColor.Name)
+            <tr>
+                <td>
+                    @{
+                        string name = "-";
+                        if (item.TeamColor != null && item.TeamColor.Name != null)
+                        {
+                            name = item.TeamColor.Name;
+                        }
+                }
+                @Html.DisplayFor(modelItem => name)
             </td>
 @*            <td>
                 @Html.DisplayFor(modelItem => item.Goals)

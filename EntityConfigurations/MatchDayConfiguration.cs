@@ -8,7 +8,7 @@ public class MatchDayConfiguration : IEntityTypeConfiguration<MatchDay>
 {
     public void Configure(EntityTypeBuilder<MatchDay> builder)
     {
-        builder.Property(md => md.DateTime)
+        builder.Property(md => md.Date)
             .IsRequired();
 
         builder.HasOne<Player>(md => md.BeerResponsible)
