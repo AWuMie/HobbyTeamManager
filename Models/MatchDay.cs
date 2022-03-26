@@ -1,4 +1,6 @@
-﻿namespace MySqlTestRazor.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MySqlTestRazor.Models;
 
 public class MatchDay
 {
@@ -14,9 +16,11 @@ public class MatchDay
 
     public int Id { get; set; }
 
+    [Display(Name = "Wochentag")]
     public DateTime Date { get; set; }
 
     // one to many relationship between Player and MatchDay to cover the beer-responsible
+    [Display(Name = "Bierverantwortlich")]
     public int? BeerResponsibleId { get; set; }
     public Player? BeerResponsible { get; set; }
 
@@ -29,6 +33,7 @@ public class MatchDay
     // one to many relationship between MatchDay and Season.
     // A MatchDay is linked to one Season while
     // a Season has many MatchDays
+    [Display(Name = "Saison")]
     public int? SeasonId { get; set; }
     public Season? Season { get; set; }
 }

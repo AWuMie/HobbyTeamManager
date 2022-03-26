@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace MySqlTestRazor.Models;
 
@@ -14,31 +15,38 @@ public class Player
     public int Id { get; set; }
 
     [PersonalData]
+    [Display(Name = "Vorname")]
     public string FirstName { get; set; } = "";
 
     [PersonalData]
+    [Display(Name = "Nachname")]
     public string LastName { get; set; } = "";
 
     [PersonalData]
+    [Display(Name = "Spitzname / Motto")]
     public string NickName { get; set; } = "";
 
     [PersonalData]
+    [Display(Name = "Geburtstag")]
     public DateTime BirthDate { get; set; } = DateTime.Now;
 
     [PersonalData]
-    //[Display(Name = "Profilbild")]
+    [Display(Name = "Profilbild")]
     public byte[]? ProfilePicture { get; set; }
 
+    [Display(Name = "Administrator")]
     public bool IsAdmin { get; set; } = false;
 
     // calculated value - TBD
     // basis of the automated team-builder
     // in the future could be a class/model/table with several aspects of abilities of a player
+    [Display(Name = "Spielerstärke")]
     public float Score { get; set; } = 0.0F;
 
     // only valid for guest-players which don't have an
     // automatically calculated score
     // one to many relationship to itself!
+    [Display(Name = "Stärke von Spieler")]
     public int? ScoreFromPlayerId { get; set; }
     public Player? ScoreFromPlayer { get; set; }
     public ICollection<Player>? ScoreForPlayers { get; set; }
@@ -46,6 +54,7 @@ public class Player
     // one to many relationship between Player and MembershipType
     // a Player has one MembershipType
     // a MembershipType is valid for many Players
+    [Display(Name = "Spielerstatus")]
     public int MembershipTypeId { get; set; }
     public MembershipType? MembershipType { get; set; }
 

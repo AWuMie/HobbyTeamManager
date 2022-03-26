@@ -1,4 +1,6 @@
-﻿namespace MySqlTestRazor.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MySqlTestRazor.Models;
 
 public class Team
 {
@@ -9,6 +11,7 @@ public class Team
 
     public int Id { get; set; }
 
+    [Display(Name = "Teamfarbe")]
     public int? TeamColorId { get; set; }
     public TeamColor? TeamColor { get; set; }
 
