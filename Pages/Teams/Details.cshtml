@@ -14,21 +14,18 @@
     <dl class="row">
         <dt class="col-sm-2">
             @{
-                string id = "-";
-                if (@Model.Team != null && @Model.Team.TeamColorId != null)
+                int? id = 0;
+                if ((Model.Team != null) && (Model.Team.TeamColorId != null))
                 {
-                    @Html.DisplayNameFor(model => @Model.Team.TeamColorId)
+                    id = Model.Team.TeamColorId;
                 }
-                else
-                {
-                    @Html.DisplayNameFor(model => id)
-                }
+                @Html.DisplayNameFor(model => id)
             }
         </dt>
         <dd class="col-sm-10">
             @{
                 string name = "-";
-                if ((@Model.Team != null) && (@Model.Team.TeamColor != null) && (@Model.Team.TeamColor.Name != null))
+                if ((Model.Team != null) && (Model.Team.TeamColor != null) && (Model.Team.TeamColor.Name != null))
                 {
                     name = Model.Team.TeamColor.Name;
                 }
@@ -56,6 +53,7 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Team.Id">Ändern</a> |
+    @*<a asp-page="./Edit" asp-route-id="@Model.Team.Id">Ändern</a> |*@
+    <a asp-page="./Edit" asp-route-id="@id">Ändern</a> |
     <a asp-page="./Index">Zurück zur Liste</a>
 </div>
