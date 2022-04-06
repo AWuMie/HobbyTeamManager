@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MySqlTestRazor.Models;
 
@@ -14,27 +13,21 @@ public class Player
 
     public int Id { get; set; }
 
-    [PersonalData]
     [Display(Name = "Emailadresse")]
     public string Emailaddress { get; set; } = string.Empty;
 
-    [PersonalData]
     [Display(Name = "Vorname")]
     public string FirstName { get; set; } = "";
 
-    [PersonalData]
     [Display(Name = "Nachname")]
     public string LastName { get; set; } = "";
 
-    [PersonalData]
     [Display(Name = "Spitzname / Motto")]
     public string NickName { get; set; } = "";
 
-    [PersonalData]
     [Display(Name = "Geburtstag")]
     public DateTime BirthDate { get; set; } = DateTime.Now;
 
-    [PersonalData]
     [Display(Name = "Profilbild")]
     public byte[]? ProfilePicture { get; set; }
 
@@ -44,6 +37,7 @@ public class Player
     // calculated value - TBD
     // basis of the automated team-builder
     // in the future could be a class/model/table with several aspects of abilities of a player
+    // See TrueSkill / TrueSkill 2!!!
     [Display(Name = "Spielerstärke")]
     public float Score { get; set; } = 0.0F;
 
@@ -66,10 +60,6 @@ public class Player
     // a team has many players and
     // a player can play in many teams (a team is valid for one matchday)
     public ICollection<TeamPlayer>? TeamPlayers { get; set; }
-
-    // one to one relationship between Player and MatchDay to cover the beer-responsible
-    //public int? MatchDayId { get; set; } = 0;
-    //public MatchDay? BeerResponsibleOfMatchDay { get; set; }
 
     // one to many relationship between Player and MatchDay to cover the beer-responsible
     // a player can be beer responsible on many matchdays

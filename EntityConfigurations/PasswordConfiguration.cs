@@ -12,7 +12,8 @@ namespace MySqlTestRazor.EntityConfigurations
                 .IsRequired();
 
             builder.Property(p => p.Hash)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(60);
         }
     }
 }

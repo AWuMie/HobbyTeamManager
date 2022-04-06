@@ -6,5 +6,5 @@ public class Password
 
     public int Salt { get; set; }
 
-    public byte[] Hash { get; set; }
+    public byte[]? Hash { get; set; }
 }
