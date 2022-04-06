@@ -15,6 +15,10 @@ public class Player
     public int Id { get; set; }
 
     [PersonalData]
+    [Display(Name = "Emailadresse")]
+    public string Emailaddress { get; set; } = string.Empty;
+
+    [PersonalData]
     [Display(Name = "Vorname")]
     public string FirstName { get; set; } = "";
 

@@ -8,6 +8,13 @@ public class PlayerConfiguration : IEntityTypeConfiguration<Player>
 {
     public void Configure(EntityTypeBuilder<Player> builder)
     {
+        builder.HasIndex(p => p.Emailaddress)
+            .IsUnique();
+
+        builder.Property(p => p.Emailaddress)
+            .IsRequired()
+            .HasMaxLength(50);
+
         builder.Property(p => p.FirstName)
             .IsRequired()
             .HasMaxLength(50);
