@@ -7,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-#if DEBUG
-var connectionString = builder.Configuration.GetConnectionString("DebugConnection");
-#elif RELEASE
+var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
+#if RELEASE
 var connectionString = builder.Configuration.GetConnectionString("ReleaseConnection");
 #endif
 builder.Services.AddDbContext<MySqlTestRazorContext>(options =>
