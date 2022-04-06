@@ -3,6 +3,10 @@ using System.Text;
 
 namespace MySqlTestRazor.Utilities;
 
+// General idea from:
+// https://stackoverflow.com/questions/4329909/hashing-passwords-with-md5-or-sha-256-c-sharp
+// You should always salt the password before hashing when storing them in the database.
+// Using "RandomNumberGenerator" because "RNGCryptoServiceProvider" is obsolete in .Net6
 public class PasswordCryptography
 {
     public struct HashSalt

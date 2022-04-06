@@ -30,6 +30,7 @@ public class MySqlTestRazorContext : DbContext
         modelBuilder.ApplyConfiguration(new MatchDayConfiguration());
         modelBuilder.ApplyConfiguration(new SeasonConfiguration());
         //modelBuilder.ApplyConfiguration(new SiteConfiguration());
+        // modelBuilder.ApplyConfiguration(new PasswordConfiguration());
     }
 
     public DbSet<MembershipType>? MembershipTypes { get; set; }
@@ -40,7 +41,5 @@ public class MySqlTestRazorContext : DbContext
     public DbSet<MatchDay>? MatchDays { get; set; }
     public DbSet<Season>? Seasons { get; set; }
     //public DbSet<Site>? Sites { get; set; }
-
-    // what the heck is that and where does it come from???!!!
-    //public object Season { get; internal set; }
+    // public DbSet<Password> Passwords { get; set; }
 }
