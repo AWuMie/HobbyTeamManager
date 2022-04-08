@@ -40,6 +40,6 @@ public class MySqlTestRazorContext : DbContext
     public DbSet<TeamPlayer>? TeamPlayers { get; set; }
     public DbSet<MatchDay>? MatchDays { get; set; }
     public DbSet<Season>? Seasons { get; set; }
-    //public DbSet<Site>? Sites { get; set; }
+    public DbSet<Site>? Sites { get; set; }
     public DbSet<Password>? Passwords { get; set; }
 }
