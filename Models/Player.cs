@@ -8,7 +8,6 @@ public class Player
     {
         TeamPlayers = new HashSet<TeamPlayer>();
         BeerResponsibleOnMatchDays = new HashSet<MatchDay>();
-        //ScoreForPlayers = new HashSet<Player>();
     }
 
     public int Id { get; set; }
@@ -43,14 +42,6 @@ public class Player
     // See TrueSkill / TrueSkill 2!!!
     [Display(Name = "Spielerstärke")]
     public float Score { get; set; } = 0.0F;
-
-    // only valid for guest-players which don't have an
-    // automatically calculated score
-    // one to many relationship to itself!
-    //[Display(Name = "Stärke von Spieler")]
-    //public int? ScoreFromPlayerId { get; set; }
-    //public Player? ScoreFromPlayer { get; set; }
-    //public ICollection<Player>? ScoreForPlayers { get; set; }
 
     // one to many relationship between Player and MembershipType
     // a Player has one MembershipType

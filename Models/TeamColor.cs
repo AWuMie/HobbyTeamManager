@@ -2,9 +2,6 @@
 
 public class TeamColor
 {
-    public static readonly string Weiss = "Weiss";
-    public static readonly string Rot = "Rot";
-
     public TeamColor()
     {
         Teams = new List<Team>();

@@ -62,17 +62,6 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Player.IsAdmin)
             </dd>
-            @*Guest*@
-@*            @if ((Model.Player.MembershipTypeId == 2) &&
-                 (Model.Player.ScoreFromPlayer != null))
-            {
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Player.ScoreFromPlayer)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Player.ScoreFromPlayer)
-                </dd>
-            }*@
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Player.MembershipTypeId)
             </dt>

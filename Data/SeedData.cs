@@ -12,9 +12,10 @@ public static class SeedData
 
         // 2022-04-06: decided to NOT fill known players from Emerholzkicker in SeedData,
         // but provide the ability to "import" players via json file!
+        // 2022-04-08: with the introduction of "Sites" the team colors can no longer be
+        // "hard coded", but need to be set as properties of "Site".
         if (context == null ||
-            context.MembershipTypes == null ||
-            context.TeamColors == null)
+            context.MembershipTypes == null)
         {
             throw new ArgumentNullException("Null MySqlTestRazorContext");
         }
@@ -36,22 +37,6 @@ public static class SeedData
                 new MembershipType
                 {
                     Name = MembershipType.Ex
-                }
-            );
-        }
-
-        // Look for seeded TeamColors data.
-        if (!context.TeamColors.Any())
-        {
-            context.TeamColors.AddRange(
-                new TeamColor
-                {
-                    Name = TeamColor.Weiss
-                },
-
-                new TeamColor
-                {
-                    Name = TeamColor.Rot
                 }
             );
         }

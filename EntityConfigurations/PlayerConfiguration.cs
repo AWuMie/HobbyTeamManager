@@ -28,11 +28,6 @@ public class PlayerConfiguration : IEntityTypeConfiguration<Player>
         builder.Property(p => p.BirthDate)
             .HasColumnType("date");
 
-        //builder.HasOne<Player>(p => p.ScoreFromPlayer)
-        //    .WithMany(p => p.ScoreForPlayers)
-        //    .HasForeignKey(p => p.ScoreFromPlayerId)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
         builder.HasOne<MembershipType>(p => p.MembershipType)
             .WithMany(mt => mt.Players)
             .HasForeignKey(p => p.MembershipTypeId)
