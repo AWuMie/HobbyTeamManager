@@ -16,6 +16,11 @@ public class Player
     [Display(Name = "Emailadresse")]
     public string Emailaddress { get; set; } = string.Empty;
 
+    public bool EmailAdressConfirmed { get; set; } = false;
+
+    // one-to-one relationship Password <-> Player
+    public Password? Password { get; set; }
+
     [Display(Name = "Vorname")]
     public string FirstName { get; set; } = "";
 
@@ -34,9 +39,7 @@ public class Player
     [Display(Name = "Administrator")]
     public bool IsAdmin { get; set; } = false;
 
-    // calculated value - TBD
     // basis of the automated team-builder
-    // in the future could be a class/model/table with several aspects of abilities of a player
     // See TrueSkill / TrueSkill 2!!!
     [Display(Name = "Spielerstärke")]
     public float Score { get; set; } = 0.0F;
