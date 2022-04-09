@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
 
-namespace Emerholzkicker.Utilities
+namespace MySqlTestRazor.Utilities
 {
     /////////////////////////////////////////////
     // https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Utilities/FileHelpers.cs

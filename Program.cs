@@ -17,12 +17,12 @@ builder.Services.AddDbContext<MySqlTestRazorContext>(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
 
-    SeedData.Initialize(services);
-}
+//    SeedData.Initialize(services);
+//}
 
 // reverse proxy stuff - see "https://thomaslevesque.com/2018/04/17/hosting-an-asp-net-core-2-application-on-a-raspberry-pi/"
 app.UseForwardedHeaders(new ForwardedHeadersOptions

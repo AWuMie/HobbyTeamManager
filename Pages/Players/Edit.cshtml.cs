@@ -1,5 +1,5 @@
 ﻿#nullable disable
-using Emerholzkicker.Utilities;
+using MySqlTestRazor.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MySqlTestRazor.Models;
