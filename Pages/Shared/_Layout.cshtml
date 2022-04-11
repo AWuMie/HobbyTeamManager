@@ -3,30 +3,32 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Emerholzkicker</title>
+    <title>@ViewData["Title"] - Hobby Team Manager</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MySqlTestRazor.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <p align="center">
-            <i>
-                <font size="6" face="Arial Black" color="#FFFFFF">
-                    Die sympathischen Kicker
-                </font>
-            </i>
-        </p>
-        <p align="center">
-            <i>
-                <font size="6" face="Arial Black" color="#FFFFFF">
-                    im Stuttgarter Norden
-                </font>
-            </i>
-        </p>
-        <p align="center">&nbsp;</p>
+        @*<div style="background-color:orange">*@
+            <p align="center">
+                <i>
+                    <font size="6" face="Arial Black" color="#FFFFFF">
+                        Die sympathischen Kicker
+                    </font>
+                </i>
+            </p>
+            <p align="center">
+                <i>
+                    <font size="6" face="Arial Black" color="#FFFFFF">
+                        im Stuttgarter Norden
+                    </font>
+                </i>
+            </p>
+            @*<p align="center">&nbsp;</p>*@
 
-        <partial name="_NavBarPartial" />
+            <partial name="_NavBarPartial" />
+        @*</div>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -35,9 +37,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Emerholzkicker - <a asp-area="" asp-page="/Privacy">Impressum</a>
-        </div>
+        <partial name="_FooterPartial" />
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,50 +1,56 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Hobby Team Manager";
+    ViewData["Title"] = "Willkommen";
     Layout = "Shared/_LayoutStart.cshtml";
 }
 
-<h1>Hobby Team Manager</h1>
 <div class="row mb-auto">
     <div class="col-md-4">
-        <div class="row no-gutters border mb-4">
+        <div class="row no-gutters mb-4">
             <div class="col p-4 mb-4 ">
                 <p class="card-text">
                     Hobby Team Manager ist eine Web-Applikation, mit der
                     man seine Hobby Mannschaft verwalten kann.
-                    Blabla Blubb, blabla blabber.
-                    Laber sülz, sabber.
                 </p>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="row no-gutters border mb-4">
-            <div class="col p-4 d-flex flex-column position-static">
-                <p class="card-text mb-auto">
-                    Hier kann dann noch etwa stehen.
-                    Oder auch noch etwas mehr
-                </p>
-                <p>
-                    <a href="https://docs.microsoft.com/en-us/aspnet/web-pages/overview/ui-layouts-and-themes/3-creating-a-consistent-look" class="stretched-link">
-                        Microsoft .NET Core Razor Pages Layout Link
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="row no-gutters border mb-4">
+    <div class="col-md-8">
+        <div class="row no-gutters mb-4">
+            @*<div class="col p-4 d-flex flex-column position-static">*@
             <div class="col p-4 d-flex flex-column">
                 <p class="card-text mb-auto">
-                    Und auch hier kann man noch weiteren Text, bzw. weitere Information
-                    unterbringen.
+                    Die registrierten Mannschaften:
                 </p>
                 <p>
-                    <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-6.0" class="stretched-link">
-                        Noch ein weiterer Microsoft .NET Core Razor Pages Layout Link
-                    </a>
+                    <a asp-page="/Sites/Create">Neue Mannschaft registrieren</a>
+                </p>
+                <p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Site[0].Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Site[0].Logo)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Site) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Logo)
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
                 </p>
             </div>
         </div>

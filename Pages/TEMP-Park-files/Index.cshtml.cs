@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace MySqlTestRazor.Pages.Start
+namespace MySqlTestRazor.Pages.TEMP_Park_files
 {
     public class IndexModel : PageModel
     {

@@ -10,7 +10,18 @@
 </head>
 <body>
     <header>
-        <partial name="_NavBarPartialStart" />
+        <div style="background-color:black; color:orange">
+            <p align="center">&nbsp;</p>
+            <p align="center">
+                <i>
+                    <font size="8" face="Arial Black">
+                        Hobby Team Manager
+                    </font>
+                </i>
+            </p>
+            <p align="center">&nbsp;</p>
+            <partial name="_NavBarPartialStart" />
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -19,9 +30,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Hobby Team Manager - <a asp-area="" asp-page="/Privacy">Impressum</a>
-        </div>
+        <partial name="_FooterPartial" />
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
