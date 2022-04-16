@@ -82,6 +82,7 @@ After having created CRUD pages for seasons with matchdays, players and was abou
 * bring already existing models under the site model (relationships) (incl. adding unit testing to those models!)
 * implement "Import" for players and probably (historic) seasons via json files
 * Implement authentication ("Registration", "Login") and some authorization without using the super allmighty "Identity".
+* Now having mail addresses we can start implementing the reminder and birthday emails
 * ...
 * make the Raspberry Pi running the web app available in the web behind some safety means
 * describe Raspberry Pi setup herein (update section "Setup")
