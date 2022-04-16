@@ -1,7 +1,37 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
+﻿@model BasePageModel
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
     <div class=container>
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
-        <partial name="_LoginPartial" />
-      </div>
+        @*<a class="navbar-brand" asp-area="" asp-page="/Index">Hobby Team Manager</a>*@
+        @*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>*@
+
+        @*<div class="navbar-collapse collapse d-sm-inline-flex justify-content-lg-start">*@
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: @Model.FgColorHeader" asp-page="/Index">Hobby Team Manager</a>
+                </li>
+@*                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Players/Index">Spielerliste(-)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Teams/Index">Alle Teams (-)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Seasons/Index">Alle Saisonen (-)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-page="/Index">Kontakt (Home)</a>
+                </li>*@
+            </ul>
+            @*<partial name="_LoginPartial" />*@
+        </div>
+
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
+            <partial name="_LoginPartial" />
+        </div>
     </div>
 </nav>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿#nullable disable
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MySqlTestRazor.Data;
 using MySqlTestRazor.Models;
@@ -14,7 +15,7 @@ namespace MySqlTestRazor.Pages
             _context = context;
         }
 
-        public IList<Site>? Site { get; set; }
+        public IList<Site> Site { get; set; }
 
         public async Task OnGetAsync()
         {

@@ -10,7 +10,6 @@ public class PlayerBaseModel : BasePageModel
 {
     public SelectList? MembershipTypeSL { get; set; }
 
-    // TODO: generic version that takes a DbSet!?!?
     public void PopulateMemberTypeDropDownList(MySqlTestRazorContext _context,
         object? selectedMembershipTypeId = null)
     {

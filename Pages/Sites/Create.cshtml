@@ -48,15 +48,130 @@
                 <span asp-validation-for="Site.ConfirmationModeId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                @{
+                    var color = "#ffffff";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.TeamColor1;
+                    }
+                }
                 <label asp-for="Site.TeamColor1" class="control-label"></label>
-                <input asp-for="Site.TeamColor1" class="form-control" />
+                <input type="color" asp-for="Site.TeamColor1" value=@color />
                 <span asp-validation-for="Site.TeamColor1" class="text-danger"></span>
             </div>
             <div class="form-group">
+                @{
+                    color = "#ff0000";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.TeamColor2;
+                    }
+                }
                 <label asp-for="Site.TeamColor2" class="control-label"></label>
-                <input asp-for="Site.TeamColor2" class="form-control" />
+                <input type="color" asp-for="Site.TeamColor2" value=@color />
                 <span asp-validation-for="Site.TeamColor2" class="text-danger"></span>
             </div>
+            <p>&nbsp;</p>
+            <p>
+                <a>Farben der Seiten der Hobby Mannschaft</a>
+            </p>
+            <div class="form-group">
+                @{
+                    color = "#00ff00";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.BgColorBody;
+                    }
+                }
+                <label asp-for="Site.BgColorBody" class="control-label"></label>
+                <input type="color" asp-for="Site.BgColorBody" value=@color />
+                <span asp-validation-for="Site.BgColorBody" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    color = "#000000";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.FgColorBody;
+                    }
+                }
+                <label asp-for="Site.FgColorBody" class="control-label"></label>
+                <input type="color" asp-for="Site.FgColorBody" value=@color />
+                <span asp-validation-for="Site.FgColorBody" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    color = "#00ff00";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.BgColorHeader;
+                    }
+                }
+                <label asp-for="Site.BgColorHeader" class="control-label"></label>
+                <input type="color" asp-for="Site.BgColorHeader" value=@color />
+                <span asp-validation-for="Site.BgColorHeader" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    color = "#ffffff";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.FgColorHeader;
+                    }
+                }
+                <label asp-for="Site.FgColorHeader" class="control-label"></label>
+                <input type="color" asp-for="Site.FgColorHeader" value=@color />
+                <span asp-validation-for="Site.FgColorHeader" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    color = "#00ff00";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.BgColorMain;
+                    }
+                }
+                <label asp-for="Site.BgColorMain" class="control-label"></label>
+                <input type="color" asp-for="Site.BgColorMain" value=@color />
+                <span asp-validation-for="Site.BgColorMain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    color = "#000000";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.FgColorMain;
+                    }
+                }
+                <label asp-for="Site.FgColorMain" class="control-label"></label>
+                <input type="color" asp-for="Site.FgColorMain" value=@color />
+                <span asp-validation-for="Site.FgColorMain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    color = "#00ff00";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.BgColorFooter;
+                    }
+                }
+                <label asp-for="Site.BgColorFooter" class="control-label"></label>
+                <input type="color" asp-for="Site.BgColorFooter" value=@color />
+                <span asp-validation-for="Site.BgColorFooter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{
+                    color = "#000000";
+                    if (Model.Site != null)
+                    {
+                        color = Model.Site.FgColorFooter;
+                    }
+                }
+                <label asp-for="Site.FgColorFooter" class="control-label"></label>
+                <input type="color" asp-for="Site.FgColorFooter" value=@color />
+                <span asp-validation-for="Site.FgColorFooter" class="text-danger"></span>
+            </div>
+            <p>&nbsp;</p>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

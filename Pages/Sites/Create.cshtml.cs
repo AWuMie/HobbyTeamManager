@@ -55,6 +55,11 @@ namespace MySqlTestRazor.Pages.Sites
             _context.Sites.Add(Site);
             await _context.SaveChangesAsync();
 
+            //return RedirectToPage("./Index");
+            string referer = Request.Headers["Referer"].ToString();
+            if (referer != null && Url.IsLocalUrl(referer))
+                return RedirectToPage(referer);
+            
             return RedirectToPage("./Index");
         }
     }

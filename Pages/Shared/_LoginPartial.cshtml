@@ -1,4 +1,6 @@
-﻿@*@using Microsoft.AspNetCore.Identity
+﻿@model BasePageModel
+
+@*@using Microsoft.AspNetCore.Identity
 @using MySqlTestRazor.Areas.Identity.Data
 
 @inject SignInManager<MySqlTestRazorUser> SignInManager
@@ -22,11 +24,11 @@ else
 {
     <li class="nav-item">
         @*<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>*@
-        <a class="nav-link" style="color:orange" asp-page="/Account/Register">Register</a>
+        <a class="nav-link" style="color:@Model.FgColorHeader" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
         @*<a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>*@
-        <a class="nav-link" style="color:orange" asp-page="/Account/Login">Login</a>
+        <a class="nav-link" style="color:@Model.FgColorHeader" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>
