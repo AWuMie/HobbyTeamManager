@@ -34,42 +34,19 @@ public class CreateModel : PlayerBaseModel
             return Page();
         }
 
-        using var dataStream = new MemoryStream();
-        if (Request.Form.Files.Count > 0)
+        var stream = await GetCheckResizeImageAsync<Player>("NoImage.jpg");
+        if (stream == null)
         {
-            // links to checks described in "Areas/Identity/Pages/Account/Manage/Index.cshtml.cs
-            IFormFile file = Request.Form.Files[0];
-
-            var imageContent = await FileHelpers.ProcessFormFile<Player>(
-                file, ModelState, FileHelpers.PermittedExtensions, FileHelpers.MaxFileSize);
-
-            if (!ModelState.IsValid)
-            {
-                PopulateMemberTypeDropDownList(_context);
-                return Page();
-            }
-
-            using var image = Image.Load(imageContent);
-            if (image.Width / image.Height < 0.8)
-                image.Mutate(i => i.Resize(0, 500));
-            else
-                image.Mutate(i => i.Resize(400, 0));
-
-            await image.SaveAsJpegAsync(dataStream);
+            PopulateMemberTypeDropDownList(_context);
+            return Page();
         }
-        else
-        {
-            var path = Path.Combine("wwwroot/res", "NoImage.jpg");
-            var file = System.IO.File.OpenRead(path);
 
-            await file.CopyToAsync(dataStream);
-        }
-        Player.ProfilePicture = dataStream.ToArray();
+        Player.ProfilePicture = stream.ToArray();
 
         // FIXED: Player Create does not save selected membership type!
         Player.MembershipType =
             _context.MembershipTypes.FirstOrDefault(
-                x => x.MembershipTypeId == Player.MembershipTypeId);
+                x => x.Id == Player.MembershipTypeId);
 
         _context.Players.Add(Player);
         await _context.SaveChangesAsync();

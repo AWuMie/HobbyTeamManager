@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySqlTestRazor.Data;
 
@@ -10,9 +11,10 @@ using MySqlTestRazor.Data;
 namespace MySqlTestRazor.Migrations
 {
     [DbContext(typeof(MySqlTestRazorContext))]
-    partial class MySqlTestRazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220412173509_UpdateSiteConfirmationModeId")]
+    partial class UpdateSiteConfirmationModeId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,9 +177,7 @@ namespace MySqlTestRazor.Migrations
                         .HasColumnType("longblob");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Rules")
                         .HasColumnType("longtext");

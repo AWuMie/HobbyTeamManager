@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model BasePageModel
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,35 +10,27 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MySqlTestRazor.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        @*<div style="background-color:orange">*@
-            <p align="center">
-                <i>
-                    <font size="6" face="Arial Black" color="#FFFFFF">
-                        Die sympathischen Kicker
-                    </font>
-                </i>
-            </p>
-            <p align="center">
-                <i>
-                    <font size="6" face="Arial Black" color="#FFFFFF">
-                        im Stuttgarter Norden
-                    </font>
-                </i>
-            </p>
-            @*<p align="center">&nbsp;</p>*@
+<body style="background-color: @Model.BgColorBody; color: @Model.FgColorBody">
+    <header style="background-color: @Model.BgColorHeader; color: @Model.FgColorHeader">
+        <p align="center">&nbsp;</p>
+        <p align="center">
+            <font size="8" face="Arial Black">
+                @Model.Headline
+            </font>
+        </p>
 
-            <partial name="_NavBarPartial" />
-        @*</div>*@
+        <partial name="_NavBarPartial" />
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div style="background-color: @Model.BgColorMain; color: @Model.FgColorMain">
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer"
+            style="background-color: @Model.BgColorFooter; color: @Model.FgColorFooter">
         <partial name="_FooterPartial" />
     </footer>
 

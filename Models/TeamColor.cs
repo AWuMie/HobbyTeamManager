@@ -7,7 +7,7 @@ public class TeamColor
         Teams = new List<Team>();
     }
 
-    public int TeamColorId { get; set; }
+    public int Id { get; set; }
     public string? Name { get; set; } = "";
 
     // one to many relationship between Team and TeamColor

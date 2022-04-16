@@ -13,7 +13,7 @@ public class TeamBaseModel : PageModel
         object? selectedTeamColorId = null)
     {
         var teamColorQuery = from tc in _context.TeamColors
-                                  orderby tc.TeamColorId     // sort by Id!
+                                  orderby tc.Id     // sort by Id!
                                   select tc;
 
         var items = teamColorQuery.AsNoTracking().ToList();

@@ -8,7 +8,7 @@ public class TeamColorConfiguration : IEntityTypeConfiguration<TeamColor>
 {
     public void Configure(EntityTypeBuilder<TeamColor> builder)
     {
-        builder.Property(tc => tc.TeamColorId)
+        builder.Property(tc => tc.Id)
             .HasColumnName("Id");
 
         builder.Property(tc => tc.Name)

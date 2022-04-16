@@ -90,7 +90,7 @@ public class EditModel : PlayerBaseModel
             // FIXED:membershiptype selection lost as well
             Player.MembershipType =
                 _context.MembershipTypes.FirstOrDefault(
-                    x => x.MembershipTypeId == Player.MembershipTypeId);
+                    x => x.Id == Player.MembershipTypeId);
 
             _context.Update(Player);
             await _context.SaveChangesAsync();

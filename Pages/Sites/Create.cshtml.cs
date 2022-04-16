@@ -1,27 +1,31 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MySqlTestRazor.Data;
 using MySqlTestRazor.Models;
 
 namespace MySqlTestRazor.Pages.Sites
 {
-    public class CreateModel : PageModel
+    public class CreateModel : BasePageModel
     {
-        private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
+        private readonly MySqlTestRazorContext _context;
 
-        public CreateModel(MySqlTestRazor.Data.MySqlTestRazorContext context)
+        private SelectList _confirmationModeOptions;
+
+        public SelectList ConfirmationModeOptions
+        {
+            get { return _confirmationModeOptions; }
+            set { _confirmationModeOptions = value; }
+        }
+
+        public CreateModel(MySqlTestRazorContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
+            _confirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value");
             return Page();
         }
 
@@ -33,8 +37,20 @@ namespace MySqlTestRazor.Pages.Sites
         {
             if (!ModelState.IsValid)
             {
+                _confirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                    Site.ConfirmationModeId);
                 return Page();
             }
+
+            var stream = await GetCheckResizeImageAsync<Site>("NoLogo.jpg");
+            if (stream == null || Site.TeamColor1 == Site.TeamColor2)
+            {
+                _confirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                    Site.ConfirmationModeId);
+                return Page();
+            }
+
+            Site.Logo = stream.ToArray();
 
             _context.Sites.Add(Site);
             await _context.SaveChangesAsync();

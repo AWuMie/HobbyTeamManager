@@ -2,17 +2,17 @@
 @model MySqlTestRazor.Pages.Sites.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Neues Hobby Team erstellen";
     Layout = "../Shared/_LayoutStart.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Neues Hobby Team erstellen</h1>
 
-<h4>Site</h4>
+<h4>Hobby Team</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Site.Name" class="control-label"></label>
@@ -21,7 +21,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Site.Logo" class="control-label"></label>
-                <input asp-for="Site.Logo" class="form-control" />
+                <img id="siteLogo" width="80" height="100"  src="">
+                <input asp-for="Site.Logo" type="file"
+                        accept="image/png, image/jpeg"
+                        class="form-control"
+                        onchange="document.getElementById('siteLogo').src =
+                            window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Site.Logo" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,9 +40,12 @@
                 <span asp-validation-for="Site.Rules" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Site.ConfirmationMode" class="control-label"></label>
-                <select asp-for="Site.ConfirmationMode" class="form-control"></select>
-                <span asp-validation-for="Site.ConfirmationMode" class="text-danger"></span>
+                <label asp-for="Site.ConfirmationModeId" class="control-label"></label>
+                <select asp-for="Site.ConfirmationModeId" class="form-control"
+                        asp-items="@Model.ConfirmationModeOptions">
+                        <option value="">-- Option wählen --</option>
+                </select>
+                <span asp-validation-for="Site.ConfirmationModeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Site.TeamColor1" class="control-label"></label>

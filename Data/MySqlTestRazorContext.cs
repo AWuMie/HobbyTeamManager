@@ -29,7 +29,7 @@ public class MySqlTestRazorContext : DbContext
         modelBuilder.ApplyConfiguration(new TeamPlayerConfiguration());
         modelBuilder.ApplyConfiguration(new MatchDayConfiguration());
         modelBuilder.ApplyConfiguration(new SeasonConfiguration());
-        //modelBuilder.ApplyConfiguration(new SiteConfiguration());
+        modelBuilder.ApplyConfiguration(new SiteConfiguration());
         modelBuilder.ApplyConfiguration(new PasswordConfiguration());
     }
 

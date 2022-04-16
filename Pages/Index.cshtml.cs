@@ -5,7 +5,7 @@ using MySqlTestRazor.Models;
 
 namespace MySqlTestRazor.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BasePageModel
     {
         private readonly MySqlTestRazorContext _context;
 
