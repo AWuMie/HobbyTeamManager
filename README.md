@@ -75,17 +75,17 @@ There is one exception: the name of visual properties
 ```
 
 ## Project Status
-I was able to CRUD seasons with matchdays, players and was about to look after the availability of players on matchdays and the teams, when I decided to have a little more "holistic approach" and also introduce a site to allow more than one team to be managed by the app.
+I was able to CRUD seasons with matchdays, players and was about to look after the availability of players on matchdays and the teams, when I decided to have an a little more "holistic approach" and also introduce a site to allow more than one team to be managed by the app.
 #### Next steps are ...
-* implement Site model 
-* bring already existing models under the site model (relationships)
-* Implement authentication ("Registration", "Login") and some authorization without using the super allmighty "Identity".
+* implement Site model with "flexible" layout
+* add unit testing using NUnit and Moq starting with the Site model
+* bring already existing models under the site model (relationships) (incl. adding unit testing to those models!)
 * implement "Import" for players and probably (historic) seasons via json files
-* unit testing using NUnit and Moq
-* ...
-* ...
+* Implement authentication ("Registration", "Login") and some authorization without using the super allmighty "Identity".
 * ...
 * make the Raspberry Pi running the web app available in the web behind some safety means
+* describe Raspberry Pi setup herein (update section "Setup")
+* update section "How to ..."
 
 ## Setup
 Here goes the setup of the Raspberry Pi with nginx ...
