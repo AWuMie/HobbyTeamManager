@@ -19,7 +19,7 @@ Hobby Team Manager (HTM) is a sample project to demonstrate a .NET Core app usin
 I'm playing soccer (Fußball) in two hobby teams - Mondays and Fridays. The Fridays team is super organized with it's own private web page [Emerholzkicker](https://www.emerholzkicker.de/). Per the availabilty on each Fridays (visible on the web page) a talented guy decides for two teams. Very often there are discussions before, during and after the matches whether the teams could not have been set up in a different way. During those discussions several times the idea came up to have a computer decide on the teams. This web app is the first step to that goal ... ;-)
 
 ## Description
-During development the idea evolved to not only cover one single team, but to be able to manage several teams. With that the app needs to be a bit more flexible, because the "design" (background color) is no longer fixed.
+During development the idea evolved to not only cover one single team, but to be able to manage several teams. With that the app needs to be a bit more flexible, because the "design" (i.e. background color) is no longer fixed.
 
 For a team we want to be able to manage the following within the app:
 * Name of the team
@@ -75,7 +75,7 @@ There is one exception: the name of visual properties
 ```
 
 ## Project Status
-I was able to CRUD seasons with matchdays, players and was about to look after the availability of players on matchdays and the teams, when I decided to have an a little more "holistic approach" and also introduce a site to allow more than one team to be managed by the app.
+After having created CRUD pages for seasons with matchdays, players and was about to look after the availability of players on matchdays and the teams, I decided to have an a little more "holistic approach" and also introduce a site to allow more than one hobby team to be managed by the app.
 #### Next steps are ...
 * implement Site model with "flexible" layout
 * add unit testing using NUnit and Moq starting with the Site model
