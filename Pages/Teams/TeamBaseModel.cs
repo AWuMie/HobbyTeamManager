@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Data;
+using HobbyTeamManager.Data;
 
-namespace MySqlTestRazor.Pages.Teams;
+namespace HobbyTeamManager.Pages.Teams;
 
 public class TeamBaseModel : PageModel
 {
     public SelectList? TeamColorSL { get; set; }
 
-    public void PopulateTeamColorDropDownList(MySqlTestRazorContext _context,
+    public void PopulateTeamColorDropDownList(HobbyTeamManagerContext _context,
         object? selectedTeamColorId = null)
     {
         var teamColorQuery = from tc in _context.TeamColors

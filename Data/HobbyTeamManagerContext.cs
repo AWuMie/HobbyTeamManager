@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.EntityConfigurations;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.EntityConfigurations;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Data;
+namespace HobbyTeamManager.Data;
 
-public class MySqlTestRazorContext : DbContext
+public class HobbyTeamManagerContext : DbContext
 {
-    public MySqlTestRazorContext(DbContextOptions<MySqlTestRazorContext> options)
+    public HobbyTeamManagerContext(DbContextOptions<HobbyTeamManagerContext> options)
         : base(options)
     {
     }

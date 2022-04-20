@@ -1,15 +1,15 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Sites
+namespace HobbyTeamManager.Pages.Sites
 {
     public class CreateModel : SiteBaseModel
     {
-        private readonly MySqlTestRazorContext _context;
+        private readonly HobbyTeamManagerContext _context;
 
-        public CreateModel(MySqlTestRazorContext context)
+        public CreateModel(HobbyTeamManagerContext context)
         {
             _context = context;
         }

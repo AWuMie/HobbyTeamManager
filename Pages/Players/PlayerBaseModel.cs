@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Players;
+namespace HobbyTeamManager.Pages.Players;
 
 public class PlayerBaseModel : BasePageModel
 {
     public SelectList? MembershipTypeSL { get; set; }
 
-    public void PopulateMemberTypeDropDownList(MySqlTestRazorContext _context,
+    public void PopulateMemberTypeDropDownList(HobbyTeamManagerContext _context,
         object? selectedMembershipTypeId = null)
     {
         var membershipTypeQuery = from mt in _context.MembershipTypes

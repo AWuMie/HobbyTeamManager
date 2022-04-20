@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Data;
+namespace HobbyTeamManager.Data;
 
 public static class SeedData
 {
     public static void Initialize(IServiceProvider serviceProvider)
     {
-        using var context = new MySqlTestRazorContext(
-            serviceProvider.GetRequiredService<DbContextOptions<MySqlTestRazorContext>>());
+        using var context = new HobbyTeamManagerContext(
+            serviceProvider.GetRequiredService<DbContextOptions<HobbyTeamManagerContext>>());
 
         // 2022-04-06: decided to NOT fill known players from Emerholzkicker in SeedData,
         // but provide the ability to "import" players via json file!
@@ -17,7 +17,7 @@ public static class SeedData
         if (context == null ||
             context.MembershipTypes == null)
         {
-            throw new ArgumentNullException("Null MySqlTestRazorContext");
+            throw new ArgumentNullException("Null HobbyTeamManagerContext");
         }
 
         // Look for seeded MembershipTypes data.

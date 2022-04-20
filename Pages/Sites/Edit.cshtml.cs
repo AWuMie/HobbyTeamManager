@@ -1,16 +1,16 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Sites;
+namespace HobbyTeamManager.Pages.Sites;
 
 public class EditModel : SiteBaseModel
 {
-    private readonly MySqlTestRazorContext _context;
+    private readonly HobbyTeamManagerContext _context;
 
-    public EditModel(MySqlTestRazorContext context)
+    public EditModel(HobbyTeamManagerContext context)
     {
         _context = context;
     }

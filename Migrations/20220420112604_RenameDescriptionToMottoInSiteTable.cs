@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MySqlTestRazor.Migrations
+namespace HobbyTeamManager.Migrations
 {
     public partial class RenameDescriptionToMottoInSiteTable : Migration
     {

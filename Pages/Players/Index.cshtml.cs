@@ -1,15 +1,15 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Players;
+namespace HobbyTeamManager.Pages.Players;
 
 public class IndexModel : PageModel
 {
-    private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
+    private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
 
-    public IndexModel(MySqlTestRazor.Data.MySqlTestRazorContext context)
+    public IndexModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
     {
         _context = context;
     }

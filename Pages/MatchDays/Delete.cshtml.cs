@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.MatchDays
+namespace HobbyTeamManager.Pages.MatchDays
 {
     public class DeleteModel : PageModel
     {
-        private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
+        private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
 
-        public DeleteModel(MySqlTestRazor.Data.MySqlTestRazorContext context)
+        public DeleteModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
         {
             _context = context;
         }

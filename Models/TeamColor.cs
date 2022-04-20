@@ -1,4 +1,4 @@
-﻿namespace MySqlTestRazor.Models;
+﻿namespace HobbyTeamManager.Models;
 
 public class TeamColor
 {

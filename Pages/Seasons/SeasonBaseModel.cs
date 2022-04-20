@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 using System.Globalization;
 
-namespace MySqlTestRazor.Pages.Seasons;
+namespace HobbyTeamManager.Pages.Seasons;
 
 public class SeasonBaseModel : PageModel
 {
@@ -33,7 +33,7 @@ public class SeasonBaseModel : PageModel
     [BindProperty]
     public int SelectedWeekDay { get; set; }
 
-    public IList<int>? GetExistingYears(MySqlTestRazorContext context)
+    public IList<int>? GetExistingYears(HobbyTeamManagerContext context)
     {
         if (context.Seasons == null)
         {

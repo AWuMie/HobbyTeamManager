@@ -1,7 +1,7 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace MySqlTestRazor.Pages.Sites;
+namespace HobbyTeamManager.Pages.Sites;
 
 public class SiteBaseModel : BasePageModel
 {

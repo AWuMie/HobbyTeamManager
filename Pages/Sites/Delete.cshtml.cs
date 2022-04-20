@@ -1,16 +1,16 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Sites;
+namespace HobbyTeamManager.Pages.Sites;
 
 public class DeleteModel : BasePageModel
 {
-    private readonly MySqlTestRazorContext _context;
+    private readonly HobbyTeamManagerContext _context;
 
-    public DeleteModel(MySqlTestRazorContext context)
+    public DeleteModel(HobbyTeamManagerContext context)
     {
         _context = context;
     }

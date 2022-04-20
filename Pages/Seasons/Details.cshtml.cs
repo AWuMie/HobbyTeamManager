@@ -2,15 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Seasons;
+namespace HobbyTeamManager.Pages.Seasons;
 
 public class DetailsModel : SeasonBaseModel
 {
-    private readonly Data.MySqlTestRazorContext _context;
+    private readonly Data.HobbyTeamManagerContext _context;
 
-    public DetailsModel(Data.MySqlTestRazorContext context)
+    public DetailsModel(Data.HobbyTeamManagerContext context)
     {
         _context = context;
     }

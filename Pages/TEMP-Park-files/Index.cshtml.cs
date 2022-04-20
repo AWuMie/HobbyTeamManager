@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace MySqlTestRazor.Pages.TEMP_Park_files
+namespace HobbyTeamManager.Pages.TEMP_Park_files
 {
     public class IndexModel : PageModel
     {

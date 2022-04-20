@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Data;
+using HobbyTeamManager.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +11,8 @@ var connectionString = builder.Configuration.GetConnectionString("ConnectionStri
 #if RELEASE
 var connectionString = builder.Configuration.GetConnectionString("ReleaseConnection");
 #endif
-builder.Services.AddDbContext<MySqlTestRazorContext>(options =>
+builder.Services.AddDbContext<HobbyTeamManagerContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var app = builder.Build();
 

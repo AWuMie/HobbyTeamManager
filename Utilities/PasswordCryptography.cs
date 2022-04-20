@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace MySqlTestRazor.Utilities;
+namespace HobbyTeamManager.Utilities;
 
 // General idea from:
 // https://stackoverflow.com/questions/4329909/hashing-passwords-with-md5-or-sha-256-c-sharp

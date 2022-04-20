@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.EntityConfigurations;
+namespace HobbyTeamManager.EntityConfigurations;
 
 public class SeasonConfiguration : IEntityTypeConfiguration<Season>
 {

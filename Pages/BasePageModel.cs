@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MySqlTestRazor.Utilities;
+using HobbyTeamManager.Utilities;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System.Collections;
 
-namespace MySqlTestRazor.Pages
+namespace HobbyTeamManager.Pages
 {
     public class BasePageModel : PageModel
     {

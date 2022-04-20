@@ -2,7 +2,7 @@
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 
-namespace MySqlTestRazor.Utilities;
+namespace HobbyTeamManager.Utilities;
 
 public class Checker
 {

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MySqlTestRazor.Data;
+using HobbyTeamManager.Data;
 
 #nullable disable
 
-namespace MySqlTestRazor.Migrations
+namespace HobbyTeamManager.Migrations
 {
-    [DbContext(typeof(MySqlTestRazorContext))]
+    [DbContext(typeof(HobbyTeamManagerContext))]
     [Migration("20220308181813_AddTeamTable")]
     partial class AddTeamTable
     {
@@ -21,7 +21,7 @@ namespace MySqlTestRazor.Migrations
                 .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("MySqlTestRazor.Models.MembershipType", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.MembershipType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace MySqlTestRazor.Migrations
                     b.ToTable("MembershipTypes");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace MySqlTestRazor.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.Team", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.Team", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,7 +104,7 @@ namespace MySqlTestRazor.Migrations
                     b.ToTable("Team");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.TeamColor", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.TeamColor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,15 +120,15 @@ namespace MySqlTestRazor.Migrations
                     b.ToTable("TeamColors");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.Player", b =>
                 {
-                    b.HasOne("MySqlTestRazor.Models.MembershipType", "MembershipType")
+                    b.HasOne("HobbyTeamManager.Models.MembershipType", "MembershipType")
                         .WithMany("Players")
                         .HasForeignKey("MembershipTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MySqlTestRazor.Models.Player", "ScoreFromPlayer")
+                    b.HasOne("HobbyTeamManager.Models.Player", "ScoreFromPlayer")
                         .WithMany("ScoreForPlayers")
                         .HasForeignKey("ScoreFromPlayerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -139,9 +139,9 @@ namespace MySqlTestRazor.Migrations
                     b.Navigation("ScoreFromPlayer");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.Team", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.Team", b =>
                 {
-                    b.HasOne("MySqlTestRazor.Models.TeamColor", "TeamColor")
+                    b.HasOne("HobbyTeamManager.Models.TeamColor", "TeamColor")
                         .WithMany("Teams")
                         .HasForeignKey("TeamColorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -150,17 +150,17 @@ namespace MySqlTestRazor.Migrations
                     b.Navigation("TeamColor");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.MembershipType", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.MembershipType", b =>
                 {
                     b.Navigation("Players");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.Player", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.Player", b =>
                 {
                     b.Navigation("ScoreForPlayers");
                 });
 
-            modelBuilder.Entity("MySqlTestRazor.Models.TeamColor", b =>
+            modelBuilder.Entity("HobbyTeamManager.Models.TeamColor", b =>
                 {
                     b.Navigation("Teams");
                 });

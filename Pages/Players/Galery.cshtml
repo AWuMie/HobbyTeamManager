@@ -1,5 +1,5 @@
 ﻿@page
-@model MySqlTestRazor.Pages.Players.GaleryModel
+@model HobbyTeamManager.Pages.Players.GaleryModel
 
 @{
     ViewData["Title"] = "Team";
@@ -11,7 +11,7 @@
 
 @{
     var players = (from m in Model.Player
-                   where m.MembershipType != null && m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Member
+                   where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Member
                    select m).ToList();
 
     int count = players.Count;
@@ -48,7 +48,7 @@
 
 @{
     var guests = (from m in Model.Player
-                  where m.MembershipType != null && m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Guest
+                  where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Guest
                   select m).ToList();
     count = guests.Count;
     rows = (count / 10) + 1;
@@ -84,7 +84,7 @@
 
 @{
     var ex = (from m in Model.Player
-                  where m.MembershipType != null && m.MembershipType.Name == MySqlTestRazor.Models.MembershipType.Ex
+                  where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Ex
                   select m).ToList();
     count = ex.Count;
     rows = (count / 15) + 1;

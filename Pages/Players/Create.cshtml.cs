@@ -1,17 +1,17 @@
 ﻿#nullable disable
-using MySqlTestRazor.Utilities;
+using HobbyTeamManager.Utilities;
 using Microsoft.AspNetCore.Mvc;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Models;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
-namespace MySqlTestRazor.Pages.Players;
+namespace HobbyTeamManager.Pages.Players;
 
 public class CreateModel : PlayerBaseModel
 {
-    private readonly Data.MySqlTestRazorContext _context;
+    private readonly Data.HobbyTeamManagerContext _context;
 
-    public CreateModel(Data.MySqlTestRazorContext context)
+    public CreateModel(Data.HobbyTeamManagerContext context)
     {
         _context = context;
     }

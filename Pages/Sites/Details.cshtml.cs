@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Sites
+namespace HobbyTeamManager.Pages.Sites
 {
     public class DetailsModel : BasePageModel
     {
-        private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
+        private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
 
-        public DetailsModel(MySqlTestRazor.Data.MySqlTestRazorContext context)
+        public DetailsModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
         {
             _context = context;
         }

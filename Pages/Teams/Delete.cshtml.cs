@@ -2,15 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Teams
+namespace HobbyTeamManager.Pages.Teams
 {
     public class DeleteModel : PageModel
     {
-        private readonly Data.MySqlTestRazorContext _context;
+        private readonly Data.HobbyTeamManagerContext _context;
 
-        public DeleteModel(Data.MySqlTestRazorContext context)
+        public DeleteModel(Data.HobbyTeamManagerContext context)
         {
             _context = context;
         }

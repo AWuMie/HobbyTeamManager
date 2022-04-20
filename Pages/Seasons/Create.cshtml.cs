@@ -1,17 +1,17 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc;
-using MySqlTestRazor.Data;
-using MySqlTestRazor.Models;
+using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
-namespace MySqlTestRazor.Pages.Seasons
+namespace HobbyTeamManager.Pages.Seasons
 {
     public class CreateModel : SeasonBaseModel
     {
-        private readonly MySqlTestRazorContext _context;
+        private readonly HobbyTeamManagerContext _context;
 
         public bool MatchDaysCreated { get; private set; }
 
-        public CreateModel(MySqlTestRazorContext context)
+        public CreateModel(HobbyTeamManagerContext context)
         {
             _context = context;
         }

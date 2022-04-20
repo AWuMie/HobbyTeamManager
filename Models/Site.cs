@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MySqlTestRazor.Models;
+namespace HobbyTeamManager.Models;
 
 public class Site
 {
