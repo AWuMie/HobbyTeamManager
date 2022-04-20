@@ -1,78 +1,107 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MySqlTestRazor.Data;
 using MySqlTestRazor.Models;
 
-namespace MySqlTestRazor.Pages.Sites
-{
-    public class EditModel : PageModel
-    {
-        private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
+namespace MySqlTestRazor.Pages.Sites;
 
-        public EditModel(MySqlTestRazor.Data.MySqlTestRazorContext context)
+public class EditModel : SiteBaseModel
+{
+    private readonly MySqlTestRazorContext _context;
+
+    public EditModel(MySqlTestRazorContext context)
+    {
+        _context = context;
+    }
+
+    [BindProperty]
+    public Site Site { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Site Site { get; set; }
+        Site = await _context.Sites.FirstOrDefaultAsync(m => m.Id == id);
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        if (Site == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
 
-            Site = await _context.Sites.FirstOrDefaultAsync(m => m.Id == id);
+        ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+            Site.ConfirmationModeId);
+        MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+            Site.MenuPositionId);
 
-            if (Site == null)
-            {
-                return NotFound();
-            }
+        return Page();
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see https://aka.ms/RazorPagesCRUD.
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                Site.ConfirmationModeId);
+            MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+                Site.MenuPositionId);
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        var oldLogo = _context.Sites
+                .AsNoTracking()
+                .FirstOrDefault(s => s.Id == Site.Id).Logo;
+
+        if (Request.Form.Files.Count > 0)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            var stream = await GetCheckResizeImageAsync<Site>();
+            Site.Logo = stream.ToArray();
 
-            _context.Attach(Site).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SiteExists(Site.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
+            if (Site.Logo == null)
+                Site.Logo = oldLogo;
+        }
+        else if (Site.Logo != oldLogo)
+        {
+            Site.Logo = oldLogo;
         }
 
-        private bool SiteExists(int id)
+        if (Site.TeamColor1 == Site.TeamColor2)
         {
-            return _context.Sites.Any(e => e.Id == id);
+            ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                Site.ConfirmationModeId);
+            MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+                Site.MenuPositionId);
+            return Page();
         }
+
+        _context.Attach(Site).State = EntityState.Modified;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!SiteExists(Site.Id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        return RedirectToPage("./Index");
+    }
+
+    private bool SiteExists(int id)
+    {
+        return _context.Sites.Any(e => e.Id == id);
     }
 }

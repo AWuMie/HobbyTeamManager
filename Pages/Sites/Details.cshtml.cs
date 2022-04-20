@@ -11,7 +11,7 @@ using MySqlTestRazor.Models;
 
 namespace MySqlTestRazor.Pages.Sites
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : BasePageModel
     {
         private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
 

@@ -26,7 +26,7 @@ namespace MySqlTestRazor.Pages
             return new SelectList(collection, value, data, selectedItem);
         }
 
-        public async Task<MemoryStream?> GetCheckResizeImageAsync<T>(string noImage)
+        public async Task<MemoryStream?> GetCheckResizeImageAsync<T>(/*string noImage*/)
         {
             using var dataStream = new MemoryStream();
             if (Request.Form.Files.Count > 0)
@@ -52,10 +52,11 @@ namespace MySqlTestRazor.Pages
             }
             else
             {
-                var path = Path.Combine("wwwroot/res", noImage);
-                var file = System.IO.File.OpenRead(path);
+                return null;
+                //var path = Path.Combine("wwwroot/res", noImage);
+                //var file = System.IO.File.OpenRead(path);
 
-                await file.CopyToAsync(dataStream);
+                //await file.CopyToAsync(dataStream);
             }
 
             return dataStream;

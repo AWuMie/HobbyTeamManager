@@ -1,0 +1,64 @@
+﻿@model BasePageModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+
+    <title>@ViewData["Title"] - Hobby Team Manager</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MySqlTestRazor.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+</head>
+<body style="background-color: @Model.BgColorBody; color: @Model.FgColorBody">
+    <partial name="_NavBarPartialSiteLeft" />
+@*    <header style="background-color: @Model.BgColorHeader; color: @Model.FgColorHeader">
+        <p align="center">&nbsp;</p>
+        @if (!string.IsNullOrEmpty(@Model.Headline))
+        {
+            <p align="center">
+                <font size="8" face="Arial Black">@Model.Headline</font>
+            </p>
+        }
+        @if (!string.IsNullOrEmpty(@Model.Headline2))
+        {
+            <p align="center">
+                <font size="8" face="Arial Black">@Model.Headline2</font>
+            </p>
+        }
+    </header>*@
+    <div style="background-color: @Model.BgColorMain; color: @Model.FgColorMain">
+        <main role="main" class="page-content">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </main>
+        <hr />
+
+        <footer class="border-top footer"
+                style="background-color: @Model.BgColorFooter; color: @Model.FgColorFooter">
+            <partial name="_FooterPartial" />
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -34,14 +34,14 @@ public class CreateModel : PlayerBaseModel
             return Page();
         }
 
-        var stream = await GetCheckResizeImageAsync<Player>("NoImage.jpg");
-        if (stream == null)
-        {
-            PopulateMemberTypeDropDownList(_context);
-            return Page();
-        }
-
+        //var stream = await GetCheckResizeImageAsync<Player>("NoImage.jpg");
+        var stream = await GetCheckResizeImageAsync<Player>();
         Player.ProfilePicture = stream.ToArray();
+        //if (stream == null)
+        //{
+        //    PopulateMemberTypeDropDownList(_context);
+        //    return Page();
+        //}
 
         // FIXED: Player Create does not save selected membership type!
         Player.MembershipType =

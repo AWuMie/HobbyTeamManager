@@ -2,18 +2,21 @@
 @model MySqlTestRazor.Pages.Sites.CreateModel
 
 @{
-    ViewData["Title"] = "Neues Hobby Team erstellen";
+    ViewData["Title"] = "Neue Hobby Mannschaft erstellen";
     Layout = "../Shared/_LayoutStart.cshtml";
 }
 
-<h1>Neues Hobby Team erstellen</h1>
+<h1>Neue Hobby Mannschaft erstellen</h1>
 
-<h4>Hobby Team</h4>
+<h4>Hobby Mannschaft</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <p>
+                <h4>Optionen/Parameter</h4>
+            </p>
             <div class="form-group">
                 <label asp-for="Site.Name" class="control-label"></label>
                 <input asp-for="Site.Name" class="form-control" />
@@ -30,14 +33,9 @@
                 <span asp-validation-for="Site.Logo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Site.Description" class="control-label"></label>
-                <input asp-for="Site.Description" class="form-control" />
-                <span asp-validation-for="Site.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Site.Rules" class="control-label"></label>
-                <input asp-for="Site.Rules" class="form-control" />
-                <span asp-validation-for="Site.Rules" class="text-danger"></span>
+                <label asp-for="Site.Motto" class="control-label"></label>
+                <input asp-for="Site.Motto" class="form-control" />
+                <span asp-validation-for="Site.Motto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Site.ConfirmationModeId" class="control-label"></label>
@@ -73,7 +71,20 @@
             </div>
             <p>&nbsp;</p>
             <p>
-                <a>Farben der Seiten der Hobby Mannschaft</a>
+                <h4>Design</h4>
+                <h5>Seitenaufbau</h5>
+            </p>
+            <div class="form-group">
+                <label asp-for="Site.MenuPositionId" class="control-label"></label>
+                <select asp-for="Site.MenuPositionId" class="form-control"
+                        asp-items="@Model.MenuPositionOptions">
+                        <option value="">-- Option wählen --</option>
+                </select>
+                <span asp-validation-for="Site.MenuPositionId" class="text-danger"></span>
+            </div>
+            <p>&nbsp;</p>
+            <p>
+                <h5>Farben der Seiten</h5>
             </p>
             <div class="form-group">
                 @{

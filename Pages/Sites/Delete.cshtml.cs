@@ -1,60 +1,54 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MySqlTestRazor.Data;
 using MySqlTestRazor.Models;
 
-namespace MySqlTestRazor.Pages.Sites
+namespace MySqlTestRazor.Pages.Sites;
+
+public class DeleteModel : BasePageModel
 {
-    public class DeleteModel : PageModel
+    private readonly MySqlTestRazorContext _context;
+
+    public DeleteModel(MySqlTestRazorContext context)
     {
-        private readonly MySqlTestRazor.Data.MySqlTestRazorContext _context;
+        _context = context;
+    }
 
-        public DeleteModel(MySqlTestRazor.Data.MySqlTestRazorContext context)
+    [BindProperty]
+    public Site Site { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Site Site { get; set; }
+        Site = await _context.Sites.FirstOrDefaultAsync(m => m.Id == id);
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        if (Site == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
+        return Page();
+    }
 
-            Site = await _context.Sites.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Site == null)
-            {
-                return NotFound();
-            }
-            return Page();
+    public async Task<IActionResult> OnPostAsync(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        Site = await _context.Sites.FindAsync(id);
+
+        if (Site != null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Site = await _context.Sites.FindAsync(id);
-
-            if (Site != null)
-            {
-                _context.Sites.Remove(Site);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            _context.Sites.Remove(Site);
+            await _context.SaveChangesAsync();
         }
+
+        return RedirectToPage("./Index");
     }
 }

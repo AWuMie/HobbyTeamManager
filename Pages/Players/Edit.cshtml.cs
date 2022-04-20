@@ -53,6 +53,7 @@ public class EditModel : PlayerBaseModel
         }
 
         // did we load a new image?
+        // TODO: check Site.Edit!!!
         if (Request.Form.Files.Count > 0)
         {
             IFormFile file = Request.Form.Files[0];

@@ -2,14 +2,15 @@
 @model MySqlTestRazor.Pages.Sites.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Löschen";
+    Layout = "../Shared/_LayoutStart.cshtml";
 }
 
-<h1>Delete</h1>
+<h1>Löschen</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bist Du sicher, dass Du die Hobby Mannschaft \"@Model.Site.Name\"" löschen willst?</h3>
 <div>
-    <h4>Site</h4>
+    <h4>Hobby Mannschaft</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -22,43 +23,49 @@
             @Html.DisplayNameFor(model => model.Site.Logo)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.Logo)
+            @if (Model.Site.Logo != null)
+            {
+                <img id="logo" style="width:40px;height:50px; object-fit:cover"
+                    src="data:image/*;base64,@(Convert.ToBase64String(Model.Site.Logo))">
+            }
+            else
+            {
+                <img id="logo" style="width:40px;height:50px; object-fit:cover" src="">
+            }
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Site.Description)
+            @Html.DisplayNameFor(model => model.Site.Motto)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Site.Rules)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.Rules)
+            @Html.DisplayFor(model => model.Site.Motto)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Site.ConfirmationModeId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.ConfirmationModeId)
+            @Model.Site.GetConfirmationMode(Model.Site.ConfirmationModeId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Site.TeamColor1)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.TeamColor1)
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.TeamColor1;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Site.TeamColor2)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.TeamColor2)
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.TeamColor2;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
         </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="Site.Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="LÖSCHEN" class="btn btn-danger" /> |
+        <a asp-page="./Index">Zurück zur Liste</a>
     </form>
 </div>

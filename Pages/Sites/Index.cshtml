@@ -9,9 +9,9 @@
 <h1>Liste der Hobby Mannschaften</h1>
 
 <p>
-    <a asp-page="Create">Neue Hobby Mannschaft registrieren</a>
+    <a asp-page="Create">Neue Hobby Mannschaft erstellen</a>
 </p>
-<table class="table">
+<table class="table" style="color: @Model.FgColorMain">
     <thead>
         <tr>
             <th>
@@ -21,10 +21,7 @@
                 @Html.DisplayNameFor(model => model.Site[0].Logo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Site[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Site[0].Rules)
+                @Html.DisplayNameFor(model => model.Site[0].Motto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Site[0].ConfirmationModeId)
@@ -56,24 +53,25 @@
                 }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Motto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rules)
+                @item.GetConfirmationMode(item.ConfirmationModeId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ConfirmationModeId)
+                <svg width="60" height="20">
+                    <rect width="50" height="18" style="fill:@item.TeamColor1;stroke-width:3;stroke:rgb(255,255,255)"/>
+                </svg>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TeamColor1)
+                <svg width="60" height="20">
+                    <rect width="50" height="18" style="fill:@item.TeamColor2;stroke-width:3;stroke:rgb(255,255,255)"/>
+                </svg>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TeamColor2)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Löschen</a>
             </td>
         </tr>
 }

@@ -20,7 +20,7 @@
         <div class="row no-gutters mb-4">
             <div class="col p-4 d-flex flex-column">
                 <p>
-                    <a asp-page="/Sites/Create">Neue Hobby Mannschaft registrieren</a>
+                    <a asp-page="/Sites/Create">Neue Hobby Mannschaft erstellen</a>
                 </p>
                 <p class="card-text mb-auto">
                     Die registrierten Hobby Mannschaften:
@@ -29,8 +29,8 @@
                     <a asp-page="/Sites/Index">Liste der Hobby Mannschaften</a>
                 </p>
                 <p>
-                    <a>Übersicht</a>
-                    <table class="table">
+                    <h4>Übersicht</h4>
+                    <table class="table" style="color: @Model.FgColorMain">
                         <thead>
                             <tr>
                                 <th>
@@ -43,7 +43,7 @@
                         </thead>
                         <tbody>
                         @foreach (var item in Model.Site) {
-                            <tr>
+                            <tr style="background: @item.BgColorBody; color: @item.FgColorBody">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>

@@ -3,13 +3,18 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "../Shared/_LayoutStart.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Details der Hobby Mannschaft</h1>
 
 <div>
     <h4>Site</h4>
     <hr />
+    <p>
+        <h4>Optionen/Parameter</h4>
+    </p>
+
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Site.Name)
@@ -21,13 +26,21 @@
             @Html.DisplayNameFor(model => model.Site.Logo)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.Logo)
+            @if (Model.Site.Logo != null)
+            {
+                <img id="logo" style="width:40px;height:50px; object-fit:cover"
+                    src="data:image/*;base64,@(Convert.ToBase64String(Model.Site.Logo))">
+            }
+            else
+            {
+                <img id="logo" style="width:40px;height:50px; object-fit:cover" src="">
+            }
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Site.Description)
+            @Html.DisplayNameFor(model => model.Site.Motto)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.Description)
+            @Html.DisplayFor(model => model.Site.Motto)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Site.Rules)
@@ -39,23 +52,113 @@
             @Html.DisplayNameFor(model => model.Site.ConfirmationModeId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.ConfirmationModeId)
+            @Model.Site.GetConfirmationMode(Model.Site.ConfirmationModeId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Site.TeamColor1)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.TeamColor1)
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.TeamColor1;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Site.TeamColor2)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Site.TeamColor2)
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.TeamColor2;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+    </dl>
+    <p>&nbsp;</p>
+    <p>
+        <h4>Design</h4>
+    </p>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.MenuPositionId)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.MenuPositionId)*@
+            @Model.Site.GetMenuPosition(Model.Site.MenuPositionId)
+            <p>&nbsp;</p>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.BgColorBody)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.BgColorBody)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.BgColorBody;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.FgColorBody)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.FgColorBody)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.FgColorBody;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.BgColorHeader)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.BgColorHeader)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.BgColorHeader;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.FgColorHeader)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.FgColorHeader)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.FgColorHeader;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.BgColorMain)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.BgColorMain)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.BgColorMain;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.FgColorMain)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.FgColorMain)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.FgColorMain;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.BgColorFooter)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.BgColorFooter)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.BgColorFooter;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Site.FgColorFooter)
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.Site.FgColorFooter)*@
+            <svg width="60" height="20">
+                <rect width="50" height="18" style="fill:@Model.Site.FgColorFooter;stroke-width:3;stroke:rgb(255,255,255)"/>
+            </svg>
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Site.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Site.Id">Ändern</a> |
+    <a asp-page="./Index">Zurück zur Liste</a>
 </div>

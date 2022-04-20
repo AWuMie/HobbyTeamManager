@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySqlTestRazor.Data;
 
@@ -10,9 +11,10 @@ using MySqlTestRazor.Data;
 namespace MySqlTestRazor.Migrations
 {
     [DbContext(typeof(MySqlTestRazorContext))]
-    partial class MySqlTestRazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220419082630_AddMenuPositionColumnToSiteTable")]
+    partial class AddMenuPositionColumnToSiteTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,6 +186,9 @@ namespace MySqlTestRazor.Migrations
                     b.Property<int>("ConfirmationModeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("FgColorBody")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -205,9 +210,6 @@ namespace MySqlTestRazor.Migrations
 
                     b.Property<int>("MenuPositionId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Motto")
-                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()
