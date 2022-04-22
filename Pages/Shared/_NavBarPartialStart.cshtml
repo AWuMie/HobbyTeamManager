@@ -1,20 +1,13 @@
 ﻿@model BasePageModel
 
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
-    <div class=container>
-        <a class="navbar-brand" style="color: @Model.FgColorHeader"
-            asp-page="/Index">Hobby Team Manager</a>
+<nav style="background: @Model.BgColorHeader; color: @Model.FgColorHeader"
+    class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+    <div class="container">
+        <a class="navbar-brand" style="color: @Model.FgColorHeader" asp-page="/Index">Hobby Team Manager</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        @*<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-between">
-            <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: @Model.FgColorHeader" asp-page="/Index">Hobby Team Manager</a>
-                </li>
-            </ul>
-        </div>*@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
             <partial name="_LoginPartial" />
         </div>

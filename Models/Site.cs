@@ -6,17 +6,19 @@ public class Site
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = "";
+    public string Name { get; set; } = string.Empty;
     
     public byte[]? Logo { get; set; } = null;
 
-    [Display(Name = "Motto")]
-    public string? Motto { get; set; } = string.Empty;
+    [Display(Name = "Motto / Information")]
+    public string? Motto { get; set; }
 
     // should be name and motto?
-    // check on Emerholzkicker
-    //public string Headline { get; set; } = "Hobby Team Manager";
-    //public string Headline2 { get; set; } = "";
+    [Display(Name = "Überschrift")]
+    public string Headline { get; set; } = string.Empty;
+
+    [Display(Name = "optionale Überschrift 2")]
+    public string? Headline2 { get; set; }
 
     [Display(Name = "Regeln")]
     public string? Rules { get; set; } = string.Empty;
@@ -79,9 +81,11 @@ public class Site
         return menuPosition[index];
     }
 
+    public static string menuPositionTop = "Menüposition OBEN";
+    public static string menuPositionLeft = "Menüposition LINKS";
     public static readonly Dictionary<int, string> menuPosition = new()
     {
-        { 1, "Menüposition OBEN" },
-        { 2, "Menüposition LINKS" },
+        { 1, menuPositionTop },
+        { 2, menuPositionLeft }
     };
 }

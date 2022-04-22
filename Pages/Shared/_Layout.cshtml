@@ -12,13 +12,19 @@
 </head>
 <body style="background-color: @Model.BgColorBody; color: @Model.FgColorBody">
     <header style="background-color: @Model.BgColorHeader; color: @Model.FgColorHeader">
-        <p align="center">&nbsp;</p>
-        <p align="center">
-            <font size="8" face="Arial Black">
-                @Model.Headline
-            </font>
-        </p>
-
+        @*<p align="center">&nbsp;</p>*@
+        @if (!string.IsNullOrEmpty(@Model.Headline))
+        {
+            <p align="center">
+                <font size="8" face="Arial Black">@Model.Headline</font>
+            </p>
+        }
+        @if (!string.IsNullOrEmpty(@Model.Headline2))
+        {
+            <p align="center">
+                <font size="8" face="Arial Black">@Model.Headline2</font>
+            </p>
+        }
         <partial name="_NavBarPartial" />
     </header>
     <div style="background-color: @Model.BgColorMain; color: @Model.FgColorMain">

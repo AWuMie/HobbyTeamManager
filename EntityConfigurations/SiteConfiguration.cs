@@ -11,5 +11,15 @@ public class SiteConfiguration : IEntityTypeConfiguration<Site>
         builder.Property(s => s.Name)
             .IsRequired()
             .HasMaxLength(50);
+
+        builder.Property(s => s.Motto)
+            .HasMaxLength(250);
+
+        builder.Property(s => s.Headline)
+            .IsRequired()
+            .HasMaxLength(50);
+
+        builder.Property(s => s.Headline2)
+            .HasMaxLength(50);
     }
 }

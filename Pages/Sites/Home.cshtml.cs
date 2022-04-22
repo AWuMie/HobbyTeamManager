@@ -1,16 +1,16 @@
 ﻿#nullable disable
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HobbyTeamManager.Pages.Sites;
 
-public class DetailsModel : BasePageModel
+public class HomeModel : BasePageModel
 {
     private readonly HobbyTeamManagerContext _context;
 
-    public DetailsModel(HobbyTeamManagerContext context)
+    public HomeModel(HobbyTeamManagerContext context)
     {
         _context = context;
     }
@@ -30,6 +30,9 @@ public class DetailsModel : BasePageModel
         {
             return NotFound();
         }
+        
+        UpdateBaseProperties(Site);
+
         return Page();
     }
 }
