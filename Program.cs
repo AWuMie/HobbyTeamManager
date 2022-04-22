@@ -14,21 +14,34 @@ var connectionString = builder.Configuration.GetConnectionString("ReleaseConnect
 builder.Services.AddDbContext<HobbyTeamManagerContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+#region Session stuff
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "HTM.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(15);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+#endregion
+
 var app = builder.Build();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
+#if false   // Seeding switched off while implementing models
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
 
-//    SeedData.Initialize(services);
-//}
+    SeedData.Initialize(services);
+}
+#endif
 
+#region reverse proxy stuff
 // reverse proxy stuff - see "https://thomaslevesque.com/2018/04/17/hosting-an-asp-net-core-2-application-on-a-raspberry-pi/"
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.All
 });
-
 app.Use(async (context, next) =>
 {
     var forwardedPath = context.Request.Headers["X-Forwarded-Path"].FirstOrDefault();
@@ -36,10 +49,9 @@ app.Use(async (context, next) =>
     {
         context.Request.PathBase = forwardedPath;
     }
-
     await next();
 });
-// end reverse proxy stuff
+#endregion
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -55,6 +67,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+#region Session stuff 2
+app.UseCookiePolicy();
+app.UseSession();
+#endregion
 
 app.MapRazorPages();
 
