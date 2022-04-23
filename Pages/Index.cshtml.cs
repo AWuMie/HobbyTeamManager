@@ -19,5 +19,6 @@ public class IndexModel : BasePageModel
     public async Task OnGetAsync()
     {
         Site = await _context.Sites.ToListAsync();
+        Utilities.Miscellaneous.SetSessionStringFromObject<Site>(new Site(), HttpContext);
     }
 }

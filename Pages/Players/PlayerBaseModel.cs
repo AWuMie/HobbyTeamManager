@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
@@ -21,7 +20,7 @@ public class PlayerBaseModel : BasePageModel
 
         //MembershipTypeSL = new SelectList(items,
         //    "MembershipTypeId", "Name", selectedMembershipTypeId);
-        MembershipTypeSL = PopulateDropDownList(items,
+        MembershipTypeSL = Utilities.Miscellaneous.PopulateDropDownList(items,
             nameof(MembershipType.Id), nameof(MembershipType.Name), selectedMembershipTypeId);
     }
 }

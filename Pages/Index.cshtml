@@ -1,8 +1,14 @@
 ﻿@page
 @model IndexModel
+@using HobbyTeamManager.Models
 @{
     ViewData["Title"] = "Willkommen";
     Layout = "Shared/_LayoutStart.cshtml";
+    var site = Utilities.Miscellaneous.GetObjectFromSessionString<Site>(HttpContext);
+    if (site == null)
+    {
+        site = new Site();
+    }
 }
 
 <div class="row mb-auto">
@@ -30,7 +36,7 @@
                 </p>
                 <p>
                     <h4>Übersicht</h4>
-                    <table class="table" style="color: @Model.FgColorMain">
+                    <table class="table" style="color: @site.FgColorMain">
                         <thead>
                             <tr>
                                 <th>

@@ -1,9 +1,14 @@
 ﻿@page
 @model HobbyTeamManager.Pages.Sites.IndexModel
-
+@using HobbyTeamManager.Models
 @{
     ViewData["Title"] = "Index";
     Layout = "../Shared/_LayoutStart.cshtml";
+    var site = Utilities.Miscellaneous.GetObjectFromSessionString<Site>(HttpContext);
+    if (site == null)
+    {
+        site = new Site();
+    }
 }
 
 <h1>Liste der Hobby Mannschaften</h1>
@@ -11,7 +16,7 @@
 <p>
     <a asp-page="Create">Neue Hobby Mannschaft erstellen</a>
 </p>
-<table class="table" style="color: @Model.FgColorMain">
+<table class="table" style="color: @site.FgColorMain">
     <thead>
         <tr>
             <th>

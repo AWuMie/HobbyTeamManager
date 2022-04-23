@@ -3,7 +3,6 @@ using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace HobbyTeamManager.Pages.Sites;
 
@@ -32,9 +31,8 @@ public class HomeModel : BasePageModel
             return NotFound();
         }
 
-        HttpContext.Session.SetString("Site", JsonConvert.SerializeObject(Site));
-        //var site = JsonConvert.DeserializeObject<Site>(HttpContext.Session.GetString("Site"));
-        UpdateBaseProperties(Site);
+        Utilities.Miscellaneous.SetSessionStringFromObject<Site>(Site, HttpContext);
+        //UpdateBaseProperties(Site);
 
         return Page();
     }

@@ -1,10 +1,13 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using System.Collections;
+using System.Diagnostics;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace HobbyTeamManager.Utilities;
 
-public class Checker
+public class Miscellaneous
 {
     public static bool IsMailAddressCorrect(string mail)
     {
@@ -42,5 +45,31 @@ public class Checker
             && hasCapitalLetters.IsMatch(password)
             && hasLowerCaseLetters.IsMatch(password)
             && hasSpecialCharacters.IsMatch(password);
+    }
+
+    public static SelectList PopulateDropDownList(IEnumerable collection,
+        string value, string data, object? selectedItem = null)
+    {
+        return new SelectList(collection, value, data, selectedItem);
+    }
+
+    public static void SetSessionStringFromObject<T>(T t, HttpContext context)
+        where T : class
+    {
+        if (t == null)
+            throw new ArgumentNullException(nameof(t));
+
+        context.Session.SetString(typeof(T).Name, JsonConvert.SerializeObject(t));
+    }
+
+    public static T? GetObjectFromSessionString<T>(HttpContext context)
+        where T : class
+    {
+        string t = typeof(T).Name;
+        var s = context.Session.GetString(t);
+        if (s == null)
+            return null;
+
+        return JsonConvert.DeserializeObject<T>(s);
     }
 }

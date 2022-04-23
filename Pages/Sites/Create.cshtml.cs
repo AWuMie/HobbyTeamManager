@@ -16,8 +16,8 @@ namespace HobbyTeamManager.Pages.Sites
 
         public IActionResult OnGet()
         {
-            ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value");
-            MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value");
+            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value");
+            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value");
             return Page();
         }
 
@@ -29,9 +29,9 @@ namespace HobbyTeamManager.Pages.Sites
         {
             if (!ModelState.IsValid)
             {
-                ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
                     Site.ConfirmationModeId);
-                MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+                MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
                     Site.MenuPositionId);
                 return Page();
             }
@@ -41,9 +41,9 @@ namespace HobbyTeamManager.Pages.Sites
             
             if (Site.TeamColor1 == Site.TeamColor2)
             {
-                ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
                     Site.ConfirmationModeId);
-                MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+                MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
                     Site.MenuPositionId);
                 return Page();
             }

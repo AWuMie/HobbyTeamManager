@@ -6,6 +6,15 @@
 @inject SignInManager<HobbyTeamManagerUser> SignInManager
 @inject UserManager<HobbyTeamManagerUser> UserManager*@
 
+@using HobbyTeamManager.Models
+@{
+    var site = Utilities.Miscellaneous.GetObjectFromSessionString<Site>(Context);
+    if (site == null)
+    {
+        site = new Site();
+    }
+}
+
 <ul class="navbar-nav">
 @*@if (SignInManager.IsSignedIn(User))*@
 @if (false)
@@ -24,11 +33,11 @@ else
 {
     <li class="nav-item">
         @*<a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>*@
-        <a class="nav-link" style="color:@Model.FgColorHeader" asp-page="/Account/Register">Register</a>
+        <a class="nav-link" style="color:@site.FgColorHeader" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
         @*<a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>*@
-        <a class="nav-link" style="color:@Model.FgColorHeader" asp-page="/Account/Login">Login</a>
+        <a class="nav-link" style="color:@site.FgColorHeader" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>

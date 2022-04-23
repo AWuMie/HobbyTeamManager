@@ -1,4 +1,12 @@
-﻿@model BasePageModel
+﻿@*@model BasePageModel*@
+@using HobbyTeamManager.Models
+@{
+    var site = Utilities.Miscellaneous.GetObjectFromSessionString<Site>(Context);
+    if (site == null)
+    {
+        site = new Site();
+    }
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,24 +26,24 @@
         crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head>
-<body style="background-color: @Model.BgColorBody; color: @Model.FgColorBody">
+<body style="background-color: @site.BgColorBody; color: @site.FgColorBody">
     <partial name="_NavBarPartialSiteLeft" />
-@*    <header style="background-color: @Model.BgColorHeader; color: @Model.FgColorHeader">
+@*    <header style="background-color: @site.BgColorHeader; color: @site.FgColorHeader">
         <p align="center">&nbsp;</p>
-        @if (!string.IsNullOrEmpty(@Model.Headline))
+        @if (!string.IsNullOrEmpty(@site.Headline))
         {
             <p align="center">
-                <font size="8" face="Arial Black">@Model.Headline</font>
+                <font size="8" face="Arial Black">@site.Headline</font>
             </p>
         }
-        @if (!string.IsNullOrEmpty(@Model.Headline2))
+        @if (!string.IsNullOrEmpty(@site.Headline2))
         {
             <p align="center">
-                <font size="8" face="Arial Black">@Model.Headline2</font>
+                <font size="8" face="Arial Black">@site.Headline2</font>
             </p>
         }
     </header>*@
-    <div style="background-color: @Model.BgColorMain; color: @Model.FgColorMain">
+    <div style="background-color: @site.BgColorMain; color: @site.FgColorMain">
         <main role="main" class="page-content">
             <div class="container-fluid">
                 @RenderBody()
@@ -44,7 +52,7 @@
         <hr />
 
         <footer class="border-top footer"
-                style="background-color: @Model.BgColorFooter; color: @Model.FgColorFooter">
+                style="background-color: @site.BgColorFooter; color: @site.FgColorFooter">
             <partial name="_FooterPartial" />
         </footer>
     </div>

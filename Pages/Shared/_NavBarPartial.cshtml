@@ -1,9 +1,17 @@
-﻿@model BasePageModel
+﻿@*@model BasePageModel*@
+@using HobbyTeamManager.Models
+@{
+    var site = Utilities.Miscellaneous.GetObjectFromSessionString<Site>(Context);
+    if (site == null)
+    {
+        site = new Site();
+    }
+}
 
-<nav style="background: @Model.BgColorHeader; color: @Model.FgColorHeader"
+<nav style="background: @site.BgColorHeader; color: @site.FgColorHeader"
     class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand" style="color: @Model.FgColorHeader" asp-page="/Index">Hobby Team Manager</a>
+        <a class="navbar-brand" style="color: @site.FgColorHeader" asp-page="/Index">Hobby Team Manager</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,16 +19,16 @@
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @Model.FgColorHeader" asp-page="/Players/Galery">Team</a>
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Players/Galery">Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @Model.FgColorHeader" asp-page="/Players/Index">Spielerliste(-)</a>
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Players/Index">Spielerliste(-)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @Model.FgColorHeader" asp-page="/Teams/Index">Alle Teams (-)</a>
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Teams/Index">Alle Teams (-)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @Model.FgColorHeader" asp-page="/Seasons/Index">Alle Saisonen (-)</a>
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Seasons/Index">Alle Saisonen (-)</a>
                 </li>
 @*                <li class="nav-item dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <a class="nav-link dropdown-toggle">Dropdown</a>

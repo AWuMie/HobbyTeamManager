@@ -32,9 +32,9 @@ public class EditModel : SiteBaseModel
             return NotFound();
         }
 
-        ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+        ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
             Site.ConfirmationModeId);
-        MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+        MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
             Site.MenuPositionId);
 
         return Page();
@@ -46,9 +46,9 @@ public class EditModel : SiteBaseModel
     {
         if (!ModelState.IsValid)
         {
-            ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
                 Site.ConfirmationModeId);
-            MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
                 Site.MenuPositionId);
             return Page();
         }
@@ -72,9 +72,9 @@ public class EditModel : SiteBaseModel
 
         if (Site.TeamColor1 == Site.TeamColor2)
         {
-            ConfirmationModeOptions = PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
                 Site.ConfirmationModeId);
-            MenuPositionOptions = PopulateDropDownList(Site.menuPosition, "Key", "Value",
+            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
                 Site.MenuPositionId);
             return Page();
         }
