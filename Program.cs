@@ -7,12 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+#region Database stuff
 var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
 #if RELEASE
 var connectionString = builder.Configuration.GetConnectionString("ReleaseConnection");
 #endif
 builder.Services.AddDbContext<HobbyTeamManagerContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+#endregion
 
 #region Session stuff
 builder.Services.AddDistributedMemoryCache();
