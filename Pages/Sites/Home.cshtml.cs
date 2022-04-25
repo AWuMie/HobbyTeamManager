@@ -32,7 +32,6 @@ public class HomeModel : BasePageModel
         }
 
         Utilities.Miscellaneous.SetSessionStringFromObject<Site>(Site, HttpContext);
-        //UpdateBaseProperties(Site);
 
         return Page();
     }

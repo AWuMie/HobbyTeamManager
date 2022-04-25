@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyTeamManager", "HobbyTeamManager.csproj", "{E5DDAE50-9788-42FE-9B1C-3E5552415668}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyTeamManager.UnitTests", "..\HobbyTeamManager.UnitTests\HobbyTeamManager.UnitTests.csproj", "{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{E5DDAE50-9788-42FE-9B1C-3E5552415668}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5DDAE50-9788-42FE-9B1C-3E5552415668}.Release|ARM32.ActiveCfg = Release|ARM32
 		{E5DDAE50-9788-42FE-9B1C-3E5552415668}.Release|ARM32.Build.0 = Release|ARM32
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{7606E620-93EC-44F6-9419-DD9E6A6EE0BA}.Release|ARM32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
