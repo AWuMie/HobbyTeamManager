@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Microsoft.AspNetCore.Mvc;
 using HobbyTeamManager.Models;
+using HobbyTeamManager.Utilities;
 
 namespace HobbyTeamManager.Pages.Players;
 
@@ -27,14 +28,8 @@ public class CreateModel : PlayerBaseModel
             return Page();
         }
 
-        //var stream = await GetCheckResizeImageAsync<Player>("NoImage.jpg");
-        var stream = await GetCheckResizeImageAsync<Player>();
-        Player.ProfilePicture = stream.ToArray();
-        //if (stream == null)
-        //{
-        //    PopulateMemberTypeDropDownList(_context);
-        //    return Page();
-        //}
+        var stream = await FileHelpers.GetCheckResizeImageAsync<Player>(Request, ModelState);
+        Player.ProfilePicture = stream?.ToArray();
 
         // FIXED: Player Create does not save selected membership type!
         Player.MembershipType =

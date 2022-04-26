@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
+using HobbyTeamManager.Utilities;
 
 namespace HobbyTeamManager.Pages.Sites;
 
@@ -32,7 +33,7 @@ public class CreateModel : SiteBaseModel
             return Page();
         }
 
-        var stream = await GetCheckResizeImageAsync<Site>();
+        var stream = await FileHelpers.GetCheckResizeImageAsync<Site>(Request, ModelState);
         Site.Logo = stream?.ToArray();
 
         Context.Sites.Add(Site);

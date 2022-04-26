@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
+using HobbyTeamManager.Utilities;
 
 namespace HobbyTeamManager.Pages.Sites;
 
@@ -55,7 +56,7 @@ public class EditModel : SiteBaseModel
 
         if (Request.Form.Files.Count > 0)
         {
-            var stream = await GetCheckResizeImageAsync<Site>();
+            var stream = await FileHelpers.GetCheckResizeImageAsync<Site>(Request, ModelState);
             Site.Logo = stream.ToArray();
 
             if (Site.Logo == null)
