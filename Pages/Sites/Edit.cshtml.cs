@@ -57,7 +57,7 @@ public class EditModel : SiteBaseModel
         if (Request.Form.Files.Count > 0)
         {
             var stream = await FileHelpers.GetCheckResizeImageAsync<Site>(Request, ModelState);
-            Site.Logo = stream.ToArray();
+            Site.Logo = stream?.ToArray();
 
             if (Site.Logo == null)
                 Site.Logo = oldLogo;
@@ -65,15 +65,6 @@ public class EditModel : SiteBaseModel
         else if (Site.Logo != oldLogo)
         {
             Site.Logo = oldLogo;
-        }
-
-        if (Site.TeamColor1 == Site.TeamColor2)
-        {
-            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
-                Site.ConfirmationModeId);
-            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
-                Site.MenuPositionId);
-            return Page();
         }
 
         Context.Attach(Site).State = EntityState.Modified;
