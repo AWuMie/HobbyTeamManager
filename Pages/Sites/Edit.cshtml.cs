@@ -8,12 +8,8 @@ namespace HobbyTeamManager.Pages.Sites;
 
 public class EditModel : SiteBaseModel
 {
-    private readonly HobbyTeamManagerContext _context;
-
     public EditModel(HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     [BindProperty]
     public Site Site { get; set; }
@@ -25,7 +21,7 @@ public class EditModel : SiteBaseModel
             return NotFound();
         }
 
-        Site = await _context.Sites.FirstOrDefaultAsync(m => m.Id == id);
+        Site = await Context.Sites.FirstOrDefaultAsync(m => m.Id == id);
 
         if (Site == null)
         {
@@ -53,7 +49,7 @@ public class EditModel : SiteBaseModel
             return Page();
         }
 
-        var oldLogo = _context.Sites
+        var oldLogo = Context.Sites
                 .AsNoTracking()
                 .FirstOrDefault(s => s.Id == Site.Id).Logo;
 
@@ -79,11 +75,11 @@ public class EditModel : SiteBaseModel
             return Page();
         }
 
-        _context.Attach(Site).State = EntityState.Modified;
+        Context.Attach(Site).State = EntityState.Modified;
 
         try
         {
-            await _context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
@@ -102,6 +98,6 @@ public class EditModel : SiteBaseModel
 
     private bool SiteExists(int id)
     {
-        return _context.Sites.Any(e => e.Id == id);
+        return Context.Sites.Any(e => e.Id == id);
     }
 }

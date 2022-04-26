@@ -8,12 +8,8 @@ namespace HobbyTeamManager.Pages.Sites;
 
 public class DeleteModel : BasePageModel
 {
-    private readonly HobbyTeamManagerContext _context;
-
     public DeleteModel(HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     [BindProperty]
     public Site Site { get; set; }
@@ -25,7 +21,7 @@ public class DeleteModel : BasePageModel
             return NotFound();
         }
 
-        Site = await _context.Sites.FirstOrDefaultAsync(m => m.Id == id);
+        Site = await Context.Sites.FirstOrDefaultAsync(m => m.Id == id);
 
         if (Site == null)
         {
@@ -41,12 +37,12 @@ public class DeleteModel : BasePageModel
             return NotFound();
         }
 
-        Site = await _context.Sites.FindAsync(id);
+        Site = await Context.Sites.FindAsync(id);
 
         if (Site != null)
         {
-            _context.Sites.Remove(Site);
-            await _context.SaveChangesAsync();
+            Context.Sites.Remove(Site);
+            await Context.SaveChangesAsync();
         }
 
         return RedirectToPage("./Index");

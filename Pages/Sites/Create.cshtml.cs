@@ -3,59 +3,54 @@ using Microsoft.AspNetCore.Mvc;
 using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
 
-namespace HobbyTeamManager.Pages.Sites
+namespace HobbyTeamManager.Pages.Sites;
+
+public class CreateModel : SiteBaseModel
 {
-    public class CreateModel : SiteBaseModel
+    public CreateModel(HobbyTeamManagerContext context)
+        : base(context) { }
+
+    public IActionResult OnGet()
     {
-        private readonly HobbyTeamManagerContext _context;
+        ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value");
+        MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value");
+        return Page();
+    }
 
-        public CreateModel(HobbyTeamManagerContext context)
-        {
-            _context = context;
-        }
+    [BindProperty]
+    public Site Site { get; set; }
 
-        public IActionResult OnGet()
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
         {
-            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value");
-            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value");
+            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                Site.ConfirmationModeId);
+            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
+                Site.MenuPositionId);
             return Page();
         }
 
-        [BindProperty]
-        public Site Site { get; set; }
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        var stream = await GetCheckResizeImageAsync<Site>();
+        Site.Logo = stream.ToArray();
+        
+        if (Site.TeamColor1 == Site.TeamColor2)
         {
-            if (!ModelState.IsValid)
-            {
-                ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
-                    Site.ConfirmationModeId);
-                MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
-                    Site.MenuPositionId);
-                return Page();
-            }
-
-            var stream = await GetCheckResizeImageAsync<Site>();
-            Site.Logo = stream.ToArray();
-            
-            if (Site.TeamColor1 == Site.TeamColor2)
-            {
-                ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
-                    Site.ConfirmationModeId);
-                MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
-                    Site.MenuPositionId);
-                return Page();
-            }
-
-            _context.Sites.Add(Site);
-            await _context.SaveChangesAsync();
-
-            string referer = Request.Headers["Referer"].ToString();
-            if (referer != null && Url.IsLocalUrl(referer))
-                return RedirectToPage(referer);
-            
-            return RedirectToPage("./Index");
+            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+                Site.ConfirmationModeId);
+            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
+                Site.MenuPositionId);
+            return Page();
         }
+
+        Context.Sites.Add(Site);
+        await Context.SaveChangesAsync();
+
+        string referer = Request.Headers["Referer"].ToString();
+        if (referer != null && Url.IsLocalUrl(referer))
+            return RedirectToPage(referer);
+        
+        return RedirectToPage("./Index");
     }
 }

@@ -1,25 +1,19 @@
 ﻿#nullable disable
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
 
-namespace HobbyTeamManager.Pages.Sites
+namespace HobbyTeamManager.Pages.Sites;
+
+public class IndexModel : BasePageModel
 {
-    public class IndexModel : BasePageModel
+    public IndexModel(HobbyTeamManagerContext context)
+        : base(context) { }
+
+    public IList<Site> Site { get;set; }
+
+    public async Task OnGetAsync()
     {
-        private readonly HobbyTeamManagerContext _context;
-
-        public IndexModel(HobbyTeamManagerContext context)
-        {
-            _context = context;
-        }
-
-        public IList<Site> Site { get;set; }
-
-        public async Task OnGetAsync()
-        {
-            Site = await _context.Sites.ToListAsync();
-        }
+        Site = await Context.Sites.ToListAsync();
     }
 }

@@ -7,18 +7,14 @@ namespace HobbyTeamManager.Pages;
 
 public class IndexModel : BasePageModel
 {
-    private readonly HobbyTeamManagerContext _context;
-
     public IndexModel(HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     public IList<Site> Site { get; set; }
 
     public async Task OnGetAsync()
     {
-        Site = await _context.Sites.ToListAsync();
+        Site = await Context.Sites.ToListAsync();
         Utilities.Miscellaneous.SetSessionStringFromObject<Site>(new Site(), HttpContext);
     }
 }

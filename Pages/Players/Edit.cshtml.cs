@@ -10,12 +10,8 @@ namespace HobbyTeamManager.Pages.Players;
 
 public class EditModel : PlayerBaseModel
 {
-    private readonly Data.HobbyTeamManagerContext _context;
-
     public EditModel(Data.HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     [BindProperty]
     public Player Player { get; set; }
@@ -27,7 +23,7 @@ public class EditModel : PlayerBaseModel
             return NotFound();
         }
 
-        Player = await _context.Players
+        Player = await Context.Players
             .Include(p => p.MembershipType)         // eager loading!
             .FirstOrDefaultAsync(p => p.Id == id);
 
@@ -37,7 +33,7 @@ public class EditModel : PlayerBaseModel
         }
 
         // Select current MembershipTypeId
-        PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
+        PopulateMemberTypeDropDownList(Context, Player.MembershipTypeId);
 
         return Page();
     }
@@ -48,7 +44,7 @@ public class EditModel : PlayerBaseModel
     {
         if (!ModelState.IsValid)
         {
-            PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
+            PopulateMemberTypeDropDownList(Context, Player.MembershipTypeId);
             return Page();
         }
 
@@ -63,7 +59,7 @@ public class EditModel : PlayerBaseModel
 
             if (!ModelState.IsValid)
             {
-                PopulateMemberTypeDropDownList(_context, Player.MembershipTypeId);
+                PopulateMemberTypeDropDownList(Context, Player.MembershipTypeId);
                 return Page();
             }
 
@@ -81,7 +77,7 @@ public class EditModel : PlayerBaseModel
         // FIXED: if we did not change the ProfilePicture in Player it is null here!
         if (Player.ProfilePicture == null)
         {
-            Player.ProfilePicture = _context.Players
+            Player.ProfilePicture = Context.Players
                 .AsNoTracking()
                 .FirstOrDefault(p => p.Id == Player.Id).ProfilePicture;
         }
@@ -90,11 +86,11 @@ public class EditModel : PlayerBaseModel
         {
             // FIXED:membershiptype selection lost as well
             Player.MembershipType =
-                _context.MembershipTypes.FirstOrDefault(
+                Context.MembershipTypes.FirstOrDefault(
                     x => x.Id == Player.MembershipTypeId);
 
-            _context.Update(Player);
-            await _context.SaveChangesAsync();
+            Context.Update(Player);
+            await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
@@ -113,6 +109,6 @@ public class EditModel : PlayerBaseModel
 
     private bool PlayerExists(int id)
     {
-        return _context.Players.Any(e => e.Id == id);
+        return Context.Players.Any(e => e.Id == id);
     }
 }

@@ -1,24 +1,17 @@
 ﻿#nullable disable
-using HobbyTeamManager.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using HobbyTeamManager.Models;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
 
 namespace HobbyTeamManager.Pages.Players;
 
 public class CreateModel : PlayerBaseModel
 {
-    private readonly Data.HobbyTeamManagerContext _context;
-
     public CreateModel(Data.HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     public IActionResult OnGet()
     {
-        PopulateMemberTypeDropDownList(_context);
+        PopulateMemberTypeDropDownList(Context);
         return Page();
     }
 
@@ -30,7 +23,7 @@ public class CreateModel : PlayerBaseModel
     {
         if (!ModelState.IsValid)
         {
-            PopulateMemberTypeDropDownList(_context);
+            PopulateMemberTypeDropDownList(Context);
             return Page();
         }
 
@@ -45,11 +38,11 @@ public class CreateModel : PlayerBaseModel
 
         // FIXED: Player Create does not save selected membership type!
         Player.MembershipType =
-            _context.MembershipTypes.FirstOrDefault(
+            Context.MembershipTypes.FirstOrDefault(
                 x => x.Id == Player.MembershipTypeId);
 
-        _context.Players.Add(Player);
-        await _context.SaveChangesAsync();
+        Context.Players.Add(Player);
+        await Context.SaveChangesAsync();
 
         return RedirectToPage("./Index");
     }

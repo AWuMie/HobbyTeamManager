@@ -7,6 +7,9 @@ namespace HobbyTeamManager.Pages.Players;
 
 public class PlayerBaseModel : BasePageModel
 {
+    public PlayerBaseModel(HobbyTeamManagerContext context)
+        : base(context) { }
+
     public SelectList? MembershipTypeSL { get; set; }
 
     public void PopulateMemberTypeDropDownList(HobbyTeamManagerContext _context,

@@ -2,11 +2,21 @@
 using HobbyTeamManager.Utilities;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using HobbyTeamManager.Data;
 
 namespace HobbyTeamManager.Pages;
 
 public class BasePageModel : PageModel
 {
+    private readonly HobbyTeamManagerContext _context;
+
+    public BasePageModel(HobbyTeamManagerContext context)
+    {
+        _context = context;
+    }
+
+    public HobbyTeamManagerContext Context => _context;
+
     public async Task<MemoryStream?> GetCheckResizeImageAsync<T>(/*string noImage*/)
     {
         using var dataStream = new MemoryStream();

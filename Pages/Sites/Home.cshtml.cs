@@ -8,12 +8,8 @@ namespace HobbyTeamManager.Pages.Sites;
 
 public class HomeModel : BasePageModel
 {
-    private readonly HobbyTeamManagerContext _context;
-
     public HomeModel(HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     public Site Site { get; set; }
 
@@ -24,7 +20,7 @@ public class HomeModel : BasePageModel
             return NotFound();
         }
 
-        Site = await _context.Sites.FirstOrDefaultAsync(m => m.Id == id);
+        Site = await Context.Sites.FirstOrDefaultAsync(m => m.Id == id);
 
         if (Site == null)
         {
