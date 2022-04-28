@@ -8,7 +8,7 @@
   - [Description](#description)
   - [Technologies](#technologies)
   - [Project Status](#project-status)
-      - [Next steps are ...](#next-steps-are-)
+      - [Whats next ...](#whats-next-)
   - [Setup](#setup)
   - [How to ...](#how-to-)
 
@@ -76,13 +76,21 @@ There is one exception: the name of visual properties
 
 ## Project Status
 After having created CRUD pages for seasons with matchdays, players and was about to look after the availability of players on matchdays and the teams, I decided to have an a little more "holistic approach" and also introduce a site to allow more than one hobby team to be managed by the app.
-#### Next steps are ...
+#### Whats next ...
 * implement Site model with "flexible" layout
-* add unit testing using NUnit and Moq starting with the Site model
+  * DONE: background and text colors
+  * DONE: menubar on the top
+  * MISSING: sidebar on the left
+* DONE: add unit testing using NUnit and Moq starting with the Site model
 * bring already existing models under the site model (relationships) (incl. adding unit testing to those models!)
+  1. Season model
+  2. Matchday model
+  3. Player model
+  4. ...
 * implement "Import" for players and probably (historic) seasons via json files
 * Implement authentication ("Registration", "Login") and some authorization without using the super allmighty "Identity".
 * Now having mail addresses we can start implementing the reminder and birthday emails
+* ...
 * ...
 * make the Raspberry Pi running the web app available in the web behind some safety means
 * describe Raspberry Pi setup herein (update section "Setup")

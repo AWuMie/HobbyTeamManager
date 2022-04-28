@@ -1,5 +1,4 @@
-﻿@*@model BasePageModel*@
-@using HobbyTeamManager.Models
+﻿@using HobbyTeamManager.Models
 @{
     var site = Utilities.Miscellaneous.GetObjectFromSessionString<Site>(Context);
     if (site == null)
@@ -20,7 +19,6 @@
 </head>
 <body style="background-color: @site.BgColorBody; color: @site.FgColorBody">
     <header style="background-color: @site.BgColorHeader; color: @site.FgColorHeader">
-        @*<p align="center">&nbsp;</p>*@
         @if (!string.IsNullOrEmpty(@site.Headline))
         {
             <p align="center">
