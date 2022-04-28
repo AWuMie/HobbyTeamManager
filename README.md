@@ -80,16 +80,17 @@ After having created CRUD pages for seasons with matchdays, players and was abou
 * implement Site model with "flexible" layout
   * DONE: background and text colors
   * DONE: menubar on the top
-  * MISSING: sidebar on the left
+  * DONE: sidebar on the left - BUT STILL LOOKS UGLY!
 * DONE: add unit testing using NUnit and Moq starting with the Site model
 * bring already existing models under the site model (relationships) (incl. adding unit testing to those models!)
   1. Season model
   2. Matchday model
   3. Player model
+    * implement "Import" for players and probably (historic) seasons via json files
   4. ...
-* implement "Import" for players and probably (historic) seasons via json files
 * Implement authentication ("Registration", "Login") and some authorization without using the super allmighty "Identity".
 * Now having mail addresses we can start implementing the reminder and birthday emails
+* fix layout with sidebar on the left
 * ...
 * ...
 * make the Raspberry Pi running the web app available in the web behind some safety means

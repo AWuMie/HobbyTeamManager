@@ -15,6 +15,16 @@ public class Season
     [Display(Name = "Wochentag")]
     public int MatchOnDay { get; set; }
 
+    ///////////////////
+    // Relationships //
+    ///////////////////
+
+    // one to many relationship between Site and Season
+    // a Season is linked to one Site while
+    // a Site has many Seasons
+    public int SiteId { get; set; }
+    public Site? Site { get; set; }
+
     // one to many relationship between MatchDay and Season.
     // A MatchDay is linked to one Season while
     // a Season has many MatchDays

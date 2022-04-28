@@ -3,6 +3,7 @@ using HobbyTeamManager.Utilities;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using HobbyTeamManager.Data;
+using HobbyTeamManager.Models;
 
 namespace HobbyTeamManager.Pages;
 

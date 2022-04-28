@@ -20,7 +20,7 @@ public class HomeModel : BasePageModel
             return NotFound();
         }
 
-        Site = await Context.Sites.FirstOrDefaultAsync(m => m.Id == id);
+        Site = await Context.Sites.FirstOrDefaultAsync(s => s.Id == id);
 
         if (Site == null)
         {

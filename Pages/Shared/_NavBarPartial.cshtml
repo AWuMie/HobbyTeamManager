@@ -10,15 +10,26 @@
 <nav style="background: @site.BgColorHeader; color: @site.FgColorHeader"
     class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand" style="color: @site.FgColorHeader" asp-page="/Index">Hobby Team Manager</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" style="color: @site.FgColorHeader" asp-page="/Index">HTM</a>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Sites/Home" asp-route-id="@site.Id">@site.Name</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Players/Galery">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Aktuelle Tabelle</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Alle Spieltage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Bierliste</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Seasons/Index">Alle Saisonen (-)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Players/Index">Spielerliste(-)</a>
@@ -26,18 +37,6 @@
                 <li class="nav-item">
                     <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Teams/Index">Alle Teams (-)</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Seasons/Index">Alle Saisonen (-)</a>
-                </li>
-@*                <li class="nav-item dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <a class="nav-link dropdown-toggle">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-page="/Index">Irgendetwas</a>
-                        <a class="dropdown-item" asp-page="/Players/Index">Irgendetwas Anderes</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-page="/Index">Sonst noch Irgendetwas</a>
-                    </div>
-                </li>*@
             </ul>
             <partial name="_LoginPartial" />
         </div>

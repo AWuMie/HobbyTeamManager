@@ -29,7 +29,7 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-#if false   // Seeding switched off while implementing models
+#if true   // Seeding switched off while implementing models
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

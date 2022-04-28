@@ -8,6 +8,11 @@ public class SeasonConfiguration : IEntityTypeConfiguration<Season>
 {
     public void Configure(EntityTypeBuilder<Season> builder)
     {
-        //throw new NotImplementedException();
+        builder.HasOne<Site>(season => season.Site)
+            .WithMany(site => site.Seasons)
+            .HasForeignKey(season => season.SiteId)
+            .OnDelete(DeleteBehavior.Restrict);
+        builder.Navigation(season => season.Site)
+            .AutoInclude();
     }
 }

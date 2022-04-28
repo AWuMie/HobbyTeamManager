@@ -1,5 +1,6 @@
-﻿@page
+﻿@page "{id:int?}"
 @using HobbyTeamManager.Models
+@using Microsoft.EntityFrameworkCore
 @model HomeModel
 @{
     ViewData["Title"] = Model.Site.Name;
@@ -12,8 +13,6 @@
 }
 
 <div class="text-center">
-    @*<h1 class="display-4">Welcome</h1>*@
-
     <p style="margin-top: 0; margin-bottom: 0" align="center">&nbsp;</p>
     <p style="margin-top: 0; margin-bottom: 0" align="center">
         @if (Model.Site.Logo != null)
@@ -24,6 +23,36 @@
         else
         {
             <img id="logo" width="242" height="245" style="object-fit:cover" src="">
+        }
+    </p>
+    @if (!string.IsNullOrEmpty(@Model.Site.Motto))
+    {
+        <p style="margin-top: 0; margin-bottom: 0" align="center">&nbsp;</p>
+        <p style="margin-top: 0; margin-bottom: 0" align="center">&nbsp;</p>
+        <p align="center">
+            <font size="8" face="Arial Black">@Model.Site.Motto</font>
+        </p>
+    }
+    <p style="margin-top: 0; margin-bottom: 0" align="center">&nbsp;</p>
+    <p style="margin-top: 0; margin-bottom: 0" align="center">&nbsp;</p>
+    <p style="margin-top: 0; margin-bottom: 0" align="center">
+        @if (Model.Site.SeasonId > 0)
+        {
+            var season = Model.Context.Seasons
+                            .AsNoTracking()
+                            .FirstOrDefault(s => s.Id == Model.Site.SeasonId);
+            if (season != null)
+            {
+                <a asp-page="/Seasons/Details" asp-route-id="@Model.Site.SeasonId">Aktuelle Saison @season.Year.ToString() öffnen?</a>
+            }
+            else
+            {
+                <a asp-page="/Seasons/Index">Liste der Saisonen</a>
+            }
+        }
+        else
+        {
+            <a asp-page="/Seasons/Index">Liste der Saisonen</a>
         }
     </p>
 </div>

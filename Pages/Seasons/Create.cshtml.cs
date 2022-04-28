@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HobbyTeamManager.Data;
 using HobbyTeamManager.Models;
+using HobbyTeamManager.Utilities;
 
 namespace HobbyTeamManager.Pages.Seasons
 {
@@ -31,14 +32,15 @@ namespace HobbyTeamManager.Pages.Seasons
                     selectedYear: Season.Year,
                     selectedMonth: Season.StartMonth,
                     selectedWeekDay: Season.MatchOnDay);
-                    //selectedWeekDay: (Season.MatchOnDay == DayOfWeek.Sunday) ? 7 : (int)Season.MatchOnDay);
                 return Page();
             }
+
+            var site = Miscellaneous.GetObjectFromSessionString<Site>(HttpContext);
 
             Season.Year = SelectedYear;
             Season.StartMonth = SelectedMonth;
             Season.MatchOnDay = SelectedWeekDay;
-            //Season.MatchOnDay = (SelectedWeekDay == 7) ? (DayOfWeek) 0 : (DayOfWeek) SelectedWeekDay;
+            Season.SiteId = site.Id;
 
             // first add the Season
             _context.Seasons.Add(Season);
@@ -48,6 +50,13 @@ namespace HobbyTeamManager.Pages.Seasons
             Season.MatchDays = GenerateMatchDays(Season.Id, SelectedYear, SelectedMonth, SelectedWeekDay);
             _context.MatchDays.AddRange(Season.MatchDays);
             await _context.SaveChangesAsync();
+
+            // then by default make the newly created Season the defualt Season of the Site
+            site.SeasonId = Season.Id;
+            _context.Sites.Update(site);
+            await _context.SaveChangesAsync();
+
+            Miscellaneous.SetSessionStringFromObject<Site>(site, HttpContext);
 
             return RedirectToPage("./Index");
         }

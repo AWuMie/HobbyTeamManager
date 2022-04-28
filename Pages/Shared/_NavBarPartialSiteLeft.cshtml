@@ -9,9 +9,13 @@
 
 <div class="border-end" id="sidebar-wrapper" style="background: @site.BgColorHeader; color: @site.FgColorHeader">
     <a class="sidebar-brand border-bottom" style="background: @site.BgColorHeader; color: @site.FgColorHeader"
-        asp-page="/Index">Hobby Team Manager</a>
+        asp-page="/Index">HTM</a>
     <div class="list-group list-group-flush" style="background: @site.BgColorHeader; color: @site.FgColorHeader">
+        <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/Sites/Home" asp-route-id="@site.Id">@site.Name</a>
         <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/Players/Galery">Team</a>
+        <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/">Aktuelle Tabelle</a>
+        <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/">Alle Spieltage</a>
+        <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/">Bierliste</a>
         <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/Players/Index">Spielerliste(-)</a>
         <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/Teams/Index">Alle Teams (-)</a>
         <a class="list-group-item-action p-3" style="color: @site.FgColorHeader" asp-page="/Seasons/Index">Alle Saisonen (-)</a>

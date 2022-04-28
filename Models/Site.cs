@@ -61,9 +61,19 @@ public class Site
     [Display(Name = "Textfarbe HTML-Footer")]
     public string FgColorFooter { get; set; } = "#ffa500";
 
-    //public IList<Player>? Players { get; set; }
+    [Display(Name = "Aktuelle Spielsaison")]
+    public int SeasonId { get; set; }
 
-    //public IList<Season>? Seasons { get; set; }
+    ///////////////////
+    // Relationships //
+    ///////////////////
+
+    // one to many relationship between Site and Season
+    // a Season is linked to one Site while
+    // a Site has many Seasons
+    public IList<Season>? Seasons { get; set; }
+
+    //public IList<Player>? Players { get; set; }
 
     public string GetConfirmationMode(int index)
     {
@@ -82,7 +92,7 @@ public class Site
     }
 
     public static string menuPositionTop = "Menüposition OBEN";
-    public static string menuPositionLeft = "Menüposition LINKS";
+    public static string menuPositionLeft = "Menüposition LINKS (experimentell)";
     public static readonly Dictionary<int, string> menuPosition = new()
     {
         { 1, menuPositionTop },
