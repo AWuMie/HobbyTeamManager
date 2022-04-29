@@ -14,7 +14,8 @@
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Sites/Home" asp-route-id="@site.Id">@site.Name</a>
+                    <a class="nav-link" style="color: @site.FgColorHeader"
+                        asp-page="/Sites/Home" asp-route-id="@site.Id">@site.Name</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Players/Galery">Team</a>
@@ -23,7 +24,15 @@
                     <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Aktuelle Tabelle</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Alle Spieltage</a>
+                    @if (site != null && site.SeasonId != null && site.SeasonId > 0)
+                    {
+                        <a class="nav-link" style="color: @site.FgColorHeader"
+                            asp-page="/Seasons/Details" asp-route-id="@site.SeasonId">Alle Spieltage</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link" style="color: @site.FgColorHeader">Alle Spieltage</a>
+                    }
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Bierliste</a>

@@ -5,28 +5,27 @@
 
 @{
     ViewData["Title"] = "Saison Details";
+
+    Season season; 
+    if (@Model.Season == null)
+    {
+        season = new Season();
+        season.Id = 1;
+        season.Year = 0;
+        season.StartMonth = 1;
+        season.MatchOnDay = 1;
+    }
+    else
+    {
+        season = @Model.Season;
+    }
 }
 
 <h1>Saison Details</h1>
 
 <div>
-    <h4>Saisondaten</h4>
+    <h4>Alle Spieltage</h4>
     <hr />
-    @{
-        Season season; 
-        if (@Model.Season == null)
-        {
-            season = new Season();
-            season.Id = 1;
-            season.Year = 0;
-            season.StartMonth = 1;
-            season.MatchOnDay = 1;
-        }
-        else
-        {
-            season = @Model.Season;
-        }
-    }
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => season.Year)

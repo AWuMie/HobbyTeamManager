@@ -5,29 +5,28 @@
 
 @{
     ViewData["Title"] = "Saison löschen";
+
+    Season season; 
+    if (@Model.Season == null)
+    {
+        season = new Season();
+        season.Id = 1;
+        season.Year = 0;
+        season.StartMonth = 1;
+        season.MatchOnDay = 1;
+    }
+    else
+    {
+        season = @Model.Season;
+    }
 }
 
 <h1>Saison löschen</h1>
 
 <h3>Bist Du sicher, dass Du diese Saison (mit allen verknüpften Spieltagen!) löschen willst?</h3>
 <div>
-    <h4>Seasondaten</h4>
+    <h4>Alle SpieltageSeasondaten</h4>
     <hr />
-    @{
-        Season season; 
-        if (@Model.Season == null)
-        {
-            season = new Season();
-            season.Id = 1;
-            season.Year = 0;
-            season.StartMonth = 1;
-            season.MatchOnDay = 1;
-        }
-        else
-        {
-            season = @Model.Season;
-        }
-    }
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => season.Year)
@@ -59,7 +58,6 @@
     <p></p>
 
     <form method="post">
-        @*<input type="hidden" asp-for="Season.Id" />*@
         <input type="hidden" asp-for="@season.Id" />
         <input type="submit" value="LÖSCHEN" class="btn btn-danger" /> |
         <a asp-page="./Index">Zurück zur Liste</a>

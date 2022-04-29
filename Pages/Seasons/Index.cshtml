@@ -36,15 +36,16 @@
                 @Html.DisplayFor(modelItem => item.Year)
             </td>
             <td>
-                @{ string month =
-                    CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.StartMonth); }
+                @{
+                    string month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.StartMonth);
+                }
                 @Html.DisplayFor(modelItem => month)
             </td>
             <td>
-                    @{
-                        DayOfWeek day = (item.MatchOnDay == 7) ? DayOfWeek.Sunday : (DayOfWeek)item.MatchOnDay;
-                        string weekDay =
-                        CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day); 
+                @{
+                    DayOfWeek day = (item.MatchOnDay == 7) ? DayOfWeek.Sunday : (DayOfWeek)item.MatchOnDay;
+                    string weekDay =
+                    CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day); 
                 }
                 @Html.DisplayFor(modelItem => weekDay)
             </td>
@@ -59,7 +60,10 @@
                 @Html.DisplayFor(modelItem => numMatchDays)
             </td>
             <td>
-                @*<a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a> | WE DON'T ALLOW TO EDIT A SEASON RATHER THAN DELETE AND CREATE NEW!!!*@
+                @*
+                WE DON'T ALLOW TO EDIT A SEASON RATHER THAN DELETE AND CREATE NEW!!!
+                <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a> |
+                *@
                 <a asp-page="./Details" asp-route-id="@item.Id">Saison Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Löschen</a>
             </td>

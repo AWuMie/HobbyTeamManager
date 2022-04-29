@@ -51,12 +51,10 @@ namespace HobbyTeamManager.Pages.Seasons
             _context.MatchDays.AddRange(Season.MatchDays);
             await _context.SaveChangesAsync();
 
-            // then by default make the newly created Season the defualt Season of the Site
+            // then by default make the newly created Season the default Season of the Site
             site.SeasonId = Season.Id;
             _context.Sites.Update(site);
             await _context.SaveChangesAsync();
-
-            Miscellaneous.SetSessionStringFromObject<Site>(site, HttpContext);
 
             return RedirectToPage("./Index");
         }
