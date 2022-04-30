@@ -23,7 +23,7 @@ public class DetailsModel : SeasonBaseModel
 
         Season = await _context.Seasons
             .Include(s => s.MatchDays)
-            .FirstOrDefaultAsync(m => m.Id == id);
+            .FirstOrDefaultAsync(s => s.Id == id);
 
         if (Season == null)
         {

@@ -59,7 +59,11 @@ public class Miscellaneous
         if (t == null)
             throw new ArgumentNullException(nameof(t));
 
-        context.Session.SetString(typeof(T).Name, JsonConvert.SerializeObject(t));
+        context.Session.SetString(typeof(T).Name, JsonConvert.SerializeObject(t,
+            new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            }));
     }
 
     public static T? GetObjectFromSessionString<T>(HttpContext context)
