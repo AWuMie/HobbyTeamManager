@@ -1,7 +1,11 @@
 ﻿@using System.Globalization;
 
 @*
-A Model using this partial must derive from "SeasonBaseModel"!
+**********************************************************************
+***                           ATTENTION!                           ***
+*** A Model using this partial must derive from "SeasonBaseModel"! ***
+***                           ATTENTION!                           ***
+**********************************************************************
 *@
 
 
@@ -35,10 +39,19 @@ A Model using this partial must derive from "SeasonBaseModel"!
                                 var md = Model.GetNthWeekDayOfMonth(Model.Season, (actMonth > 12) ? actMonth - 12 : actMonth, i);
                                 if (md != null)
                                 {
-                                    day = md.Date.ToShortDateString();
+                                    day = md.Date.Day.ToString();
                                 }
-                                <td style="text-align:center; vertical-align:middle">
-                                    @day
+                                @*<td style="text-align:center; vertical-align:middle">*@
+                                <td>
+                                    @if (!string.IsNullOrEmpty(day))
+                                    {
+                                        <a class="text-lg-start fs-5" asp-page="/MatchDays/Details" asp-route-id="@md.Id">@day</a>
+                                        <p class="text-sm-center fs-6">Geburtstag</p>
+                                    }
+                                    else
+                                    {
+                                        @day
+                                    }
                                 </td>
                             }
                         </tr>

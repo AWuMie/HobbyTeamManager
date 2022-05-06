@@ -7,44 +7,45 @@
     }
 }
 
-<nav style="background: @site.BgColorHeader; color: @site.FgColorHeader"
+<nav style="background: @site.BgColorMain; color: @site.FgColorMain"
     class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand" style="color: @site.FgColorHeader" asp-page="/Index">HTM</a>
+        <a class="navbar-brand" style="color: @site.FgColorMain" asp-page="/Index">HTM</a>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader"
+                    <a class="nav-link" style="color: @site.FgColorMain"
                         asp-page="/Sites/Home" asp-route-id="@site.Id">@site.Name</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Players/Galery">Team</a>
+                    <a class="nav-link" style="color: @site.FgColorMain" asp-page="/Players/Galery">Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Aktuelle Tabelle</a>
+                    <a class="nav-link" style="color: @site.FgColorMain" asp-page="/">Aktuelle Tabelle</a>
                 </li>
                 <li class="nav-item">
-                    @if (site != null && site.SeasonId != null && site.SeasonId > 0)
+                    @*@if (site != null && site.SeasonId != null && site.SeasonId > 0)*@
+                    @if (site != null && site.SeasonId > 0)
                     {
-                        <a class="nav-link" style="color: @site.FgColorHeader"
+                        <a class="nav-link" style="color: @site.FgColorMain"
                             asp-page="/Seasons/Details" asp-route-id="@site.SeasonId">Alle Spieltage</a>
                     }
                     else
                     {
-                        <a class="nav-link" style="color: @site.FgColorHeader">Alle Spieltage</a>
+                        <a class="nav-link" style="color: @site.FgColorMain">Alle Spieltage</a>
                     }
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/">Bierliste</a>
+                    <a class="nav-link" style="color: @site.FgColorMain" asp-page="/">Bierliste</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Seasons/Index">Alle Saisonen (-)</a>
+                    <a class="nav-link" style="color: @site.FgColorMain" asp-page="/Seasons/Index">Alle Saisonen (-)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Players/Index">Spielerliste(-)</a>
+                    <a class="nav-link" style="color: @site.FgColorMain" asp-page="/Players/Index">Spielerliste(-)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: @site.FgColorHeader" asp-page="/Teams/Index">Alle Teams (-)</a>
+                    <a class="nav-link" style="color: @site.FgColorMain" asp-page="/Teams/Index">Alle Teams (-)</a>
                 </li>
             </ul>
             <partial name="_LoginPartial" />
