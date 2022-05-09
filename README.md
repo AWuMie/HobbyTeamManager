@@ -81,12 +81,12 @@ After having created CRUD pages for seasons with matchdays, players and was abou
   * DONE: background and text colors
   * DONE: menubar on the top
   * DONE: sidebar on the left - BUT STILL LOOKS UGLY!
-* DONE: add unit testing using NUnit and Moq starting with the Site model
+* DONE: add unit testing using NUnit and Moq starting with the Site model: [HTM Unit Tests](https://github.com/AWuMie/HobbyTeamManager.UnitTests)
 * bring already existing models under the site model (relationships) (incl. adding unit testing to those models!)
   1. Season model
   2. Matchday model
   3. Player model
-    * implement "Import" for players and probably (historic) seasons via json files
+       * implement "Import" for players and probably (historic) seasons via json files
   4. ...
 * Implement authentication ("Registration", "Login") and some authorization without using the super allmighty "Identity".
 * Now having mail addresses we can start implementing the reminder and birthday emails

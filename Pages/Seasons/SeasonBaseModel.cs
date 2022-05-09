@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace HobbyTeamManager.Pages.Seasons;
 
-public class SeasonBaseModel : PageModel
+public class SeasonBaseModel : BasePageModel
 {
     private static readonly int _startYear = 2002;
     private static readonly int _endYear = 2031;
@@ -16,6 +16,9 @@ public class SeasonBaseModel : PageModel
     public IDictionary<int, string> years = new Dictionary<int, string>();
     public IDictionary<int, string> months = new Dictionary<int, string>();
     public IDictionary<int, string> weekDays = new Dictionary<int, string>();
+
+    public SeasonBaseModel(HobbyTeamManagerContext context)
+        : base(context){ }
 
     public SelectList? YearSL { get; set; }
     public SelectList? MonthSL { get; set; }

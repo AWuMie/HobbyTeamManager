@@ -13,8 +13,8 @@ public class CreateModel : SiteBaseModel
 
     public IActionResult OnGet()
     {
-        ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value");
-        MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value");
+        ConfirmationModeOptions = Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value");
+        MenuPositionOptions = Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value");
         return Page();
     }
 
@@ -26,9 +26,9 @@ public class CreateModel : SiteBaseModel
     {
         if (!ModelState.IsValid)
         {
-            ConfirmationModeOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
+            ConfirmationModeOptions = Miscellaneous.PopulateDropDownList(Site.confirmationMode, "Key", "Value",
                 Site.ConfirmationModeId);
-            MenuPositionOptions = Utilities.Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
+            MenuPositionOptions = Miscellaneous.PopulateDropDownList(Site.menuPosition, "Key", "Value",
                 Site.MenuPositionId);
             return Page();
         }

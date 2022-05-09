@@ -3,37 +3,37 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Models;
+using HobbyTeamManager.Data;
 
-namespace HobbyTeamManager.Pages.Players
+namespace HobbyTeamManager.Pages.Players;
+
+public class DetailsModel : PageModel
 {
-    public class DetailsModel : PageModel
+    private readonly HobbyTeamManagerContext _context;
+
+    public readonly bool isAdmin;
+
+    public DetailsModel(HobbyTeamManagerContext context)
     {
-        private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
+        _context = context;
+        isAdmin = true;
+    }
 
-        public readonly bool isAdmin;
+    public Player Player { get; set; }
 
-        public DetailsModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
-            isAdmin = true;
+            return NotFound();
         }
 
-        public Player Player { get; set; }
+        Player = await _context.Players.FirstOrDefaultAsync(m => m.Id == id);
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        if (Player == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Player = await _context.Players.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Player == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            return NotFound();
         }
+        return Page();
     }
 }

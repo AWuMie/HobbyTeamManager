@@ -2,14 +2,15 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Models;
+using HobbyTeamManager.Data;
 
 namespace HobbyTeamManager.Pages.Players;
 
 public class IndexModel : PageModel
 {
-    private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
+    private readonly HobbyTeamManagerContext _context;
 
-    public IndexModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
+    public IndexModel(HobbyTeamManagerContext context)
     {
         _context = context;
     }

@@ -7,12 +7,8 @@ namespace HobbyTeamManager.Pages.Seasons;
 
 public class DetailsModel : SeasonBaseModel
 {
-    private readonly Data.HobbyTeamManagerContext _context;
-
     public DetailsModel(Data.HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -21,7 +17,7 @@ public class DetailsModel : SeasonBaseModel
             return NotFound();
         }
 
-        Season = await _context.Seasons
+        Season = await Context.Seasons
             .Include(s => s.MatchDays)
             .FirstOrDefaultAsync(s => s.Id == id);
 

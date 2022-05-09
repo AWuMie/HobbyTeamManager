@@ -2,23 +2,23 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Models;
+using HobbyTeamManager.Data;
 
-namespace HobbyTeamManager.Pages.Players
+namespace HobbyTeamManager.Pages.Players;
+
+public class GaleryModel : PageModel
 {
-    public class GaleryModel : PageModel
+    private readonly HobbyTeamManagerContext _context;
+
+    public GaleryModel(HobbyTeamManagerContext context)
     {
-        private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
+        _context = context;
+    }
 
-        public GaleryModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
-        {
-            _context = context;
-        }
+    public IList<Player> Player { get;set; }
 
-        public IList<Player> Player { get;set; }
-
-        public async Task OnGetAsync()
-        {
-            Player = await _context.Players.ToListAsync();
-        }
+    public async Task OnGetAsync()
+    {
+        Player = await _context.Players.ToListAsync();
     }
 }

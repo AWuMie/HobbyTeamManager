@@ -8,18 +8,14 @@ namespace HobbyTeamManager.Pages.Seasons
 {
     public class CreateModel : SeasonBaseModel
     {
-        private readonly HobbyTeamManagerContext _context;
-
         public bool MatchDaysCreated { get; private set; }
 
         public CreateModel(HobbyTeamManagerContext context)
-        {
-            _context = context;
-        }
+            : base(context){ }
 
         public IActionResult OnGet()
         {
-            PopulateDropDownLists(GetExistingYears(_context));
+            PopulateDropDownLists(GetExistingYears(Context));
             return Page();
         }
 
@@ -28,7 +24,7 @@ namespace HobbyTeamManager.Pages.Seasons
         {
             if (!ModelState.IsValid)
             {
-                PopulateDropDownLists(GetExistingYears(_context),
+                PopulateDropDownLists(GetExistingYears(Context),
                     selectedYear: Season.Year,
                     selectedMonth: Season.StartMonth,
                     selectedWeekDay: Season.MatchOnDay);
@@ -43,18 +39,18 @@ namespace HobbyTeamManager.Pages.Seasons
             Season.SiteId = site.Id;
 
             // first add the Season
-            _context.Seasons.Add(Season);
-            await _context.SaveChangesAsync();
+            Context.Seasons.Add(Season);
+            await Context.SaveChangesAsync();
 
             // then add the related MatchDays
             Season.MatchDays = GenerateMatchDays(Season.Id, SelectedYear, SelectedMonth, SelectedWeekDay);
-            _context.MatchDays.AddRange(Season.MatchDays);
-            await _context.SaveChangesAsync();
+            Context.MatchDays.AddRange(Season.MatchDays);
+            await Context.SaveChangesAsync();
 
             // then by default make the newly created Season the default Season of the Site
             site.SeasonId = Season.Id;
-            _context.Sites.Update(site);
-            await _context.SaveChangesAsync();
+            Context.Sites.Update(site);
+            await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

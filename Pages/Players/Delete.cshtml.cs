@@ -4,52 +4,51 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Models;
 
-namespace HobbyTeamManager.Pages.Players
+namespace HobbyTeamManager.Pages.Players;
+
+public class DeleteModel : PageModel
 {
-    public class DeleteModel : PageModel
+    private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
+
+    public DeleteModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
     {
-        private readonly HobbyTeamManager.Data.HobbyTeamManagerContext _context;
+        _context = context;
+    }
 
-        public DeleteModel(HobbyTeamManager.Data.HobbyTeamManagerContext context)
+    [BindProperty]
+    public Player Player { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Player Player { get; set; }
+        Player = await _context.Players.FirstOrDefaultAsync(m => m.Id == id);
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        if (Player == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
+        return Page();
+    }
 
-            Player = await _context.Players.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Player == null)
-            {
-                return NotFound();
-            }
-            return Page();
+    public async Task<IActionResult> OnPostAsync(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        Player = await _context.Players.FindAsync(id);
+
+        if (Player != null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Player = await _context.Players.FindAsync(id);
-
-            if (Player != null)
-            {
-                _context.Players.Remove(Player);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            _context.Players.Remove(Player);
+            await _context.SaveChangesAsync();
         }
+
+        return RedirectToPage("./Index");
     }
 }

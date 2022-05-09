@@ -7,12 +7,8 @@ namespace HobbyTeamManager.Pages.Seasons;
 
 public class DeleteModel : SeasonBaseModel
 {
-    private readonly Data.HobbyTeamManagerContext _context;
-
     public DeleteModel(Data.HobbyTeamManagerContext context)
-    {
-        _context = context;
-    }
+        : base(context) { }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -21,7 +17,7 @@ public class DeleteModel : SeasonBaseModel
             return NotFound();
         }
 
-        Season = await _context.Seasons
+        Season = await Context.Seasons
             .Include(s => s.MatchDays)              // eager loading!
             .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -44,21 +40,21 @@ public class DeleteModel : SeasonBaseModel
             return NotFound();
         }
 
-        Season = await _context.Seasons.FindAsync(id);
+        Season = await Context.Seasons.FindAsync(id);
 
         if (Season != null)
         {
             // get all the related MatchDays and remove them first
-            var matchDays = (from md in _context.MatchDays 
+            var matchDays = (from md in Context.MatchDays 
                             where md.SeasonId == Season.Id
                             select md).ToList();
             if (matchDays != null && matchDays.Count > 0)
             {
-                _context.MatchDays.RemoveRange(matchDays);
+                Context.MatchDays.RemoveRange(matchDays);
             }
-            _context.Seasons.Remove(Season);
+            Context.Seasons.Remove(Season);
             
-            await _context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
 
         return RedirectToPage("./Index");
