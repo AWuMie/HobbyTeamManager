@@ -1,115 +1,115 @@
 ﻿@page
+@using HobbyTeamManager.Utilities
 @model HobbyTeamManager.Pages.Players.GaleryModel
 
 @{
     ViewData["Title"] = "Team";
-}
 
-<p>&nbsp;</p>
-<h1 align="center" style="color: blue;">Wir sind dabei</h1>
-@*<p>&nbsp;</p>*@
+    // list of Members
+    var players = new PlayerGaleryCalculator();
+    players.List = (from m in Model.Player
+                    where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Member
+                    select m).ToList();
 
-@{
-    var players = (from m in Model.Player
-                   where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Member
+    // list of Guests
+    var guests = new PlayerGaleryCalculator();
+    guests.List = (from m in Model.Player
+                   where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Guest
                    select m).ToList();
 
-    int count = players.Count;
-    int rows = (count / 10) + 1;
-    int columns = (count / rows) + 1;
-    int index = 0;
-}
-
-@for (var i = 0; i < rows; i++)
-{
-    <p align="center">
-    @for (var j = 0; j < columns; j++)
-    {
-        if (index >= count)
-            break;
-        var item = players[index++];
-        @if (item.ProfilePicture != null)
-        {
-            <a title=@item.NickName asp-page="./Details" asp-route-id="@item.Id">
-                <img border="0" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
-            </a>
-        }
-        else
-        {
-            <img border="0" width="80" height="100"  src="">
-        }
-    }
-    </p>
+    // list of Ex-members
+    var ex = new PlayerGaleryCalculator();
+    ex.List = (from m in Model.Player
+               where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Ex
+               select m).ToList();
+    ex.ColumnsPerRow = 15;
 }
 
 <p>&nbsp;</p>
-<h2 align="center" style="color: blue;">Unsere Gastspieler</h2>
-@*<p>&nbsp;</p>*@
-
-@{
-    var guests = (from m in Model.Player
-                  where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Guest
-                  select m).ToList();
-    count = guests.Count;
-    rows = (count / 10) + 1;
-    columns = (count / rows) + 1;
-    index = 0;
-}
-
-@for (var i = 0; i < rows; i++)
+@if (players.Count > 0)
 {
-    <p align="center">
-    @for (var j = 0; j < columns; j++)
+    <h1 align="center" style="color: blue;">Wir sind dabei</h1>
+
+    @for (var i = 0; i < players.Rows; i++)
     {
-        if (index >= count)
-            break;
-        var item = guests[index++];
-        @if (item.ProfilePicture != null)
+        <p align="center">
+        @for (var j = 0; j < players.Columns; j++)
         {
-            <a title=@item.NickName asp-page="./Details" asp-route-id="@item.Id">
-                <img border="0" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
-            </a>
+            if (players.Index >= players.Count)
+                break;
+            var item = players.List[players.Index++];
+            @if (item.ProfilePicture != null)
+            {
+                <a title=@item.NickName asp-page="./Details" asp-route-id="@item.Id">
+                    <img border="0" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
+                </a>
+            }
+            else
+            {
+                <img border="0" width="80" height="100"  src="">
+            }
         }
-        else
-        {
-            <img border="0" width="80" height="100"  src="">
-        }
+        </p>
     }
-    </p>
+}
+else
+{
+    <p>Keine Spieler gefunden! Auf der Spielerliste-Seite neue Spieler erzeugen:</p>
+    <a class="nav-link" asp-page="/Players/Index">Spielerliste</a>
 }
 
 <p>&nbsp;</p>
-<h3 align="center" style="color: blue;">Unsere Ehemaligen (leider nicht vollzählig)</h3>
-@*<p>&nbsp;</p>*@
+@if (guests.Count > 0)
+{
+    <h2 align="center" style="color: blue;">Unsere Gastspieler</h2>
 
-@{
-    var ex = (from m in Model.Player
-                  where m.MembershipType != null && m.MembershipType.Name == HobbyTeamManager.Models.MembershipType.Ex
-                  select m).ToList();
-    count = ex.Count;
-    rows = (count / 15) + 1;
-    columns = (count / rows) + 1;
-    index = 0;
+    @for (var i = 0; i < guests.Rows; i++)
+    {
+        <p align="center">
+        @for (var j = 0; j < guests.Columns; j++)
+        {
+            if (guests.Index >= guests.Count)
+                break;
+            var item = guests.List[guests.Index++];
+            @if (item.ProfilePicture != null)
+            {
+                <a title=@item.NickName asp-page="./Details" asp-route-id="@item.Id">
+                    <img border="0" width="80" height="100" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
+                </a>
+            }
+            else
+            {
+                <img border="0" width="80" height="100"  src="">
+            }
+        }
+        </p>
+    }
 }
 
-@for (var i = 0; i < rows; i++)
+<p>&nbsp;</p>
+@if (ex.Count > 0)
 {
-    <p align="center">
-    @for (var j = 0; j < columns; j++)
+    <h3 align="center" style="color: blue;">Unsere Ehemaligen</h3>
+
+    @for (var i = 0; i < ex.Rows; i++)
     {
-        if (index >= count)
-            break;
-        var item = ex[index++];
-        @if (item.ProfilePicture != null)
+        <p align="center">
+        @for (var j = 0; j < ex.Columns; j++)
         {
-            <a title=@item.NickName>
-                <img border="0" width="60" height="75" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
-            </a>
+            if (ex.Index >= ex.Count)
+                break;
+            var item = ex.List[ex.Index++];
+            @if (item.ProfilePicture != null)
+            {
+                <a title=@item.NickName>
+                    <img border="0" width="60" height="75" src="data:image/*;base64,@(Convert.ToBase64String(item.ProfilePicture))">
+                </a>
+            }
+            else
+            {
+                <img border="0" width="80" height="100"  src="">
+            }
         }
-        else
-        {
-            <img border="0" width="80" height="100"  src="">
-        }
+        </p>
     }
-    </p>
 }

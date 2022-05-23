@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-#region Database stuff
+#region database connection
 var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
 #if RELEASE
 var connectionString = builder.Configuration.GetConnectionString("ReleaseConnection");
@@ -29,14 +29,14 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-#if true   // Seeding switched off while implementing models
+#region database seeding
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
     SeedData.Initialize(services);
 }
-#endif
+#endregion
 
 #region reverse proxy stuff
 // reverse proxy stuff - see "https://thomaslevesque.com/2018/04/17/hosting-an-asp-net-core-2-application-on-a-raspberry-pi/"

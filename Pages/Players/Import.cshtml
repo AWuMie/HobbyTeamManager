@@ -1,0 +1,139 @@
+﻿@page
+@using HobbyTeamManager.Models
+@model HobbyTeamManager.Pages.Players.ImportModel
+
+@{
+    ViewData["Title"] = "Spieler importieren";
+}
+
+<h1>Spieler importieren</h1>
+
+@*<h4></h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @{
+                if (ViewData["SuccessMessage"] != null && (string)ViewData["SuccessMessage"] != string.Empty)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @ViewData["SuccessMessage"]
+                    </div>
+                }
+                if (ViewData["ErrorMessage"] != null && (string)ViewData["ErrorMessage"] != string.Empty)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["ErrorMessage"]
+                    </div>
+                }
+            }
+            <div class="form-group">
+                @if (Model.Players == null)
+                {
+                    <label class="file">
+                        <input asp-for="PlayerJsonFile" type="file" accept=".json">
+                        <span class="file-custom"></span>
+                    </label>
+                    <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="Laden">
+                    <span asp-validation-for="PlayerJsonFile" class="text-danger"></span>
+                }
+                else
+                {
+                    <input asp-page-handler="Save" class="btn btn-primary" type="submit" value="Unten stehende Spielerliste Speichern" />
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Players[0].FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Players[0].LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Players[0].NickName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Players[0].MembershipTypeId)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Players) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NickName)
+                                    </td>
+                                    <td>
+                                        @{
+                                            string name = "-";
+                                            switch (item.MembershipTypeId)
+                                            {
+                                                case 1: name = MembershipType.Member; break;
+                                                case 2: name = MembershipType.Guest; break;
+                                                case 3: name = MembershipType.Ex; break;
+                                            }
+                                        }
+                                        @Html.DisplayFor(modelItem => name)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Zurück zur Liste</a>
+</div>
+
+<p>&nbsp;</p>
+
+@if (Model.Players == null)
+{
+<div>
+Beispielinhalt einer Spieler-Importdatei im JSON-Format:
+<pre>
+{
+  "Players": [
+    {
+      "FirstName": "Abel",
+      "LastName": "Bebel",
+      "Emailaddress": "abel.bebel@irgendwo.de",
+      "MembershipTypeId": 1
+    },
+    {
+      "FirstName": "Max",
+      "Emailaddress": "max@irgendwo.de",
+      "MembershipTypeId": 2
+    },
+    {
+      "FirstName": "Hans",
+      "LastName": "Wurst",
+      "NickName": "Würschdle",
+      "Emailaddress": "hans@wurst.de",
+      "BirthDate": "2001-01-01",
+      "MembershipTypeId": 3
+    }
+  ]
+}
+</pre>
+<p>Folgende Angaben sind zwingend erforderlich: "FirstName", "Emailaddress" und "MembershipTypeId".</p>
+<p>Es gibt 3 MembershipTypes: Member = 1; Guest = 2 und Ex = 3</p>
+<p>Die Emailadresse muss einmalig sein, kann sich also nicht bei mehreren Spielern wiederholen.</p>
+</div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

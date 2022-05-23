@@ -24,10 +24,10 @@ public class Player
     public string FirstName { get; set; } = "";
 
     [Display(Name = "Nachname")]
-    public string LastName { get; set; } = "";
+    public string? LastName { get; set; } = "";
 
     [Display(Name = "Spitzname / Motto")]
-    public string NickName { get; set; } = "";
+    public string? NickName { get; set; } = "";
 
     [Display(Name = "Geburtstag")]
     public DateTime BirthDate { get; set; } = DateTime.Now;
