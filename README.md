@@ -86,12 +86,13 @@ After having created CRUD pages for seasons with matchdays, players and was abou
   1. Season model
   2. Matchday model
   3. Player model
-       * implement "Import" for players and probably (historic) seasons via json files
-  4. ...
-* Implement authentication ("Registration", "Login") and some authorization without using the super allmighty "Identity".
-* Now having mail addresses we can start implementing the reminder and birthday emails
+       * implement "Import" for players
+* Implement authentication ("Registration", "Login") and some authorization (with or without .NET Core "Identity"?).
+* Now having mail addresses we can start implementing
+    * personal calender reflecting availability
+    * weekly reminder and birthday emails
+* import season(s) via json files
 * fix layout with sidebar on the left
-* ...
 * ...
 * make the Raspberry Pi running the web app available in the web behind some safety means
 * describe Raspberry Pi setup herein (update section "Setup")
