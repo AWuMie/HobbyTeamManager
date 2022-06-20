@@ -3,6 +3,7 @@ using System;
 using HobbyTeamManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HobbyTeamManager.Migrations
 {
     [DbContext(typeof(HobbyTeamManagerContext))]
-    partial class HobbyTeamManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220531081141_ChangedPlayerRowVersionToDateTime")]
+    partial class ChangedPlayerRowVersionToDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasIndex("SeasonId");
 
-                    b.ToTable("MatchDays", (string)null);
+                    b.ToTable("MatchDays");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.MembershipType", b =>
@@ -57,7 +59,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MembershipTypes", (string)null);
+                    b.ToTable("MembershipTypes");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.Player", b =>
@@ -107,10 +109,11 @@ namespace HobbyTeamManager.Migrations
                     b.Property<byte[]>("ProfilePicture")
                         .HasColumnType("longblob");
 
-                    b.Property<DateTime>("RowVersion")
+                    b.Property<DateTime?>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<float>("Score")
                         .HasColumnType("float");
@@ -122,7 +125,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasIndex("MembershipTypeId");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.Season", b =>
@@ -147,7 +150,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasIndex("SiteId");
 
-                    b.ToTable("Seasons", (string)null);
+                    b.ToTable("Seasons");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.Site", b =>
@@ -231,7 +234,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sites", (string)null);
+                    b.ToTable("Sites");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.Team", b =>
@@ -262,7 +265,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasIndex("TeamColorId");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.TeamColor", b =>
@@ -279,7 +282,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TeamColors", (string)null);
+                    b.ToTable("TeamColors");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.TeamPlayer", b =>
@@ -294,7 +297,7 @@ namespace HobbyTeamManager.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("TeamPlayers", (string)null);
+                    b.ToTable("TeamPlayers");
                 });
 
             modelBuilder.Entity("HobbyTeamManager.Models.MatchDay", b =>

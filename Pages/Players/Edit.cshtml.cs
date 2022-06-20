@@ -48,48 +48,73 @@ public class EditModel : PlayerBaseModel
             return Page();
         }
 
-        // did we load a new image?
-        // TODO: check Site.Edit!!!
-        if (Request.Form.Files.Count > 0)
-        {
-            IFormFile file = Request.Form.Files[0];
-
-            var imageContent = await FileHelpers.ProcessFormFile<Player>(
-                file, ModelState, FileHelpers.PermittedExtensions, FileHelpers.MaxFileSize);
-
-            if (!ModelState.IsValid)
-            {
-                PopulateMemberTypeDropDownList(Context, Player.MembershipTypeId);
-                return Page();
-            }
-
-            using var image = Image.Load(imageContent);
-            if (image.Width / image.Height < 0.8)
-                image.Mutate(i => i.Resize(0, 500));
-            else
-                image.Mutate(i => i.Resize(400, 0));
-
-            using var dataStream = new MemoryStream();
-            await image.SaveAsJpegAsync(dataStream);
-            Player.ProfilePicture = dataStream.ToArray();
-        }
-
-        // FIXED: if we did not change the ProfilePicture in Player it is null here!
-        if (Player.ProfilePicture == null)
-        {
-            Player.ProfilePicture = Context.Players
+        var oldProfilePicture = Context.Players
                 .AsNoTracking()
                 .FirstOrDefault(p => p.Id == Player.Id).ProfilePicture;
+
+        var oldPlayer = Context.Players
+                .AsNoTracking()
+                .FirstOrDefault(p => p.Id == Player.Id);
+
+        // did we load a new image?
+        if (Request.Form.Files.Count > 0)
+        {
+            var stream = await FileHelpers.GetCheckResizeImageAsync<Player>(Request, ModelState);
+            Player.ProfilePicture = stream?.ToArray();
+
+            if (Player.ProfilePicture == null)
+                Player.ProfilePicture = oldProfilePicture;
         }
+        else if (Player.ProfilePicture != oldProfilePicture)
+        {
+            Player.ProfilePicture = oldProfilePicture;
+        }
+        //    IFormFile file = Request.Form.Files[0];
+
+        //    var imageContent = await FileHelpers.ProcessFormFile<Player>(
+        //        file, ModelState, FileHelpers.PermittedExtensions, FileHelpers.MaxFileSize);
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        PopulateMemberTypeDropDownList(Context, Player.MembershipTypeId);
+        //        return Page();
+        //    }
+
+        //    using var image = Image.Load(imageContent);
+        //    if (image.Width / image.Height < 0.8)
+        //        image.Mutate(i => i.Resize(0, 500));
+        //    else
+        //        image.Mutate(i => i.Resize(400, 0));
+
+        //    using var dataStream = new MemoryStream();
+        //    await image.SaveAsJpegAsync(dataStream);
+        //    Player.ProfilePicture = dataStream.ToArray();
+        //}
+
+        // FIXED: if we did not change the ProfilePicture in Player it is null here!
+        //if (Player.ProfilePicture == null)
+        //{
+        //    Player.ProfilePicture = Context.Players
+        //        .AsNoTracking()
+        //        .FirstOrDefault(p => p.Id == Player.Id).ProfilePicture;
+        //}
+
+        //try
+        //{
+        //    // FIXED:membershiptype selection lost as well
+        //    Player.MembershipType =
+        //        Context.MembershipTypes.FirstOrDefault(
+        //            x => x.Id == Player.MembershipTypeId);
+
+        //    Context.Update(Player);
+        //    await Context.SaveChangesAsync();
+        //}
+
+        Context.Attach(Player).State = EntityState.Modified;
+        Context.Update(Player);
 
         try
         {
-            // FIXED:membershiptype selection lost as well
-            Player.MembershipType =
-                Context.MembershipTypes.FirstOrDefault(
-                    x => x.Id == Player.MembershipTypeId);
-
-            Context.Update(Player);
             await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
@@ -100,7 +125,16 @@ public class EditModel : PlayerBaseModel
             }
             else
             {
-                throw;
+                if (oldPlayer.RowVersion != Player.RowVersion)
+                {
+                    throw;
+                }
+                else
+                {
+                    // hmmmm?
+                    PopulateMemberTypeDropDownList(Context, Player.MembershipTypeId);
+                    return Page();
+                }
             }
         }
 
@@ -109,6 +143,6 @@ public class EditModel : PlayerBaseModel
 
     private bool PlayerExists(int id)
     {
-        return Context.Players.Any(e => e.Id == id);
+        return Context.Players.Any(p => p.Id == id);
     }
 }

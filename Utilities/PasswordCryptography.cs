@@ -64,6 +64,6 @@ public class PasswordCryptography
     public static bool IsPasswordCorrect(string password, HashSalt hs)
     {
         var hash = CalculateHash(password, hs.salt);
-        return hash == hs.hash;
+        return hash.SequenceEqual(hs.hash);
     }
 }

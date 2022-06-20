@@ -4,6 +4,8 @@ namespace HobbyTeamManager.Models;
 
 public class Player
 {
+    public readonly string AdminRole = "Administrator";
+
     public Player()
     {
         TeamPlayers = new HashSet<TeamPlayer>();
@@ -17,8 +19,11 @@ public class Player
 
     public bool EmailAdressConfirmed { get; set; } = false;
 
-    // one-to-one relationship Password <-> Player
-    public Password? Password { get; set; }
+    public int PasswordSalt { get; set; }
+
+    public byte[]? PasswordHash { get; set; }
+
+    public DateTime RowVersion { get; set; }
 
     [Display(Name = "Vorname")]
     public string FirstName { get; set; } = "";

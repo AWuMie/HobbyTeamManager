@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Models;
+using static HobbyTeamManager.Utilities.PasswordCryptography;
 
 namespace HobbyTeamManager.Data;
 
@@ -15,7 +16,8 @@ public static class SeedData
         // 2022-04-08: with the introduction of "Sites" the team colors can no longer be
         // "hard coded", but need to be set as properties of "Site".
         if (context == null ||
-            context.MembershipTypes == null)
+            context.MembershipTypes == null ||
+            context.Players == null)
         {
             throw new ArgumentNullException("Null HobbyTeamManagerContext");
         }
@@ -39,6 +41,24 @@ public static class SeedData
                     Name = MembershipType.Ex
                 }
             );
+        }
+
+        // seed THE administrator player
+        if (!context.Players.Any())
+        {
+            var admin = new Player
+            {
+                FirstName = "Admin",
+                Emailaddress = "admin@hobbyteammanager.com",
+                EmailAdressConfirmed = true,
+                IsAdmin = true,
+                MembershipTypeId = 1
+            };
+            HashSalt hs = GenerateHashSaltFromPassword("Admin.12");
+            admin.PasswordHash = hs.hash;
+            admin.PasswordSalt = hs.salt;
+
+            context.Players.Add(admin);
         }
 
         context.SaveChanges();

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using HobbyTeamManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,21 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+#endregion
+
+#region authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Forbidden/";
+        
+        options.Events = new CookieAuthenticationEvents
+        {
+            OnValidatePrincipal = CookieValidator.ValidateAsync
+        };
+    });
 #endregion
 
 var app = builder.Build();
@@ -68,10 +85,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
-#region Session stuff 2
-app.UseCookiePolicy();
+#region Session stuff 2 && authentication 2 (cookie stuff)
+var cookiePolicyOptions = new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Strict,
+};
+app.UseCookiePolicy(cookiePolicyOptions);
 app.UseSession();
 #endregion
 
