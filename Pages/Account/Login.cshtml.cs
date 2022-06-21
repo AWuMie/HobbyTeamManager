@@ -61,7 +61,11 @@ public class LoginModel : BasePageModel
 
         if (user.IsAdmin)
         {
-            claims.Add(new Claim(ClaimTypes.Role, "Administrator"));
+            claims.Add(new Claim(ClaimTypes.Role, Player.AdminRole));
+        }
+        else
+        {
+            claims.Add(new Claim(ClaimTypes.Role, Player.UserRole));
         }
 
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -98,7 +102,6 @@ public class LoginModel : BasePageModel
             return null;
         }
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
 #pragma warning disable CS8601 // Possible null reference assignment.
         HashSalt hashSalt = new()
         {
@@ -106,7 +109,6 @@ public class LoginModel : BasePageModel
             salt = user.PasswordSalt
         };
 #pragma warning restore CS8601 // Possible null reference assignment.
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
         if (IsPasswordCorrect(password, hashSalt))
         {

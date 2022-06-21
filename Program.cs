@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using HobbyTeamManager.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using HobbyTeamManager.Services;
+using HobbyTeamManager.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,44 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             OnValidatePrincipal = CookieValidator.ValidateAsync
         };
     });
+#endregion
+
+#region authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admins", policy =>
+    {
+        policy.RequireRole(Player.AdminRole);
+    });
+    options.AddPolicy("Users", policy =>
+    {
+        policy.RequireRole(Player.UserRole);
+    });
+});
+
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/MatchDays", "Admins");
+    options.Conventions.AuthorizeFolder("/Players", "Admins");
+    options.Conventions.AuthorizeFolder("/Seasons", "Admins");
+    options.Conventions.AuthorizeFolder("/Sites", "Admins");
+    options.Conventions.AuthorizeFolder("/Teams", "Admins");
+
+    options.Conventions.AuthorizePage("/MatchDays/Details", "Users");
+    options.Conventions.AuthorizePage("/MatchDays/Index", "Users");
+    options.Conventions.AuthorizePage("/Players/Details", "Users");
+    options.Conventions.AuthorizePage("/Players/Index", "Users");
+    options.Conventions.AuthorizePage("/Players/Galery", "Users");
+    options.Conventions.AuthorizePage("/Seasons/Details", "Users");
+    options.Conventions.AuthorizePage("/Seasons/Index", "Users");
+    options.Conventions.AuthorizePage("/Sites/Details", "Users");
+    options.Conventions.AuthorizePage("/Sites/Index", "Users");
+    options.Conventions.AuthorizePage("/Teams/Details", "Users");
+    options.Conventions.AuthorizePage("/Teams/Index", "Users");
+
+    //options.Conventions.AuthorizeFolder("/Path", "Admins");
+    //options.Conventions.AuthorizePage("/Path/Page", "Users");
+});
 #endregion
 
 var app = builder.Build();

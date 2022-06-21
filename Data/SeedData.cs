@@ -61,6 +61,17 @@ public static class SeedData
             context.Players.Add(admin);
         }
 
-        context.SaveChanges();
+        try
+        {
+            context.SaveChanges();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            throw new InvalidOperationException($"DbUpdateConcurrencyException occurred creating new admin user in SeedData.cs.");
+        }
+        catch (DbUpdateException)
+        {
+            throw new InvalidOperationException($"DbUpdateException occurred creating new admin user in SeedData.cs.");
+        }
     }
 }

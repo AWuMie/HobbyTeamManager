@@ -4,7 +4,8 @@ namespace HobbyTeamManager.Models;
 
 public class Player
 {
-    public readonly string AdminRole = "Administrator";
+    public static readonly string AdminRole = "Admin";
+    public static readonly string UserRole = "User";
 
     public Player()
     {

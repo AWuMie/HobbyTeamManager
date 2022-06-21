@@ -9,9 +9,10 @@
 
 <p>
     <a asp-page="Create">Neuer Spieler</a>
-    <p></p>
+    <text> | </text>
     <a asp-page="Import">Neue Spieler importieren</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -84,9 +85,27 @@
                     @Html.DisplayFor(modelItem => name)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Löschen</a>
+                    @if (Model.CurrentUserId == item.Id)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a>
+                        <text> | </text>
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        <text> | </text>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a>
+                        <text> | </text>
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Löschen</a>
+                    }
+                    else
+                    {
+                        <text> | </text>
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        <text> | </text>
+                    }
                 </td>
             </tr>
         }

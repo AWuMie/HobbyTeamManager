@@ -3,15 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using HobbyTeamManager.Models;
 using HobbyTeamManager.Utilities;
 using static HobbyTeamManager.Utilities.PasswordCryptography;
+using Microsoft.EntityFrameworkCore;
 
 namespace HobbyTeamManager.Pages.Players;
 
 // Ideas about creating/registering players/users.
 // - there is initially one administrator with FirstName "Admin" and Emailaddress "admin@hobbyteammanager.com"
-// - only admins can create Sites
+// - the hardcoded "Admin" password shall be changed at first log-in
+// - only admins can create a site
+// - admins can only edit "THEIR" site, not any other site.
+// - admins can give admin privileges to other users/players (for their site)
 // - on the "Register" page ask whether the registrant wants to be
 //   - an admin to create a new site, therefore additionally ask for a new(?) site name
-//   - a player/user with registers to a site with the site selectable from a dropdown
+//   - a player/user which registers to a site with the site selectable from a dropdown
 
 public class CreateModel : PlayerBaseModel
 {
@@ -52,13 +56,26 @@ public class CreateModel : PlayerBaseModel
         }
 
         Context.Players.Add(Player);
-        await Context.SaveChangesAsync();
+        try
+        {
+            await Context.SaveChangesAsync();
+        }
+        catch (DbUpdateException)
+        {
+            throw new InvalidOperationException("DbUpdateException occurred creating a new user/player.");
+        }
 
         return RedirectToPage("./Index");
     }
 
     private bool PlayerWithEmailExists(string email)
     {
-        return Context.Players.Any(p => p.Emailaddress == email);
+        // TODO: this needs to be per site!
+        bool ret = Context.Players.Any(p => p.Emailaddress == email);
+        if (ret)
+        {
+            ModelState.AddModelError(string.Empty, "Spieler mit dieser Mailadresse existiert schon!");
+        }
+        return ret;
     }
 }
