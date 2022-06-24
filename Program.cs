@@ -36,7 +36,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
+        options.AccessDeniedPath = "/Account/AccessDenied/";
         
         options.Events = new CookieAuthenticationEvents
         {
@@ -60,26 +60,26 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddRazorPages(options =>
 {
-    options.Conventions.AuthorizeFolder("/MatchDays", "Admins");
-    options.Conventions.AuthorizeFolder("/Players", "Admins");
-    options.Conventions.AuthorizeFolder("/Seasons", "Admins");
-    options.Conventions.AuthorizeFolder("/Sites", "Admins");
-    options.Conventions.AuthorizeFolder("/Teams", "Admins");
+    options.Conventions.AuthorizeFolder("/Sites", "Admins")
+        .AuthorizePage("/Sites/Details", "Users")
+        .AuthorizePage("/Sites/Index", "Users");
 
-    options.Conventions.AuthorizePage("/MatchDays/Details", "Users");
-    options.Conventions.AuthorizePage("/MatchDays/Index", "Users");
-    options.Conventions.AuthorizePage("/Players/Details", "Users");
-    options.Conventions.AuthorizePage("/Players/Index", "Users");
-    options.Conventions.AuthorizePage("/Players/Galery", "Users");
-    options.Conventions.AuthorizePage("/Seasons/Details", "Users");
-    options.Conventions.AuthorizePage("/Seasons/Index", "Users");
-    options.Conventions.AuthorizePage("/Sites/Details", "Users");
-    options.Conventions.AuthorizePage("/Sites/Index", "Users");
-    options.Conventions.AuthorizePage("/Teams/Details", "Users");
-    options.Conventions.AuthorizePage("/Teams/Index", "Users");
+    options.Conventions.AuthorizeFolder("/Seasons", "Admins")
+        .AuthorizePage("/Seasons/Details", "Users")
+        .AuthorizePage("/Seasons/Index", "Users");
 
-    //options.Conventions.AuthorizeFolder("/Path", "Admins");
-    //options.Conventions.AuthorizePage("/Path/Page", "Users");
+    options.Conventions.AuthorizeFolder("/Players", "Admins")
+        .AuthorizePage("/Players/Details", "Users")
+        .AuthorizePage("/Players/Index", "Users")
+        .AllowAnonymousToPage("/Players/Galery");
+
+    options.Conventions.AuthorizeFolder("/MatchDays", "Admins")
+        .AuthorizePage("/MatchDays/Details", "Users")
+        .AuthorizePage("/MatchDays/Index", "Users");
+
+    options.Conventions.AuthorizeFolder("/Teams", "Admins")
+        .AuthorizePage("/Teams/Details", "Users")
+        .AuthorizePage("/Teams/Index", "Users");
 });
 #endregion
 

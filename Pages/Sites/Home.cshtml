@@ -5,11 +5,12 @@
 @{
     ViewData["Title"] = Model.Site.Name;
 
-    if (Model.Site.MenuPositionId == 
-        Site.menuPosition.FirstOrDefault(mp => mp.Value == Site.menuPositionTop).Key)
+    //if (Model.Site.MenuPositionId == 
+    //    Site.menuPosition.FirstOrDefault(mp => mp.Value == Site.menuPositionTop).Key)
         Layout = "/Pages/Shared/_Layout.cshtml";
-    else
-        Layout = "/Pages/Shared/_LayoutLeft.cshtml";
+    // TODO: remove the left stuff!!!
+    //else
+    //    Layout = "/Pages/Shared/_LayoutLeft.cshtml";
 }
 
 <div class="text-center">

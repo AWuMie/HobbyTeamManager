@@ -62,6 +62,7 @@ public class LoginModel : BasePageModel
         if (user.IsAdmin)
         {
             claims.Add(new Claim(ClaimTypes.Role, Player.AdminRole));
+            claims.Add(new Claim(ClaimTypes.Role, Player.UserRole));
         }
         else
         {
