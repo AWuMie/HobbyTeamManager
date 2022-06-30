@@ -21,9 +21,13 @@ public class PlayerBaseModel : BasePageModel
 
         var items = membershipTypeQuery.AsNoTracking().ToList();
 
-        //MembershipTypeSL = new SelectList(items,
-        //    "MembershipTypeId", "Name", selectedMembershipTypeId);
         MembershipTypeSL = Utilities.Miscellaneous.PopulateDropDownList(items,
             nameof(MembershipType.Id), nameof(MembershipType.Name), selectedMembershipTypeId);
+    }
+
+    protected bool PlayerWithEmailExists(string email)
+    {
+        // TODO: this needs to be per site!
+        return Context.Players.Any(p => p.Emailaddress == email);
     }
 }

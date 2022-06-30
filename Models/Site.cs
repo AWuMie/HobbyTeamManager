@@ -14,7 +14,7 @@ public class Site
     public string? Motto { get; set; }
 
     // should be name and motto?
-    [Display(Name = "Überschrift")]
+    [Display(Name = "Überschrift / Beschreibung")]
     public string Headline { get; set; } = string.Empty;
 
     [Display(Name = "optionale Überschrift 2")]

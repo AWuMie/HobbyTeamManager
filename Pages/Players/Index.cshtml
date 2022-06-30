@@ -1,11 +1,14 @@
 ﻿@page "{id:int?}"
+@using HobbyTeamManager.Models
 @model HobbyTeamManager.Pages.Players.IndexModel
 
 @{
     ViewData["Title"] = "Alle Spieler";
 }
 
-<h1>Alle Spieler</h1>
+<div class="text-center border-bottom mb-1">
+    <h1>@ViewData["Title"]</h1>
+</div>
 
 <p>
     <a asp-page="Create">Neuer Spieler</a>
@@ -92,7 +95,7 @@
                         <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
                         <text> | </text>
                     }
-                    else if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    else if (User.Identity.IsAuthenticated && User.IsInRole(Player.AdminRole))
                     {
                         <a asp-page="./Edit" asp-route-id="@item.Id">Ändern</a>
                         <text> | </text>

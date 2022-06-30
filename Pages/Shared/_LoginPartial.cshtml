@@ -1,6 +1,4 @@
-﻿@*@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;*@
-
-@using HobbyTeamManager.Models
+﻿@using HobbyTeamManager.Models
 @using System.Security.Claims
 @{
     var site = Utilities.Miscellaneous.GetObjectFromSessionString<Site>(Context);
@@ -11,7 +9,6 @@
 }
 
 <ul class="navbar-nav">
-@*@if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)*@
 @if (User.Identity.IsAuthenticated)
 {
     var idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
@@ -34,7 +31,7 @@
 else
 {
     <li class="nav-item">
-        <a class="nav-link" style="color:@site.FgColorMain" asp-page="/Account/Register">Register</a>
+        <a class="nav-link" style="color:@site.FgColorMain" asp-page="/Account/Register">Admin-Registrieren</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" style="color:@site.FgColorMain" asp-page="/Account/Login">Anmelden</a>

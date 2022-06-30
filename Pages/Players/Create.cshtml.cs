@@ -33,12 +33,23 @@ public class CreateModel : PlayerBaseModel
 
     [BindProperty]
     public string Password { get; set; }
+    public string PasswordConfirm { get; set; }
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
+        if (!string.Equals(Password, PasswordConfirm))
+        {
+            ModelState.AddModelError(string.Empty, "Passwort und Passwortbestätigung müssen identisch sein");
+        }
+
+        if (PlayerWithEmailExists(Player.Emailaddress))
+        {
+            ModelState.AddModelError(string.Empty, "Spieler mit dieser Mailadresse existiert schon!");
+        }
+
         // FIXED: check for existing player with same mailaddress!
-        if (!ModelState.IsValid || PlayerWithEmailExists(Player.Emailaddress))
+        if (!ModelState.IsValid)
         {
             PopulateMemberTypeDropDownList(Context);
             return Page();
@@ -66,16 +77,5 @@ public class CreateModel : PlayerBaseModel
         }
 
         return RedirectToPage("./Index");
-    }
-
-    private bool PlayerWithEmailExists(string email)
-    {
-        // TODO: this needs to be per site!
-        bool ret = Context.Players.Any(p => p.Emailaddress == email);
-        if (ret)
-        {
-            ModelState.AddModelError(string.Empty, "Spieler mit dieser Mailadresse existiert schon!");
-        }
-        return ret;
     }
 }

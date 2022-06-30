@@ -60,16 +60,24 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddRazorPages(options =>
 {
-    options.Conventions.AuthorizeFolder("/Sites", "Admins")
+    options.Conventions
+        .AuthorizePage("/Sites/Create", "Admins")
+        .AuthorizePage("/Sites/Delete", "Admins")
+        .AuthorizePage("/Sites/Edit", "Admins")
         .AuthorizePage("/Sites/Details", "Users")
-        .AuthorizePage("/Sites/Index", "Users");
+        .AllowAnonymousToPage("/Sites/Index")
+        .AllowAnonymousToPage("/Sites/Home");
 
     options.Conventions.AuthorizeFolder("/Seasons", "Admins")
         .AuthorizePage("/Seasons/Details", "Users")
         .AuthorizePage("/Seasons/Index", "Users");
 
-    options.Conventions.AuthorizeFolder("/Players", "Admins")
+    options.Conventions
+        .AuthorizePage("/Players/Create", "Admins")
+        .AuthorizePage("/Players/Delete", "Admins")
+        .AuthorizePage("/Players/Import", "Admins")
         .AuthorizePage("/Players/Details", "Users")
+        .AuthorizePage("/Players/Edit", "Users")
         .AuthorizePage("/Players/Index", "Users")
         .AllowAnonymousToPage("/Players/Galery");
 

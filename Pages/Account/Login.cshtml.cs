@@ -87,7 +87,7 @@ public class LoginModel : BasePageModel
         return LocalRedirect(returnUrl);
     }
 
-    private async Task<Player?> AuthenticateUser(string login, string password)
+    private async Task<Player?> AuthenticateUser(string? login, string? password)
     {
         if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
         {
