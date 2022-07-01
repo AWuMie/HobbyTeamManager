@@ -30,7 +30,7 @@ public class HobbyTeamManagerContext : DbContext
         modelBuilder.ApplyConfiguration(new MatchDayConfiguration());
         modelBuilder.ApplyConfiguration(new SeasonConfiguration());
         modelBuilder.ApplyConfiguration(new SiteConfiguration());
-        //modelBuilder.ApplyConfiguration(new PasswordConfiguration());
+        modelBuilder.ApplyConfiguration(new SitePlayerConfiguration());
     }
 
     public DbSet<MembershipType>? MembershipTypes { get; set; }
@@ -41,5 +41,5 @@ public class HobbyTeamManagerContext : DbContext
     public DbSet<MatchDay>? MatchDays { get; set; }
     public DbSet<Season>? Seasons { get; set; }
     public DbSet<Site>? Sites { get; set; }
-    //public DbSet<Password>? Passwords { get; set; }
+    public DbSet<SitePlayer>? SitePlayers { get; set; }
 }

@@ -73,7 +73,10 @@ public class Site
     // a Site has many Seasons
     public IList<Season>? Seasons { get; set; }
 
-    //public IList<Player>? Players { get; set; }
+    // many to many releationship between teams and players:
+    // a team has many players and
+    // a player can play in many teams (a team is valid for one matchday)
+    public ICollection<SitePlayer>? SitePlayers { get; set; }
 
     public string GetConfirmationMode(int index)
     {

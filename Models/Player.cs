@@ -49,6 +49,10 @@ public class Player
     [Display(Name = "Spielerstärke")]
     public float Score { get; set; } = 0.0F;
 
+    ///////////////////
+    // Relationships //
+    ///////////////////
+
     // one to many relationship between Player and MembershipType
     // a Player has one MembershipType
     // a MembershipType is valid for many Players
@@ -60,6 +64,11 @@ public class Player
     // a team has many players and
     // a player can play in many teams (a team is valid for one matchday)
     public ICollection<TeamPlayer>? TeamPlayers { get; set; }
+
+    // many to many releationship between sites and players:
+    // a site has many players and
+    // a player can be member in multiple sites (site = hobby team)
+    public ICollection<SitePlayer>? SitePlayers { get; set; }
 
     // one to many relationship between Player and MatchDay to cover the beer-responsible
     // a player can be beer responsible on many matchdays
