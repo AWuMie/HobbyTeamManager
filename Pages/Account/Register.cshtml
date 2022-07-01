@@ -8,8 +8,8 @@
     <h1>@ViewData["Title"]</h1>
     <h3>Neuer Hobby-Mannschaft-Administrator für eine <strong><u>neue</u></strong> Hobby-Mannschaft!</h3>
     <hr />
-    <h5>Hier kann <strong><u>kein neuer</u></strong> Administrator zu einer bestehenden Mannschaft zufügen werden!</h5>
-    <h5>Dazu muss ein bestehender Administrator der bestehenden Mannschaft einen neuen Benutzer/Spieler als Administrator anlegen oder einen bestehenden Benutzer/Spieler zum Administrator machen.</h5>
+    <h4>Hier kann <strong><u>kein neuer</u></strong> Administrator zu einer bestehenden Mannschaft zufügen werden!</h4>
+    <h4>Dazu muss ein bestehender Administrator der bestehenden Mannschaft einen neuen Benutzer/Spieler als Administrator anlegen oder einen bestehenden Benutzer/Spieler zum Administrator machen.</h4>
 </div>
 <hr />
 
@@ -17,7 +17,7 @@
     <div class="col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3">
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <h6>Neuer Hobby-Mannschaft-Administrator</h6>
+            <h5>Neuer Hobby-Mannschaft-Administrator</h5>
             <div class="form-group">
                 <label asp-for="Player.FirstName" class="control-label"></label>
                 <input asp-for="Player.FirstName" class="form-control" />
@@ -46,15 +46,15 @@
                 <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
             </div>
             <hr />
-            <h6>Neue Hobby-Mannschaft</h6>
+            <h5>Neue Hobby-Mannschaft</h5>
             <div class="form-group">
                 <label asp-for="Site.Name" class="control-label"></label>
-                <input asp-for="Site.Name" class="form-control" />
+                <input asp-for="Site.Name" class="form-control" placeholder="Hobbymannschaft" />
                 <span asp-validation-for="Site.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Site.Headline" class="control-label"></label>
-                <input asp-for="Site.Headline" class="form-control" />
+                <input asp-for="Site.Headline" class="form-control" placeholder="Die beste Freizeitmannschaft" />
                 <span asp-validation-for="Site.Headline" class="text-danger"></span>
             </div>
             <hr />

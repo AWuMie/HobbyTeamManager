@@ -50,18 +50,37 @@ namespace HobbyTeamManager.Pages.Account
                 return Page();
             }
 
-            // FIXED: hash the password if not empty!
             if (!string.IsNullOrEmpty(Password))
             {
                 var hs = GenerateHashSaltFromPassword(Password);
                 Player.PasswordHash = hs.hash;
                 Player.PasswordSalt = hs.salt;
             }
-            Player.EmailAdressConfirmed = false;
+
+            // TODO: send mail to confirm mail address
+            //Player.EmailAdressConfirmed = false;
+            Player.EmailAdressConfirmed = true;
             Player.IsAdmin = true;
             Player.MembershipTypeId = 1;
 
             Context.Players.Add(Player);
+            Context.Sites.Add(Site);
+
+            try
+            {
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                throw new InvalidOperationException("DbUpdateException occurred creating a new admin/user/player.");
+            }
+
+            var sp = new SitePlayer();
+            sp.PlayerId = Player.Id;
+            sp.SiteId = Site.Id;
+
+            Context.SitePlayers.Add(sp);
+
             try
             {
                 await Context.SaveChangesAsync();
