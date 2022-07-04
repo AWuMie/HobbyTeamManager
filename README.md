@@ -80,19 +80,19 @@ After having created CRUD pages for seasons with matchdays, players and was abou
 * implement Site model with "flexible" layout
   * DONE: background and text colors
   * DONE: menubar on the top
-  * DONE: sidebar on the left - BUT STILL LOOKS UGLY!
 * DONE: add unit testing using NUnit and Moq starting with the Site model: [HTM Unit Tests](https://github.com/AWuMie/HobbyTeamManager.UnitTests)
 * bring already existing models under the site model (relationships) (incl. adding unit testing to those models!)
-  1. Season model
-  2. Matchday model
+  1. Season model (done)
+  2. Matchday model (done)
   3. Player model
-       * implement "Import" for players
-* Implement authentication ("Registration", "Login") and some authorization (with or without .NET Core "Identity"?).
+       * implement "Import" for players (done)
+* Implement authentication ("Registration", "Login") and some authorization (without .NET Core "Identity"). (ongoing)
 * Now having mail addresses we can start implementing
+    * implement sending mails
+    * confirm email address after registration
     * personal calender reflecting availability
     * weekly reminder and birthday emails
 * import season(s) via json files
-* fix layout with sidebar on the left
 * ...
 * make the Raspberry Pi running the web app available in the web behind some safety means
 * describe Raspberry Pi setup herein (update section "Setup")
